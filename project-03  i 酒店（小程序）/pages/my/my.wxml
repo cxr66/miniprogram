@@ -1,0 +1,26 @@
+<!--pages/my/my.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}"/> -->
+<view class='container'>
+  <!-- 上方部分 -->
+  <view class='nav_top'>
+    <view class='userinfo'><image class='userinfo-avatar' src='{{ wx_userInfo.avatarUrl }}'></image></view>
+    <view class='pos_btn autoView row'>
+      <block wx:for='{{ infoList }}' wx:key='key'>
+        <view class='pos_item column {{index==1?"item_sec":"" }}' data-link='{{ item.link }}' bindtap='navigate'>
+          <image src='{{ item.url }}'></image>
+          <text>{{ item.desc }}</text>
+          <text wx:if='{{ tipsNum!=0 }}' hidden='{{ index!=1 }}' class='num' style='color: red;'>{{ tipsNum }}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='section'>
+    <block wx:for='{{ setList }}' wx:key='key'>
+      <view class='autoView section_item' data-link='{{ item.link }}' bindtap='navigate'>
+        {{ item.desc}}
+        <image src='../img/icon-right.png'></image>
+      </view>
+    </block>
+  </view>
+</view>

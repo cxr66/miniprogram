@@ -1,0 +1,19 @@
+<!--pages/my/attend/attend.wxml-->
+<!-- 列表展示 -->
+<view class='autoView section'>
+  <ul class='row'> 
+      <li>日期</li>
+      <li>考勤时间</li>
+      <li>考勤类型</li>
+      <li>班次</li>
+      <li>查核人</li> 
+  </ul>
+  <ul class='row list_style' wx:for='{{ attendList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <li class='date_color' style="width: 22%;">{{ item.duty_date }}</li>
+      <li>{{ item.duty_time }}</li>
+      <li><text wx:if='{{ item.check_in_or_out }}'>签退</text> <text wx:else>签到</text></li>
+      <li>{{ item.shift_id.desc_cn }}</li>
+      <li><text wx:if='{{ item.verify_user.real_name }}'>{{ item.verify_user.real_name }}</text><text wx:else>暂未查核</text></li> 
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前无更多考勤记录</li></ul>
+</view>

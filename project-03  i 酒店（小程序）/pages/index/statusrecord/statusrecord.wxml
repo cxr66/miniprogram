@@ -1,0 +1,60 @@
+<!--pages/index/statusrecord/statusrecord.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <block wx:for="{{ check_list }}" wx:key='key'>
+      <view wx:if='{{ index == 0 }}' class='check_item' data-index='{{ index }}'>
+        <!-- 时间选择器 -->
+        <picker class='picker_w' mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='0'>
+          <text class="picker"> {{ item.name }} </text> 
+          <image src="/pages/img/icon-select.png"></image>
+        </picker>
+      </view>
+      <view wx:elif='{{ index == 1 }}' class='check_item' data-index='{{ index }}'>
+        <!-- 结束时间选择器 -->
+        <picker class='picker_w' mode="date" value="{{ end_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'>
+          <text class="picker"> {{ item.name }} </text> 
+          <image src="/pages/img/icon-select.png"></image>
+        </picker>
+      </view>
+      <view wx:elif='{{ index == 2 }}' class='check_item' data-index='{{ index }}'>
+        <!-- 起始房态选择器 -->
+        <picker class='picker_w' range='{{ item.list }}' range-key='desc' bindchange="bindDateChange" data-flag='2'>
+          <text class="picker"> {{ item.name }} </text> 
+          <image src="/pages/img/icon-select.png"></image>
+        </picker>
+      </view>
+      <view wx:elif='{{ index == 3 }}' class='check_item' data-index='{{ index }}'>
+        <!-- 结束房态选择器 -->
+        <picker class='picker_w' range='{{ item.list }}' range-key='desc' bindchange="bindDateChange" data-flag='3'>
+          <text class="picker"> {{ item.name }} </text> 
+          <image src="/pages/img/icon-select.png"></image>
+        </picker>
+      </view>
+    </block>
+  </view>
+
+  <!-- 修改房态 -->
+    <view class='change color_1 bg_grey'>
+      <text class='left fn_bolder' bindtap='onLoad'>全部</text>
+    </view> 
+</view>
+
+<!-- 列表展示 -->
+<view class='section autoView'>
+  <ul class='row'>
+      <li>房号</li>
+      <li style="width: 24%">修改原因</li>
+      <li>完成人</li>
+      <li style="width: 24%">开始时间</li> 
+      <li style="width: 24%">完成时间</li> 
+  </ul>
+  <ul class='row list_style' wx:for='{{ room_change_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <li>{{ item.room_no }}</li> 
+      <li style="width: 24%">{{ item.remark }}</li>
+      <li>{{ item.create_user }}</li> 
+      <li class='date_color' style="width: 26%">{{ item.start_time }}</li>
+      <li class='date_color' style="width: 26%">{{ item.end_time }}</li>
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前条件下无更多房情信息</li></ul>
+</view>

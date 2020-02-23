@@ -1,0 +1,63 @@
+<!--pages/place/place.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <block wx:for="{{ eqCheckList }}" wx:key='key' wx:for-index='checkIndex'>
+      <view wx:if='{{ checkIndex==0 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <picker class='picker_w' data-listindex='{{ checkIndex }}' bindchange="bindDateChange" value="{{ index }}" range="{{ item.list }}" range-key='hall_name' data-flag='0'>
+          <view class="picker">
+            {{ item.name }}
+            <image src="/pages/img/icon-select.png"></image>
+          </view>
+        </picker>
+      </view>
+
+      <view wx:elif='{{ checkIndex==1 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 起始时间选择器 -->
+        <picker mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'>
+          <view class="picker">{{ item.name }}</view>
+        </picker>
+      </view>
+
+      <view wx:elif='{{ checkIndex==2 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 终止时间选择器 -->
+        <picker mode="date" value="{{ end_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='2'>
+          <view class="picker">{{ item.name }}</view>
+        </picker>
+      </view>
+
+    </block>
+  </view>
+
+</view>
+
+<!-- 列表展示 -->
+<view wx:for='{{ show_today_list }}' wx:key='key' class='autoView section'>
+  <view class='change bg_grey' style='overflow:hidden;'>
+    <text class='color_1 left cg_color' style='font-weight: bolder;'>{{ item.hall_name }}</text>
+  </view>
+  <ul class='row'>
+    <li>日期</li>
+    <li>占用状态</li>
+    <li>占用方</li>
+    <li>操作</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ item.list }}' wx:key='key2' wx:for-item='listItem' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+    <li class='date_color'>{{ listItem.date }}</li>
+    <li>
+      <text wx:if='{{ listItem.occupier[0].name || listItem.occupier[1].name || listItem.occupier[2].name }}'>已占用</text>
+      <text wx:else>未占用</text>
+    </li>
+    <li>
+      <text wx:if='{{ listItem.occupier[0].name || listItem.occupier[1].name || listItem.occupier[2].name }}'>{{ listItem.occupier[0].name }}{{ listItem.occupier[1].name }}{{ listItem.occupier[2].name }}</text>
+      <text wx:else>无</text>
+    </li>
+    <li class='cg_color fn_bolder'>
+      <text wx:if='{{ listItem.occupier[0]&&listItem.occupier[0]&&listItem.occupier[0] }}'>详情</text>
+      <text wx:else>预定</text>
+    </li>
+  </ul>
+</view>
+<view class='section_item list_style' style='background-color:#ffffff;text-align: center;color:#222222;'>
+  当前条件下无更多会场信息
+</view>

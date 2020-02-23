@@ -1,0 +1,28 @@
+/* pages/mission/elevator/elevator.wxss */
+.section{
+  width: 96%;
+  margin: 20rpx auto;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.section .name{
+  line-height: 60rpx;
+  margin: 20rpx ;
+}
+.section .nav_floor{
+  margin: 20rpx ;
+  border-top: 2rpx #eee solid;
+}
+.floorItem{
+  width: 100rpx;
+  margin: 20rpx 32rpx;
+  border: 2rpx #2080DE solid;
+  text-align: center;
+  line-height: 100rpx;
+  color: #2080DE;
+}
+
+.active{
+  background-color: #2080DE;
+  color: #ffffff;
+}

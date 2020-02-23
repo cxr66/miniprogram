@@ -1,0 +1,11 @@
+<!--pages/mission/lock/lock.wxml-->
+<view class='header column'>
+  <view class='openlock column' bindtap='openLock'>
+    <image src='/pages/img/mission/icon-lock-item.png' ></image>
+    <view class='tips fn_32'>点击开锁</view>
+  </view>
+</view>
+<view class='section name row fn_28'>
+  <view class='title '>房间号:</view>
+  <input bindinput='bindinput' placeholder="请输入房间号" value='{{ form.room_number }}' auto-focus/> 
+</view>

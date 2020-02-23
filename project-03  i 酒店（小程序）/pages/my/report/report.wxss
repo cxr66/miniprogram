@@ -1,0 +1,21 @@
+/* pages/my/report/report.wxss */
+
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+}
+.section_item image{
+  width: 24rpx;
+  height: 42rpx;
+  float: right;
+  margin-top: 29rpx;
+}

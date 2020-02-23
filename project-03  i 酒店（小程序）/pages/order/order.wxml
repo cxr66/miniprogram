@@ -1,0 +1,27 @@
+<!--pages/order/order.wxml-->  
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <!-- 时间选择器 -->
+    <picker class=' cg_color picker_w' mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'> 
+        <view class="picker">{{ begin_date }}</view>
+        <image class='right_img' src='../img/icon-bottom.png'></image>
+    </picker>
+  </view>
+</view>
+<!-- 列表展示 -->
+<view class='autoView section'>
+  <ul class='row'>
+      <li >来源</li>
+      <li >订单号</li> 
+      <li >到达日期</li>
+      <li >离店日期</li>                                      
+  </ul>
+  <ul class='row list_style' wx:for='{{ order_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <li >{{ item.code_src_id }}</li>
+      <li >{{ item.order_no }}</li> 
+      <li >{{ item.arr_time }}</li>
+      <li >{{ item.leave_time }}</li> 
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前条件下无更多房情信息</li></ul>
+</view>

@@ -1,0 +1,30 @@
+<!--pages/mission//newmonitor/newmonitor.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <view class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+      <picker class='picker_w' data-listindex='0' bindchange="bindPickerChange" value="{{ index }}" range="{{ cameraList }}" range-key="self_position">
+        <view class="picker">
+          {{ eqCheckList[0].name }}
+          <image src="/pages/img/icon-select.png"></image>
+        </view>
+      </picker>
+
+    </view>
+
+    <view class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+      <picker class='picker_w' data-listindex='1' bindchange="bindPickerChange" value="{{ index }}" range="{{ eqCheckList[1].list }}">
+        <view class="picker">
+          {{ eqCheckList[1].name }}
+          <image src="/pages/img/icon-select.png"></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<view class='form' style='margin: 20rpx auto;' wx:for='{{ channelNoList }}' wx:key='key'>
+  <!-- <view class='title fn_28'>{{ item.building }}{{ item.floor }}{{ item.position_string }}</view> -->
+  <video id="myVideo" src="{{ item.hls }}" binderror='errorPlay' controls></video>
+  <!-- <live-player src="{{ item.flvAddress }}" mode="live" autoplay bindstatechange="statechange" binderror="errorPlay" style="width: 100%; height: 500rpx;" /> -->
+</view>

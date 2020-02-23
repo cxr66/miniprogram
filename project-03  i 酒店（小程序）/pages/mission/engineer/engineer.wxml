@@ -1,0 +1,86 @@
+<!--pages/mission/engineer/engineer.wxml--> 
+<view class='section' hidden="true">
+  <view class="newTitle" bindtap="showNewModal"> + 新建工程配合</view>
+  <block wx:for='{{ goodsList }}' wx:key='key'>
+    <view class='autoView section_item'>
+      <view class='room_num fn_bolder'>
+        房间： {{ item.room_no}}
+        <text wx:if="{{ item.status == 0 }}" class='color_f00' bindtap='cancle_modal_flag' data-id='{{ item.id }}'>待分配</text>
+        <text wx:elif="{{ item.status == 5 }}" class='send_color' data-id='{{ item.id }}' bindtap='navigate' data-link=''>待配合</text>
+        <text wx:elif="{{ item.status == 10 }}" class='send_color'>配合完成  <!-- bindtap='have_pass' --></text>
+        <text wx:elif="{{ item.status == 20 }}" class='send_color'>任务失效</text>
+      </view>
+
+      <view class='room_num fn_bolder'>
+        种类：
+        <text>{{ item.goods_total_price }}</text>
+      </view>
+
+      <view class='room_num fn_bolder'>
+        人员：
+        <text>{{ item.goods_total_price }}</text>
+      </view>
+
+      <view class='room_num fn_bolder'>
+        内容：
+        <text>{{ item.goods_total_price }}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 房务人员弹窗 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'></view>
+<!-- 房务人员 -->
+<view class="modalDlg column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'>
+  <view class='choose_title'>
+    <view class='fn_24 line_height_60 ' style='margin-bottom:30rpx;'>可分配人员：</view>
+    <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{ employeeList }}" range-key='real_name'>
+      <view class="inline_block picker fn_24">
+        {{ employeeList[chooseIndex].real_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='cancle_modal_flag'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='confirm'>确认</view>
+  </view>
+</view>
+
+<!-- 新建送物任务 --> 
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ new_flag }}'></view>
+<!-- 房务人员 -->
+<view class="modalDlg column" catchtouchmove="preventTouchMove" style="height:50%;" hidden='{{ new_flag }}'>
+  <view class='choose_title'>
+    <view class='fn_24 line_height_60 '>房间号：</view>
+    <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{ employeeList }}" range-key='real_name'>
+      <view class="inline_block picker fn_24">
+        {{ employeeList[chooseIndex].real_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+ 
+    <view class='fn_24 line_height_60 '>种类：</view>
+    <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{ employeeList }}" range-key='real_name'>
+      <view class="inline_block picker fn_24">
+        {{ employeeList[chooseIndex].real_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+
+    <view class='fn_24 line_height_60 '>商品名：</view>
+    <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{ employeeList }}" range-key='real_name'>
+      <view class="inline_block picker fn_24">
+        {{ employeeList[chooseIndex].real_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='showNewModal'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap=''>确认</view>
+  </view>
+</view>

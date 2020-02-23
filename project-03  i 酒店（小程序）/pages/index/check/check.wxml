@@ -1,0 +1,23 @@
+<!--pages/index/check/check.wxml-->
+<view class='section'>
+  <checkbox-group bindchange="checkboxChange">
+    <block wx:for='{{ checkList }}' wx:key='key'>
+      <view class='autoView section_item'>
+        <view class='room_num'>
+          <strong>{{ item.desc }}</strong>
+          <!-- <text class='send_color'>全选</text> -->
+        </view>
+        <view class='room_num' wx:for='{{ item.child_list }}' wx:key='key2' wx:for-item='listitem' wx:for-index='index2'>
+          <!-- <i wx:if='{{ index2==0 }}' > 物品：</i>
+            <i wx:else></i> -->
+          {{ listitem.desc }}
+          <checkbox class='right' value="{{ listitem.code }}" color='#2080DE' checked="{{ listitem.checked }}" bind/>
+        </view>
+      </view>
+    </block>
+  </checkbox-group>
+  <!-- 通过不通过定位 -->
+  <view class='fix_bot row'>
+    <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' style='{{ btn_index==3?"border: none;":"" }}' bindtap='{{ btn_item.bind }}'>{{ btn_item.desc }}</view>
+  </view>
+</view>

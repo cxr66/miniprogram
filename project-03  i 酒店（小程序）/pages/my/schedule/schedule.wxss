@@ -1,0 +1,93 @@
+/* pages/my/schedule/schedule.wxss */
+page{
+  padding: 90rpx 0 60rpx 0 ;
+}
+/* 上方 */
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 9;
+}
+.header{
+  /* padding: 0 34rpx; */
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center;
+  /* color: #2080DE; */
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+
+/* 筛选条件 */
+.pos_check{
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1rpx #eeeeee solid;
+  position: fixed;
+  top: 84rrpx;
+  left:0;
+  z-index: 9;
+}
+.item_list{
+  width: 20%;
+  font-size: 24rpx;
+  color: #222222;
+  text-align: center;
+  line-height: 60rpx;
+  border: 1rpx #eeeeee solid;
+  margin:10rpx 16rpx;
+}
+.item_list_active{
+  color: #ffffff;
+  background-color:#2080DE;
+}
+.check_item{ 
+  border-right: 1rpx solid #eeeeee;
+}
+.check_item image{
+  margin-left: 10rpx;
+  vertical-align: middle;
+  width: 14rpx;
+  height: 8rpx;
+  display: inline-block;
+}
+.change{
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: right;
+  padding: 0 20rpx;
+  font-weight:bolder;
+} 
+.picker_w{
+  width: 100%;
+}
+
+
+/* 表格展示数据 */
+.section{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.section ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.section ul li{
+  width: 25%;
+  line-height: 80rpx;
+  text-align: center;
+} 
+.section .list_style{
+  color: #777777;
+}
+.section .date_color{
+  color: #2080DE;
+}

@@ -1,0 +1,14 @@
+<!--pages/mallindex/mallindex.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}"/> -->
+<view class='container'>
+  <view class='section'>
+    <block wx:for='{{ settingList }}' wx:key='key'>
+      <view class='section_item column center' data-link='{{ item.link }}' data-desc="{{ item.desc }}" bindtap='navigate'>
+        <image src='{{ item.url }}'></image>
+        <text>{{ item.desc }}</text>
+      </view>
+    </block>
+    <view wx:for='3' wx:key='key2' class='section_item'></view>
+  </view>
+</view>

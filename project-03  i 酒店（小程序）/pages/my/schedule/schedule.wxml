@@ -1,0 +1,43 @@
+<!--pages/my/schedule/schedule.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <block wx:for="{{ eqCheckList }}" wx:key='key' wx:for-index='checkIndex'>
+      <view wx:if='{{ checkIndex==0 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 时间选择器 -->
+        <picker mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='0'> 
+            <view class="picker">
+              {{ item.name }}
+              <image src="/pages/img/icon-select.png"></image>
+            </view> 
+        </picker>
+      </view>
+
+      <view wx:elif='{{ checkIndex==1 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 时间选择器 -->
+        <picker mode="date" value="{{ end_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'> 
+            <view class="picker">{{ item.name }}<image src="/pages/img/icon-select.png"></image></view> 
+        </picker>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 列表展示 -->
+<view class='autoView section'>
+  <ul class='row'>
+    <li>日期</li>
+    <li>开始时间</li> 
+    <li>结束时间</li> 
+    <li>我的排班</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ scheduleList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+    <li class='date_color' ><text wx:if='{{item.shift_id}}'>{{ item.date }}</text></li>
+    <li>{{ item.shift_id.start_time }}</li> 
+    <li>{{ item.shift_id.end_time }}</li> 
+    <li>{{ item.shift_id.desc_cn }}</li>
+  </ul>
+  <ul class='row list_style'>
+    <li style='width: 100%;'>当前条件下无更多记录</li>
+  </ul>
+</view>

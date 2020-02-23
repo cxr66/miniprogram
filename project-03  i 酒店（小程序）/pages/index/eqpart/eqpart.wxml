@@ -1,0 +1,10 @@
+<!--pages/index/eqpart/eqpart.wxml-->
+<view class='section'>
+  <view class='autoView section_item'>
+    <view wx:for='{{ room_certain_status }}' wx:key='key' class='room_num row'>
+      <view class='name'>{{ item.name }}：</view>
+      <text>{{ item.time }}</text>
+    </view>
+
+  </view>
+</view>

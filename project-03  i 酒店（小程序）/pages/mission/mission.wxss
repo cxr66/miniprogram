@@ -1,0 +1,34 @@
+/* pages/mission/mission.wxss */
+page{
+  padding: 0 0 100rpx 0 ;
+}
+.nav_top{
+  width:100%;
+  height:300rpx;
+  background:linear-gradient(0deg,rgba(32,128,222,1) 0%,rgba(71,150,227,1) 100%);
+}
+/* 任务列表 */
+.section_list{
+  width: 96%;
+  margin:-200rpx auto 0 auto;
+}
+.section_item{
+  width: 330rpx;
+  height: 260rpx;
+  display: inline-block;
+  margin: 14rpx;
+  background-color: #ffffff;
+  border-radius:10rpx;
+  color: #2080DE;
+  font-size: 32rpx;
+  text-align: center;
+  box-shadow:0rpx 2rpx 6rpx 0rpx rgba(204,204,204,1);
+}
+.section_item image{
+  width: 106rpx;
+  height: 106rpx;
+  margin: 48rpx 0;
+}
+.section_item text{
+  display: block;
+}

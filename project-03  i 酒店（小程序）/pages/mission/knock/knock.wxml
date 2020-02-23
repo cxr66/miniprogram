@@ -1,0 +1,46 @@
+<!--pages/mission/knock/knock.wxml-->
+<view class='section'>
+    <block wx:for='{{ goodsList }}' wx:key='key'>
+      <view class='autoView section_item' >
+        <view class='room_num'>
+          房间号： <text>{{ item.room_no}}</text>
+          <text wx:if="{{ item.status == 0 }}" class='right send_color' data-item='{{ item }}' bindtap='update_bus'>未叫醒</text>
+          <text wx:if="{{ item.status == 5 }}" class='right send_color' data-item='{{ item }}' bindtap='update_bus'>等叫醒</text>
+          <text wx:elif="{{ item.status == 10 }}" class='right send_color' >叫醒完成</text>
+          <text wx:elif="{{ item.status == 20 }}" class='right send_color' >叫醒失效</text>
+        </view>
+        <view class='room_num'>
+          日期： <text>{{ item.wakeup_date }}</text>
+        </view>
+        <view class='room_num'>
+          时间： <text>{{ item.wakeup_t }}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+<!-- 班车弹窗 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'></view>
+<view class="modalDlg_02 column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'>
+    <view class='choose_title_02'>
+      <view class='fn_24  line_height_60'>班车类型：</view>
+      <picker bindchange="bindPickerChange" value="{{ busIndex }}" range="{{ busArray }}" range-key='descript' data-flag='0'>
+        <view class="inline_block picker fn_24">{{ busArray[busIndex].descript }}</view>
+        <image class='select_img right' src='../../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 '>接待人员：</view>
+      <picker bindchange="bindPickerChange" value="{{ staffIndex }}" range="{{ staffArray }}" range-key='descript' data-flag='1'>
+        <view class="inline_block picker fn_24"> {{ staffArray[staffIndex].descript }}</view>
+        <image class='select_img right' src='../../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 '>备注：</view>
+      <textarea bindblur="bindTextAreaBlur" placeholder="" style='width: 460rpx;height: 200rpx;'/>
+    </view>
+    
+    <view class='row'>
+      <view class='row_item' bindtap='cancle_bus'>取消</view>
+      <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='update_bus'>确认</view>
+    </view>
+</view>
+

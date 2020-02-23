@@ -1,0 +1,17 @@
+<!--pages/my/report/report.wxml-->
+<!--pages/my/my.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}"/> -->
+<view class='container'>
+  <view class='section'>
+    <block wx:for='{{ setList }}' wx:key='key'>
+      <view class='autoView section_item' data-link='{{ item.link }}' bindtap='navigate'>
+        {{ item.desc}}
+        <image src='/pages/img/icon-right.png'></image>
+      </view>
+    </block>
+  </view>
+
+ 
+</view>
+

@@ -1,0 +1,134 @@
+/* pages/equipment/equipment.wxss */
+/**index.wxss**/
+page{
+  padding: 0 0 100rpx 0 ;
+  width: 100%;
+  height: 100%;
+}
+/* 定位切换设备态或者房态 */
+.eqstatuscg{
+  width: 78rpx;
+  height: 78rpx;
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+.eqstatuscg image{
+  width: 78rpx;
+  height: 78rpx; 
+}
+.color_1{
+  color: #2080DE;
+}
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 9;
+}
+.header{
+  /* padding: 0 34rpx; */
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center;
+  /* color: #2080DE; */
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+
+/* 筛选条件 */
+.pos_check{
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1rpx #eeeeee solid;
+  position: fixed;
+  top: 84rpx;
+  left:0;
+  z-index: 9;
+}
+.item_list{
+  width: 20%;
+  font-size: 24rpx;
+  color: #222222;
+  text-align: center;
+  line-height: 60rpx;
+  border: 1rpx #eeeeee solid;
+  margin:10rpx 16rpx;
+}
+.item_list_active{
+  color: #ffffff;
+  background-color:#2080DE;
+}
+.check_item{
+  
+  border-right: 1rpx solid #eeeeee;
+}
+.check_item image{
+  margin-left: 10rpx;
+  vertical-align: middle;
+  width: 14rpx;
+  height: 8rpx;
+  display: inline-block;
+}
+.change{
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: right;
+  padding: 0 20rpx;
+  font-weight:bolder;
+}
+.confirm{
+  width: 50%;
+  margin-top: 40rpx;
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-top: 1rpx solid #2080DE;
+}
+/* 蒙层 */
+.pos_checkbg{
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,1);
+  opacity:0.3;
+  position: fixed;
+  z-index: 1;
+}
+/* section部分 */
+.section{
+  margin: 170rpx auto 50rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+  color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:30rpx;
+}
+ .color_dot{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+.lock_img{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.section_item .right_image{
+  width: 24rpx;
+  height: 42rpx;
+  float: right;
+  margin-top: 29rpx;
+}
+
+/* 态css */
+.picker_w{
+  width: 100%;
+}

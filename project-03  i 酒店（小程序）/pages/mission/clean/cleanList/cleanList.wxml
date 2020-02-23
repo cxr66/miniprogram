@@ -1,0 +1,53 @@
+<!--pages/mission/clean/cleanList/cleanList.wxml-->
+<!--pages/mission/goods/goods.wxml-->
+<view class='section'>
+  <block wx:for='{{ cleanList }}' wx:key='key'>
+    <view class='autoView section_item'  wx:if='{{ item.status != 30 }}' >
+      <view class='room_num fn_bolder'>
+        房间： {{ item.room_no}}
+        <text wx:if="{{ item.status == 0 }}" class='color_f00' bindtap='cancle_modal_flag' data-id='{{ item.id }}' data-roomno='{{ item.room_no }}'>待分配</text>
+        <text wx:elif="{{ item.status == 5 }}" class='send_color'  data-id='{{ item.id }}'>待完成 <!-- bindtap='company_accomplish' --></text>
+        <text wx:elif="{{ item.status == 20 }}" class='send_color' >待审核  <!-- bindtap='have_pass' --></text>
+        <text wx:elif="{{ item.status == 30 }}" class='send_color' >打扫完成  <!-- bindtap='have_pass' --></text>
+        <text wx:elif="{{ item.status == 40 }}" class='send_color'>任务失效</text>
+      </view>
+      <view class='room_num fn_bolder'>
+        打扫时间：
+        <text class='send_color'> {{ item.sweep_time }} </text> 
+      </view>
+      <view class='room_num fn_bolder text-overflow'>
+        备注：
+        <text class='send_color'> {{ item.remark }} </text> 
+      </view>
+
+
+      <!-- <view class='room_num' wx:for='{{ item.goods_list }}' wx:key='key2' wx:for-item='goodItem'>
+        <i wx:if='{{ index2==0 }}'> 物品：</i>
+        <i wx:else ></i>
+        {{ goodItem[1] }}
+        <block wx:if='{{ goodItem[4] }}'>(免费)</block>
+        <text>{{ goodItem[3] }}元 * {{ goodItem[2] }}件</text>
+      </view> -->
+    </view>
+  </block>
+</view>
+
+<!-- 房务人员弹窗 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'></view>
+<!-- 房务人员 -->
+<view class="modalDlg column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'>
+  <view class='choose_title'>
+    <view class='fn_24 line_height_60 ' style='margin-bottom:30rpx;'>配送员：</view>
+    <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{ employeeList }}" range-key='real_name'>
+      <view class="inline_block picker fn_24">
+        {{ employeeList[chooseIndex].real_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='cancle_modal_flag'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='confirm'>确认</view>
+  </view>
+</view>

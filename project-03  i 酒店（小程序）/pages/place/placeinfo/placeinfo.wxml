@@ -1,0 +1,53 @@
+<!--pages/place/placeinfo/placeinfo.wxml-->
+<view class='section'>
+  <block>
+    <view class='autoView section_item'>
+      <view class='room_num'>
+        场地： 翡翠厅
+      </view>
+      <view class='room_num'>
+        主题：年会晚宴
+      </view>
+      <view class='room_num'>
+        宴会类型： 晚宴
+      </view>
+      <view class='room_num'>
+        桌数：10桌
+      </view>
+      <view class='room_num'>
+        公司名称： 上海三思电子集团
+      </view>
+      <view class='room_num'>
+        联系人：张三
+      </view>
+      <view class='room_num'>
+        联系电话：13812345678
+      </view>
+      <view class='room_num'>
+        开始时间： 2019-05-01 12:00
+      </view>
+      <view class='room_num'>
+        结束时间：2019-05-01 24:00
+      </view>
+      <view class='room_num'>
+        用餐情况： 6-16
+      </view>
+      <view class='room_num'>
+        占用客房：
+      </view>
+      <view class='room_num'>
+        <i>联房： </i>
+        <view class='room_link inline_block'>
+          <view class='inline_block link_item cg_color' wx:for='{{ item.combine_room_list }}' wx:key='key2' wx:for-item='link_item' wx:for-index='link_index' bindtap='link_room_func' data-roomno='{{ link_item[0] }}' wx:if='{{ link_item[0]!=item.room_number  }}'>{{ link_item[0] }}</view>
+          <view class='inline_block link_item cg_color'>暂无更多</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+
+<!-- 按钮 -->
+<view class='fix_bot row'>
+  <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' bindtap='{{ btn_item.bind }}' style='{{ btn_index==3?"border: none;":"" }}  width:{{ 100/btn_group.length }}%;'>{{ btn_item.desc }} </view>
+</view>

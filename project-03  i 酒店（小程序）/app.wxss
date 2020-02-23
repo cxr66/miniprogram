@@ -1,0 +1,209 @@
+/**app.wxss**/
+page {margin: 0;padding: 0 ;background-color: #F5F5F5;}
+.container {width: 100%;height: 100%;box-sizing: border-box;}
+switch{
+    zoom: .6;
+}
+.block{
+  display: block;
+}
+.inline_block{
+  display: inline-block;
+}
+.none{
+  display: none;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+button::after{
+  border: none;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.autoView{
+  width: 92%;
+  margin: auto;
+  /* border: 1px red solid; */
+}
+.bg_fff{
+  background-color: #ffffff;
+}
+.bg_green{
+  background-color: #03d568;
+}
+.cg_color{
+  color: #2080DE;
+}
+.color_000{
+  color: #000000;
+}
+.color_fff{
+  color: #ffffff;
+}
+.color_f00{
+  color: #ff0000;
+}
+.bg_color{
+  background-color: #2080DE;
+}
+.bg_grey{
+  background-color: #F5F5F5;
+}
+.line_height_60{
+  line-height: 60rpx;
+}
+.fn_20{
+  font-size: 20rpx;
+}
+.fn_22{
+  font-size: 22rpx;
+}
+.fn_24{
+  font-size: 24rpx;
+}
+.fn_26{
+  font-size: 26rpx;
+}
+.fn_28{
+  font-size: 28rpx;
+}
+.fn_66{
+  font-size: 66rpx;
+}
+.fn_bolder{
+  font-weight: bolder;
+}
+.center{
+  text-align: center;
+}
+/* 用户头像 */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.user-btn{
+  border-radius: 50%;
+  margin-top: 30rpx;
+  line-height: 128rpx;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin:30rpx auto;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  color: #aaa;
+}
+
+/* tabbar组件样式全局化 */
+.tabbar_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100rpx;
+    border-top: 1rpx solid #d7d7d7; 
+}
+
+.tabbar_nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20rpx;
+    height: 100%;
+}
+.tabbar_icon{
+    width: 34rpx;
+    height:37rpx;
+    margin-bottom: 10rpx;
+}
+.tabbar_nav:nth-child(3) image{ 
+    width:89rpx;
+    height:89rpx;
+    margin-bottom: 0;
+}
+/* .tabbar_nav:nth-child(2) text{  
+    position:relative; 
+    top:-32rpx;
+} */
+
+/* 好看的按钮css */
+.color_btn{   
+    line-height:40rpx;  
+    padding: 0 20rpx;
+    color:#ffffff;  
+    background-color:#ededed;  
+    font-weight:bold;  
+    font-family:Arial;  
+    background:-webkit-gradient(linear, left top, left bottom, color-start(0.05, #599bb3), color-stop(1, #408c99));  
+    background:-moz-linear-gradient(top, #599bb3 5%, #408c99 100%);  
+    background:-o-linear-gradient(top, #599bb3 5%, #408c99 100%);  
+    background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);  
+    background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);  
+    background:-webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);  
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);  
+    border:0 solid #dcdcdc;  
+    -webkit-border-top-left-radius:8rpx;  
+    -moz-border-radius-topleft:8rpx;  
+    border-top-left-radius:8rpx;  
+    -webkit-border-top-right-radius:8rpx;  
+    -moz-border-radius-topright:8rpx;  
+    border-top-right-radius:8rpx;  
+    -webkit-border-bottom-left-radius:8rpx;  
+    -moz-border-radius-bottomleft:8rpx;  
+    border-bottom-left-radius:8rpx;  
+    -webkit-border-bottom-right-radius:8rpx;  
+    -moz-border-radius-bottomright:8rpx;  
+    border-bottom-right-radius:8rpx;  
+    -moz-box-shadow:0px 10rpx 14rpx -7rpx #276873;  
+    -webkit-box-shadow:0px 10px 14rpx -7rpx #276873;  
+    box-shadow:0px 10rpx 14rpx -7rpx #276873;  
+    text-align:center;  
+    text-decoration:none;  
+}  
+
+/* 弹窗 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 90;
+  background:rgba(0,0,0,1);
+  opacity:0.3;
+}
+
+ 

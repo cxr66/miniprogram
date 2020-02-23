@@ -1,0 +1,71 @@
+/* pages/my/my.wxss */
+page{
+  padding: 0 0 100rpx 0 ;
+}
+.nav_top{
+  width: 100%;
+  height: 300rpx;
+  margin: auto;
+  
+  background:linear-gradient(0deg,rgba(32,128,222,1) 0%,rgba(71,150,227,1) 100%);
+  position: relative;
+}
+.pos_btn{
+  background-color: #fff;
+  padding: 20rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -70rpx;
+  border-radius: 10rpx;
+}
+.pos_item{
+  width: 33%;
+  align-items: center;
+  position: relative;
+}
+.pos_item image{
+  width: 58rpx;
+  height: 64rpx;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.pos_item text{
+  color: #2080DE;
+  font-size: 24rpx;
+}
+.item_sec{
+  border-left: 1rpx solid #EEEEEE;
+  border-right: 1rpx solid #EEEEEE;
+}
+.num{
+  width: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background:rgba(255,255,255,1);
+  border:4rpx solid rgba(255,34,34,1);
+  border-radius:50%;
+  position: absolute;
+  top: -10rpx;
+  right: 12rpx;
+}
+
+/* section部分 */
+.section{
+  margin: 100rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+}
+.section_item image{
+  width: 24rpx;
+  height: 42rpx;
+  float: right;
+  margin-top: 29rpx;
+}

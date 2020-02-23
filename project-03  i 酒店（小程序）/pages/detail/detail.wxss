@@ -1,0 +1,65 @@
+/* pages/detail/detail.wxss */
+page{
+  padding: 0 0 100rpx 0 ;
+}
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+}
+.header{
+  padding: 0 34rpx;
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+  
+}
+.header .right_img{
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: 34rpx;
+  top: 18rpx;
+}
+.header text{ 
+  position: absolute;
+  top: 0;
+  left: 34rpx;
+  font-weight: bold;
+}
+.header  .picker_w{
+  width: 100%;
+}
+/* 表格展示数据 */
+.section{
+  overflow: hidden;
+  margin: 100rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.section ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.section ul li{
+  width: 13%;
+  line-height: 80rpx;
+  text-align: center;
+}
+.li_w{
+  width: 22%;
+}
+.section .list_style{
+  color: #777777;
+}
+.section .date_color{
+  color: #2080DE;
+}

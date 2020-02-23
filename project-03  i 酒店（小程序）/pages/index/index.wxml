@@ -1,0 +1,263 @@
+<!--index.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}" /> -->
+<!----------------------------- 房态图 ---------------------------->
+<!-- hidden='{{ eq_or_status }}' -->
+<view hidden='{{ eq_or_status }}'>
+  <!-- 头部 -->
+  <view class='pos_view bg_fff'>
+    <view class='header row'>
+      <block wx:for="{{ check_list }}" wx:key='key'>
+        <view class='check_item {{ check_index === index?"cg_color":"" }}' data-index='{{ index }}' bindtap='click_check' style='width:{{ 100/check_list.length }}%'>
+          {{ item.name }}
+          <image style='{{ check_index === index?"transform: rotate(180deg)":"" }}' src="../img/icon-select.png"></image>
+        </view>
+      </block>
+    </view>
+    <view hidden='{{ !check_list[check_index].list.length || check_modal }}' class='pos_check'>
+      <view class=''>
+        <view wx:for='{{ check_list[check_index].list }}' wx:key='key2' wx:for-index='item_index' style='{{ check_index === 1?"width: 45%;":"" }}' data-index='{{ item_index }}' data-code='{{ item.code }}' data-name='{{ check_list[check_index].name }}' class='item_list inline_block {{ item.hoverClass?"item_list_active":"" }}'
+          bindtap='choose_check'>
+          <text wx:if='{{ check_list[check_index].name === "状态筛选"  }}'>{{ item.desc }}<text class='color_dot inline_block' style='background-color:{{ item.color }};'></text></text>
+          <text wx:else>{{ item.descript }}</text>
+        </view>
+      </view>
+      <!-- 重置确认部分 -->
+      <view class='row'>
+        <view class='confirm color_1' bindtap='reset'>重置</view>
+        <view class='confirm ' bindtap='confirm' style='background:#2080DE;color: #fff;'>确认</view>
+      </view>
+    </view>
+
+    <!-- 修改房态 -->
+    <view wx:if="{{ cg_visiable }}" class='change color_1 bg_grey'>
+      <text class='left' data-link='/pages/index/statusrecord/statusrecord' bindtap='navigateto'>房态修改记录</text>
+      <text class='color_1 right' bindtap='change_room'>修改房态</text>
+    </view>
+    <view wx:else class='change  bg_grey' style='overflow:hidden;'>
+      <text class='left'>修改房态</text>
+      <text class='color_1 right' bindtap='update_status'>完成</text>
+    </view>
+  </view>
+  <!-- 蒙层 -->
+  <view bindtap='click_check' data-index='index' hidden='{{ !check_list[check_index].list.length }}' class='pos_checkbg'></view>
+  <!-- 列表 -->
+  <view wx:if="{{ roomList.length }}" class='section'>
+    <checkbox-group bindchange="checkboxChange">
+      <block wx:for='{{ roomList }}' wx:key='key'>
+        <view class='section_item inline_block' data-link='/pages/index/part/part?room_no={{ item.room_no }}&room_type={{item.room_type}}' data-roomno='{{ item.room_no }}' data-status='{{ item.room_state }}' data-room_type="{{item.room_type}}" data-room_type_code="{{ item.room_type_name }}"
+          style='background-color:{{ item.color }};' bindtap='navigate'>
+          <view class="row">
+            <label>
+              <checkbox wx:if="{{ !cg_visiable }}" value="{{ item.room_no+','+item.room_state+','+item.room_occupy }}" checked="" color='#2080DE' />
+            </label>
+            <text> {{ item.room_no }} </text>
+
+            <text class="color_f00" wx:if='{{ item.people_in == 0 }}'>无人</text>
+            <text class="color_f00" wx:elif='{{ item.people_in == 1 }}'>有人</text>
+            <text class="color_f00" wx:else>未知</text>
+
+          </view>
+
+            <text class='color_btn inline_block'>{{ item.room_type }}</text>
+          <view class="room_state_extra">
+            <!--  <text > 团队 </text>
+            <text > 欠费 </text>
+            <text > 钟点 </text>
+            <text > 预离 </text>
+            <text > 联房 </text>
+            <text > 自用 </text>
+            <text > 自助机 </text>
+            <text > 今日将到 </text> -->
+
+
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[0]=='1' }}" src='/pages/img/icon-team.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[1]=='1' }}" src='/pages/img/icon-qian.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[2]=='1' }}" src='/pages/img/icon-zhong.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[3]=='1' }}" src='/pages/img/icon-yuli.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[4]=='1' }}" src='/pages/img/icon-lian.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[5]=='1' }}" src='/pages/img/icon-ziyong.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[6]=='1' }}" src='/pages/img/icon-zzj.png'></image>
+            <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[7]=='1' }}" src='/pages/img/icon-order.png'></image>
+          </view>
+
+          <image class='inline_block lock_img' wx:if="{{ item.room_occupy=='OSZ' }}" src='/pages/img/icon-lock.png'></image>
+          <!-- <image class='right_image' src='/pages/img/icon-right.png'></image> -->
+        </view>
+      </block>
+    </checkbox-group>
+  </view>
+  <view wx:else class='section'>
+    <view class='' style='padding: 20rpx 0;background-color:#ffffff;text-align: center;color:#222222;font-size: 30rpx;'>
+      当前条件下无房态信息
+    </view>
+  </view>
+
+  <!-- 房态 -->
+  <view hidden='{{ cg_visiable }}' class='pos_cgbtn row'>
+    <block wx:for="{{ cg_list }}" wx:key='key'>
+      <view class='change_item click_cg_item {{item.check_flag?"":"check_flag"}}' data-index='{{ index }}' bindtap='{{item.check_flag?"click_change":""}}' data-name='{{ item.name }}'>
+        {{ item.name }}
+      </view>
+    </block>
+  </view>
+
+  <!-- 房务人员弹窗 -->
+  <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'></view>
+  <!-- 房务人员 -->
+  <view class="modalDlg column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'>
+    <view class='choose_title'>
+      <view class='fn_24 line_height_60 ' style='margin-bottom:30rpx;'>房务人员：</view>
+      <picker bindchange="bindPickerChange" value="{{ chooseIndex }}" range="{{array}}" data-flag='0'>
+        <view class="inline_block picker fn_24">
+          {{ array[chooseIndex] }}
+        </view>
+        <image class='select_img right' src='../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+    </view>
+
+    <view class='row'>
+      <view class='row_item' bindtap='cancle_modal_flag'>取消</view>
+      <view class='row_item' style='color: #ffffff;background-color: #2080DE;'>确认</view>
+    </view>
+  </view>
+
+  <!-- 维修原因弹窗 -->
+  <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag_02 }}'></view>
+  <view class="modalDlg_02 column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag_02 }}'>
+    <view class='choose_title_02'>
+      <view class='fn_24  line_height_60'>开始时间：</view>
+      <picker mode="date" value="{{ reason_begin_date }}" start="2015-09-01" end="3000-12-31" bindchange="bindDateChange">
+        <view class="inline_block picker">{{ reason_begin_date }}</view>
+        <image class='select_img right' src='../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24  line_height_60'>完成时间：</view>
+      <picker mode="date" value="{{ reason_end_date }}" start="2015-09-01" end="3000-12-31" bindchange="bindDateChange01">
+        <view class="inline_block picker">{{ reason_end_date }}</view>
+        <image class='select_img right' src='../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 ' hidden='{{ modal_lock }}'>维修原因：</view>
+      <picker wx:if='{{ !modal_lock }}' bindchange="bindPickerChange" value="{{ reasonIndex }}" range="{{ reasonArray }}" range-key='descript' data-flag='1'>
+        <view class="inline_block picker fn_24"> {{ reasonArray[reasonIndex].descript }}</view>
+        <image class='select_img right' src='../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 '>备注：</view>
+      <textarea bindblur="bindTextAreaBlur" placeholder="" style='width: 460rpx;height: 200rpx;' />
+    </view>
+
+    <view class='row'>
+      <view class='row_item' bindtap='cancle_modal_flag'>取消</view>
+      <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='{{ modal_lock?"confirm_lock":"confirm_repair" }}'>确认</view>
+    </view>
+  </view>
+</view>
+<!-- -------------------------     详情     ------------------------>
+<view hidden='true'>
+  <!-- 头部 -->
+  <view class='pos_view '>
+    <view class='header row'>
+      <text class='cg_color' data-link='/pages/detail/expect/expect' bindtap='navigate'>经营状况预计</text>
+      <!-- 时间选择器 -->
+      <picker class=' cg_color picker_w' mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'>
+        <view class="picker">{{ begin_date }}</view>
+        <image class='right_img' src='../img/icon-bottom.png'></image>
+      </picker>
+    </view>
+  </view>
+  <!-- 列表展示 -->
+  <view class='autoView section'>
+    <ul class='row'>
+      <li style='width: 22%;'>日期</li>
+      <li>房数</li>
+      <li>入住率</li>
+      <li>占用</li>
+      <li>出租率</li>
+      <li>可用</li>
+      <li>维修</li>
+    </ul>
+    <ul class='row list_style' wx:for='{{ room_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' data-link='/pages/detail/single/single?begin_date={{ item.biz_date }}' bindtap='navigate'>
+      <li class='date_color' style='width: 22%;'>{{ item.biz_date }}</li>
+      <li>{{ item.room_count }}</li>
+      <li>{{ item.live_rate }}</li>
+      <li>{{ item.occupy_num }}</li>
+      <li>{{ item.rsv_rate }}</li>
+      <li>{{ item.can_live_num }}</li>
+      <li>{{ item.maintenance_num }}</li>
+    </ul>
+    <ul class='row list_style'>
+      <li style='width: 100%;'>当前条件下无更多房情信息</li>
+    </ul>
+  </view>
+</view>
+<!---------------------------- 设备态图 --------------------------->
+<view hidden='{{ !eq_or_status }}'>
+  <!-- 头部 -->
+  <view class='pos_view'>
+    <view class='header row'>
+      <block wx:for="{{ eqCheckList }}" wx:key='key' wx:for-index='checkIndex'>
+        <view class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+          <picker class='picker_w' data-listindex='{{ checkIndex }}' bindchange="bindEqPickerChange" value="{{ index }}" range="{{ item.list }}">
+            <view class="picker">
+              {{ item.name }}
+              <image src="../img/icon-select.png"></image>
+            </view>
+          </picker>
+
+        </view>
+      </block>
+    </view>
+    <view class='change  bg_grey' style='overflow:hidden;'>
+      <text class='color_1 left' bindtap='get_eq'>全部</text>
+    </view>
+  </view>
+
+  <!-- 设备态列表 -->
+  <view wx:if="{{ eqstatusList.length }}" class='section'>
+    <block wx:for='{{ eqstatusList }}' wx:key='key'>
+      <view class='section_item autoView' data-link='/pages/index/eqpart/eqpart?room_num={{ item.room_number }}' style='background-color:{{ eq_color_base[item.room_status] }};' bindtap='navigateto'>
+        <text class='color_btn inline_block'>{{ eq_status_dict[item.room_status] }}</text> {{ item.room_number }}
+        <image class='right_image' src='/pages/img/icon-right.png'></image>
+      </view>
+    </block>
+  </view>
+  <view wx:else class='section'>
+    <view class='section_item' style='background-color:#ffffff;text-align: center;color:#222222;'>
+      当前条件下无设备信息
+    </view>
+  </view>
+
+</view>
+
+
+
+<!-- 右下角定位切换设备态或者房态图：默认：房态图 -->
+<view class='eqstatuscg' bindtap='change_eq_or_status'>
+  <image src='/pages/img/icon-eqstatuscg.png' lazy-load='true'></image>
+</view>
+
+<view>
+  <form bindsubmit="sendmes" report-submit="{{true}}">
+    <button formType="submit" class='btnsend'>
+      <view class='sendClick'>刷新</view>
+    </button>
+  </form>
+</view>
+
+<view>
+  <form bindsubmit="navigateto" data-link="/pages/order/order" report-submit="{{true}}">
+    <button formType="submit" class='btnsend'>
+      <view class='orderClick'>预定</view>
+    </button>
+  </form>
+</view>
+
+<view>
+  <form bindsubmit="navigateto" data-link="/pages/appindex/appindex" report-submit="{{true}}">
+    <button formType="submit" class='btnsend'>
+      <view class='orderClick'>返回</view>
+    </button>
+  </form>
+</view>

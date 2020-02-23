@@ -1,0 +1,147 @@
+/* pages/index/part/part.wxss */
+page{
+  padding-bottom: 100rpx;
+}
+.autoView{
+  width: 96%;
+}
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item text{
+  color: #777777;
+}
+.section .send_color{
+  color: #2080DE;
+}
+.section .room_num{
+   padding: 0 20rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.section .room_num i{
+  display: inline-block;
+  width: 74rpx;
+}
+.section .room_num .room_link{
+  width: 88%;
+  vertical-align:top;
+}
+.section .room_num .room_link .link_item{
+  width: 16.6%;
+}
+
+
+/* 列表 */
+/* 表格展示数据 */
+.sectionlist{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.sectionlist ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.sectionlist ul li{
+  width: 20%;
+  line-height: 80rpx;
+  text-align: center;
+}
+.sectionlist .list_style{
+  color: #777777;
+}
+.sectionlist .date_color{
+  color: #2080DE;
+}
+.consume{
+  line-height: 60rpx;
+  text-align: center;
+}
+
+/* 加收房费原因 */ 
+.modalDlg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:400rpx;
+  height:400rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.modalDlg_02{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:500rpx;
+  height:800rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.choose_title_02{
+  width: 460rpx;
+  margin: auto;
+}
+.choose_title_02 input,.choose_title_02 picker{
+  border: 2rpx solid #eeeeee;
+  padding: 20rpx;
+  line-height: 30rpx;
+}
+.choose_title_02 textarea{
+  width: 460rpx;
+  height: 200rpx;
+  border: 2rpx solid #eeeeee;
+  line-height: 30rpx;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  transition:transform 0.3s;
+}
+.row_item{
+  width: 50%;
+  border-top: 1rpx #2080DE solid;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}
+
+
+/* 固定定位 */
+.fix_bot{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid #eeeeee;
+  background-color: #FFFFFF;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+.btn{
+  width: 25%;
+  border-right: 1rpx solid #eeeeee;
+}

@@ -1,0 +1,54 @@
+<!--pages/mission/bus/bus.wxml-->
+<view class='section'>
+    <block wx:for='{{ goodsList }}' wx:key='key'>
+      <view class='autoView section_item' >
+        <view class='room_num'>
+          联系人： <text>{{ item.name}}</text>
+          <text wx:if='{{ item.status == 0 }}' class='right send_color' data-item='{{ item }}' bindtap='edit_bus'>接待</text>
+          <text wx:elif='{{ item.status == 20 }}' class='right send_color' data-item='{{ item }}'>已接待</text>
+          <text wx:elif='{{ item.status == 10 }}' class='right send_color' data-item='{{ item }}'>接待失败</text>
+        </view>
+        <view class='room_num'>
+          房间号： <text>{{ item.room_no }}</text>
+        </view>
+        <view class='room_num'>
+          接待时间： <text>{{ item.bus_end_time }}</text>
+        </view>
+        <view class='room_num'>
+          联系电话： <text>{{ item.phone }}</text>
+        </view>
+        <view class='room_num'>
+          接待地点： <text>{{ item.destination}}</text>
+        </view>
+        <view class='room_num'>
+          备注： <text>{{ item.remark }}</text>
+        </view>
+        
+      </view>
+    </block>
+  </view>
+<!-- 班车弹窗 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'></view>
+<view class="modalDlg_02 column" catchtouchmove="preventTouchMove" hidden='{{ modal_flag }}'>
+    <view class='choose_title_02'>
+      <view class='fn_24  line_height_60'>班车类型：</view>
+      <picker bindchange="bindPickerChange" value="{{ busIndex }}" range="{{ busArray }}" range-key='descript' data-flag='0'>
+        <view class="inline_block picker fn_24">{{ busArray[busIndex].descript }}</view>
+        <image class='select_img right' src='../../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 '>接待人员：</view>
+      <picker bindchange="bindPickerChange" value="{{ staffIndex }}" range="{{ staffArray }}" range-key='descript' data-flag='1'>
+        <view class="inline_block picker fn_24"> {{ staffArray[staffIndex].descript }}</view>
+        <image class='select_img right' src='../../img/icon-bottom.png' background-size="contain"></image>
+      </picker>
+
+      <view class='fn_24 line_height_60 '>备注：</view>
+      <textarea bindblur="bindTextAreaBlur" placeholder="" style='width: 460rpx;height: 200rpx;'/>
+    </view>
+    
+    <view class='row'>
+      <view class='row_item' bindtap='cancle_bus'>取消</view>
+      <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='update_bus'>确认</view>
+    </view>
+</view>

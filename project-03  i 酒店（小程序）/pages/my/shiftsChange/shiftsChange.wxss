@@ -1,0 +1,35 @@
+/* pages/my/shiftsChange/shiftsChange.wxss */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+}
+.section_item text{
+  float: right;
+  color: #777777;
+}
+/* button */
+.sign_btn{
+  width: 30%;
+  margin: 40rpx auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}
+
+.btnsend{
+  width: 5rpx;
+  height: 5rpx; 
+}
+button::after{
+  border: none;
+}

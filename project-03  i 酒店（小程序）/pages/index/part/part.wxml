@@ -1,0 +1,149 @@
+<!--pages/index/part/part.wxml-->
+<view class='section'>
+  <block wx:for='{{ partList }}' wx:key='key' wx:if='{{ index==0 }}'>
+    <view class='autoView section_item'>
+      <view class='room_num'>
+        房号：
+        <text>{{ item.room_number }}</text>
+        <text bindtap='checkDetail' data-link='/pages/index/check/check?room_no={{room_no}}' class='right send_color fn_bolder'>查房</text>
+      </view>
+      <view class='room_num'>
+        房类：
+        <text>{{ item.room_type }}</text>
+      </view>
+      <view class='room_num'>
+        姓名：
+        <text>{{ item.master_guest[index].name }}</text>
+      </view>
+      <view class='room_num'>
+        手机：
+        <text wx:if='{{ item.master_guest[index].telephone }}'>{{ item.master_guest[index].telephone }}</text>
+        <text wx:else>未填</text>
+      </view>
+      <view class='room_num'>
+        抵达时间：
+        <text>{{ item.arr_time }}</text>
+      </view>
+      <view class='room_num'>
+        离开时间：
+        <text>{{ item.leave_time }}</text>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class='autoView section_item'>
+      <view class='room_num'>
+        <i>备注： </i>
+        <text class='inline_block ' style='width: 88%;vertical-align:top;'>{{ item.exp_sta }}</text>
+      </view>
+      <view class='room_num'>
+        <i>联房： </i>
+
+        <view class='room_link inline_block'>
+          <view class='inline_block link_item cg_color' wx:for='{{ item.combine_room_list }}' wx:key='key2' wx:for-item='link_item' wx:for-index='link_index' bindtap='link_room_func' data-roomno='{{ link_item[0] }}' wx:if='{{ link_item[0]!=item.room_number  }}'>{{ link_item[0] }}</view>
+          <view class='inline_block link_item cg_color'>暂无更多</view>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 钱 -->
+    <view class='autoView section_item'>
+      <view class='room_num'>
+        总付款：
+        <text>{{ account.pay_amount }}</text>
+      </view>
+      <view class='room_num'>
+        余额：
+        <text> {{ account.balance }}</text>
+      </view>
+    </view>
+    <!-- 列表 -->
+    <view class='autoView sectionlist'>
+      <ul class='row'>
+        <li>房号</li>
+        <li>项目</li>
+        <li>金额</li>
+        <li>操作员</li>
+        <li>时间</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ custom_list }}' wx:key='key3' wx:for-item='cus_item' wx:for-index='cus_index' style='{{ cus_index%2==0?"background-color: #F8F8F8;":""}}'>
+        <!-- <li>{{ room_no }}</li>
+        <li>{{ cus_item.code_income_type_id.name }}</li>
+        <li>{{ cus_item.charge_amount }}</li>
+        <li>{{ cus_item.create_user.real_name }}</li>
+        <li>{{ cus_item.gen_time }}</li> -->
+        <li>{{ room_no }}</li>
+        <li>{{ cus_item.code_income_type_id.name }}</li>
+        <li>
+          <text wx:if='{{ cus_item.charge_amount > 0 }}' class='color_f00'>{{ cus_item.charge_amount }}</text>
+          <text wx:else>{{ cus_item.charge_amount }}</text>
+        </li>
+        <li>{{ cus_item.create_user.real_name }}</li>
+        <li>{{ cus_item.gen_time }}</li>
+      </ul>
+      <view class='list_style fn_24 consume' wx:if="{{ !custom_list.length }}">当前无消费</view>
+    </view>
+
+    <!-- 加收房费弹窗 -->
+    <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal_add_fee }}'></view>
+    <view class="modalDlg_02 column" catchtouchmove="preventTouchMove" hidden='{{ modal_add_fee }}'>
+      <view class='choose_title_02'>
+
+        <view class='fn_24 line_height_60 ' hidden='{{ modal_lock }}'>付款原因：</view>
+        <picker bindchange="bindPickerChange" value="{{ reasonIndex }}" range="{{ payReasonList }}" range-key='name' data-flag='1'>
+          <view class="inline_block picker fn_24"> {{ payReasonList[reasonIndex].name }}</view>
+          <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+        </picker>
+
+        <view class='fn_24 line_height_60 ' hidden='{{ modal_lock }}'>入账代码：</view>
+        <picker bindchange="bindPickerChange" value="{{ accountCodeIndex  }}" range="{{ accountCodeList }}" range-key='name' data-flag='0'>
+          <view class="inline_block picker fn_24"> {{ accountCodeList[accountCodeIndex].name }}</view>
+          <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+        </picker>
+
+        <!-- <view class='fn_24 line_height_60 ' hidden='{{ modal_lock }}'>付款方式：</view>
+        <picker bindchange="bindPickerChange" value="{{ payModeIndex }}" range="{{ payModeList }}" range-key='model_name' data-flag='2'>
+          <view class="inline_block picker fn_24"> {{ payModeList[payModeIndex].model_name }}</view>
+          <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+        </picker> -->
+
+        <view class='fn_24 line_height_60 '>金额：</view>
+        <input bindblur="bindTextAreaBlur" value='{{ form.money }}' data-flag='0' placeholder="" />
+
+        <view class='fn_24 line_height_60 '>备注：</view>
+        <textarea bindblur="bindTextAreaBlur" value='{{ form.remark }}' data-flag='1' placeholder="" style='width: 460rpx;height: 200rpx;' />
+      </view>
+
+      <view class='row'>
+        <view class='row_item' bindtap='add_btn_charge'>取消</view>
+        <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='add_charge'>确认</view>
+      </view>
+    </view>
+
+
+    <!-- 挂AR账户弹窗 -->
+    <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ ar_modal_add_fee }}'></view>
+    <view class="modalDlg_02 column" catchtouchmove="preventTouchMove"  style='height: 300rpx;' hidden='{{ ar_modal_add_fee }}'>
+      <view class='choose_title_02'>
+
+        <view class='fn_24 line_height_60 '>AR账户：</view>
+        <picker bindchange="bindPickerChange" value="{{ arIndex }}" range="{{ arList }}" range-key='name' data-flag='ar'>
+          <view class="inline_block picker fn_24"> {{ arList[arIndex].name }}</view>
+          <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+        </picker>
+
+      </view>
+
+      <view class='row'>
+        <view class='row_item' bindtap='add_ar'>取消</view>
+        <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='confirm_ar'>确认</view>
+      </view>
+    </view>
+
+    <!-- 下方固定定位按钮部分 -->
+    <view class='fix_bot row'>
+      <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' bindtap='{{ btn_item.bind }}' style='{{ btn_index==3?"border: none;":"" }}'>{{ btn_item.desc }}</view>
+    </view>
+  </block>
+</view>

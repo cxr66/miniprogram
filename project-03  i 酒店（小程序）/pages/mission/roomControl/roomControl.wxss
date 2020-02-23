@@ -1,0 +1,44 @@
+/* pages/mission/roomControl/roomControl.wxss */
+.header{
+  background-color: #2080DE;
+  padding: 20rpx 0;
+}
+.section{
+  width: 96%;
+  margin: auto;
+  line-height: 60rpx;
+  background-color: #ffffff;
+  color: #000;
+  overflow: hidden;
+  border-radius: 40rpx;
+}
+.section .title{
+  width: 15%; 
+  line-height: 60rpx;
+  color: #2080DE;
+}
+.section input{
+  width: 80%;
+  height: 60rpx;
+  margin: 0 20rpx;
+}
+
+.section_item{
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+}
+
+/* button */
+.sign_btn{
+  margin: 40rpx auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}

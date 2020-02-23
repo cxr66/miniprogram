@@ -1,0 +1,17 @@
+<!--pages/mission/procure/procure.wxml-->
+<view class='section'>
+  <block>
+    <view class='autoView section_item'>
+      <view class='room_num'>
+        备注： 
+        <text class='right send_color'>采购</text>
+      </view>
+      <view class='room_num'>
+        <textarea bindblur="bindTextAreaBlur" auto-height maxlength='-1' placeholder="请输入备注内容" />
+      </view>
+      <view class='room_num'>
+        添加图片：
+      </view>
+    </view>
+  </block>
+</view>

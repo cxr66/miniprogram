@@ -1,0 +1,41 @@
+/* pages/mission/lock/lock.wxss */
+page{
+  background-color: #ffffff;
+}
+.header{
+  width: 100%;
+  height: 700rpx;
+  align-items: center;
+  justify-content: center;
+  background-color: #2080DE;
+}
+.header image{
+  width: 250rpx;
+  height: 250rpx;
+  margin: auto;
+}
+
+.header .tips{
+  margin-top: 30rpx;
+  text-align: center;
+  color: #ffffff;
+}
+.section{
+  width: 96%;
+  margin: auto;
+  line-height: 80rpx;
+  background-color: #ffffff;
+  color: #000;
+  overflow: hidden;
+  border-bottom: 1rpx #eeeeee solid;
+}
+.section .title{
+  width: 15%; 
+  margin: 0 20rpx 0 10rpx ;
+  line-height: 80rpx;
+}
+.section input{
+  width: 65%;
+  height: 80rpx;
+  
+}

@@ -1,0 +1,151 @@
+<!--pages/detail/expect/expect.wxml-->
+
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <!-- 时间选择器 -->
+    <picker class=' cg_color picker_w' mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'>
+      <view class="picker">{{ begin_date }}</view>
+      <image class='right_img' src='/pages/img/icon-bottom.png'></image>
+    </picker>
+  </view>
+</view>
+
+<view class="tab row" style="background-color: #626262;line-height: 50rpx;">
+    <view class="tab-item column color_fff">
+       {{ real_time_situation.room_count[2].num }} 
+       <br/>
+       可订房数
+    </view> 
+    <view class="tab-item column color_fff" bindtap="navigate" data-link="/pages/my/audit/audit">
+       0 
+       <br/>
+       待审批
+    </view>
+</view>
+
+<!-- <view class="tab row" > 
+    <view class="tab-item row color_000 bg_fff" >
+      <text>实时在住</text>
+      <text>{{ real_time_situation.room_count. }}</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>实时出租率</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>实时房费</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>平均房价</text>
+      <text>10</text>
+    </view>
+</view>
+
+<view class="tab row" > 
+    <view class="tab-item row color_000 bg_fff" >
+      <text>今日预抵</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>今日预离</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>预计出租数</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>预计出租率</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>预计总房费</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff">
+      <text>预计平均房价</text>
+      <text>10</text>
+    </view>
+    
+</view> -->
+
+
+<view class="tab row" > 
+    <view class="tab-item row color_000 bg_fff" wx:for="{{ real_time_situation.room_count }}" wx:key="index">
+      <text>{{ item.name }}</text>
+      <text>{{ item.num }}</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff" wx:for="{{ real_time_situation.room_live }}" wx:key="index">
+      <text>{{ item.name }}</text>
+      <text>{{ item.num }}</text>
+    </view>
+    <view class="tab-item row color_000 bg_fff" wx:for="{{ real_time_situation.room_price }}" wx:key="index">
+      <text>{{ item.name }}</text>
+      <text>¥ {{ item.price }}</text>
+    </view>
+</view>
+
+
+<!-- 报表 -->
+<view class="tab row" style="background-color: #2080DE;margin: 20rpx 0 0 0;"> 
+    <view class="tab-item color_fff" >
+      交接班报表 
+    </view>
+    <view class="tab-item color_fff">
+      营收报表
+    </view>
+</view>
+<view class="tab row bg_fff" style="line-height: 60rpx;"> 
+    <view class="tab-item row color_000"  wx:for='{{ shiftList }}' wx:key="index">
+      <text>{{ item.pay_mode }}</text>
+      <text>{{ item.amount }}</text>
+    </view>
+</view>
+<!-- <view class="tab row bg_fff" style="line-height: 60rpx;"> 
+    <view class="tab-item row color_000" >
+      <text>现金</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>昨日</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>银行卡</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>本月</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>在线支付</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>上个月</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>AR账</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>本年</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>其它</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>上年</text>
+      <text>10</text>
+    </view>
+    <view class="tab-item row color_000">
+      <text>授权合计</text>
+      <text>10</text>
+    </view>
+</view> -->

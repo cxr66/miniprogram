@@ -1,0 +1,23 @@
+/* pages/mallindex/mallindex.wxss */
+page{
+  background: #FFFFFF;
+}
+/* section部分 */
+.section{
+  margin: 40rpx auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.section_item{
+  width: 33%;
+  line-height: 50rpx;
+  font-size: 22rpx;
+  color: #222222;
+  align-items: center;
+  margin-top: 60rpx;
+}
+.section_item image{
+  width: 60rpx;
+  height: 60rpx;
+}

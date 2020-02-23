@@ -1,0 +1,20 @@
+<!--pages/mission/stranger/strangerDetail/strangerDetail.wxml-->
+<!--
+    @轮播图
+   -->
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular='true' current-item-id="{{currentItemId}}">
+    <block wx:for="{{ faceData.photo_ids }}" wx:key="index">
+      <swiper-item>
+        <view class='li'>
+          <image src="{{ item }}" class='slide-image' mode='widthFix' lazy-load='true' bindtap='preview'></image>
+          <!-- <text class='text-overflow'>{{ item.name }}</text> -->
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <ul class='section fn_28 column'>
+    <li>时间： <text class='right'>{{ faceData.event_time }} </text>  </li>
+    <li>摄像头位置： <text class='right'>{{ faceData.camera_name }}</text>  </li>
+    <li>摄像头编号： <text class='right'>{{ faceData.camera_num }} </text>  </li>
+  </ul>

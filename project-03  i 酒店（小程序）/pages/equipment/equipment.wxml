@@ -1,0 +1,39 @@
+<!--pages/equipment/equipment.wxml-->
+<!---------------------------- 设备态图 --------------------------->
+<view>
+  <!-- 头部 -->
+  <view class='pos_view'>
+    <view class='header row'>
+      <block wx:for="{{ eqCheckList }}" wx:key='key' wx:for-index='checkIndex'>
+        <view class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+          <picker class='picker_w' data-listindex='{{ checkIndex }}' bindchange="bindEqPickerChange" value="{{ index }}" range="{{ item.list }}">
+            <view class="picker">
+              {{ item.name }}
+              <image src="../img/icon-select.png"></image>
+            </view>
+          </picker>
+
+        </view>
+      </block>
+    </view>
+    <view class='change  bg_grey' style='overflow:hidden;'>
+      <text class='color_1 left' bindtap='get_eq'>全部</text>
+    </view>
+  </view>
+
+  <!-- 设备态列表 -->
+  <view wx:if="{{ eqstatusList.length }}" class='section'>
+    <block wx:for='{{ eqstatusList }}' wx:key='key'>
+      <view class='section_item autoView' data-link='/pages/index/eqpart/eqpart?room_num={{ item.room_number }}' style='background-color:{{ eq_color_base[item.room_status] }};' bindtap='navigateto'>
+        <text class='color_btn inline_block'>{{ eq_status_dict[item.room_status] }}</text> {{ item.room_number }}
+        <image class='right_image' src='/pages/img/icon-right.png'></image>
+      </view>
+    </block>
+  </view>
+  <view wx:else class='section'>
+    <view class='section_item' style='background-color:#ffffff;text-align: center;color:#222222;'>
+      当前条件下无设备信息
+    </view>
+  </view>
+
+</view>

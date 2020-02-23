@@ -1,0 +1,9 @@
+<!--pages/my/info/info.wxml-->
+<view class='section'>
+    <block wx:for='{{ infoList }}' wx:key='key'>
+      <view class='section_item'>
+        {{ item.code}}
+        <text>{{ item.desc }}</text>
+      </view>
+    </block>
+</view>

@@ -1,0 +1,60 @@
+<!--pages/guestform/guestform.wxml-->
+<view class='guestsearch name row fn_20'>
+  <input bindinput='bindinput' placeholder="姓名/手机号/房号" value='{{ searchValue }}' auto-focus/>
+  <text bindtap="search">搜索</text>
+</view>
+
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+<!-- 列表展示 -->
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+    <view class='section'>
+      <ul class='row'>
+        <li>房号</li>
+        <li>姓名</li>
+        <li>房价</li>
+        <li>到达日期</li>
+        <li>离开日期</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ guest_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li class='date_color'>{{ item.room_number }}</li>
+        <li>{{ item.master_guest_list[0].name }}</li>
+        <li>{{ item.room_price }}</li>
+        <li>{{ item.arr_time }}</li>
+        <li>{{ item.leave_time }}</li>
+      </ul>
+      <ul class='row list_style'>
+        <li style='width: 100%;'>当前条件下无更多客人信息</li>
+      </ul>
+    </view>
+  </swiper-item>
+
+  <swiper-item class="content-item">
+    <view class='section'>
+      <ul class='row'>
+        <li>预定房类</li>
+        <li>姓名</li>
+        <li>房价</li>
+        <li>到达日期</li>
+        <li>离开日期</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ guest_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li class='date_color'>{{ item.rsv_type_desc }}</li>
+        <li>{{ item.reserve_guest_list.name  }}</li>
+        <li>{{ item.room_price }}</li>
+        <li>{{ item.arr_time }}</li>
+        <li>{{ item.leave_time }}</li>
+      </ul>
+      <ul class='row list_style'>
+        <li style='width: 100%;'>当前条件下无更多客人信息</li>
+      </ul>
+    </view>
+  </swiper-item>
+</swiper>

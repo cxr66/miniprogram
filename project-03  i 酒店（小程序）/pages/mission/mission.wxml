@@ -1,0 +1,10 @@
+<!--pages/mission/mission.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}"/> -->
+<view class='nav_top'></view>
+<view class='section_list'>
+  <view class='section_item' wx:for="{{ missionList }}" wx:key='key' data-link='{{ item.link }}' data-desc="{{ item.desc }}" bindtap='navigate'>
+      <image src="{{ item.url }}"></image>
+      <text>{{ item.desc }}</text>
+  </view>
+</view> 

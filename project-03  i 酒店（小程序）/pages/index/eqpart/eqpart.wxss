@@ -1,0 +1,27 @@
+/* pages/index/eqpart/eqpart.wxss */
+.autoView{
+  width: 96%;
+}
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item .name{
+  min-width: 30%;
+}
+.section_item text{
+  color: #777777;
+}
+.section .room_num{
+   padding: 0 20rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}

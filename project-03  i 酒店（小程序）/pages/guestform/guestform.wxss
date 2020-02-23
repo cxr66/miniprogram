@@ -1,0 +1,101 @@
+/* pages/guestform/guestform.wxss */
+
+.guestsearch {
+  height: 90rpx;
+  background-color: #fff;
+  color: #000;
+  overflow: hidden;
+  border-bottom: 1rpx #eee solid;
+  margin-bottom: 20rpx;
+}
+.guestsearch text {
+  margin: 20rpx 0;
+  height: 30rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 4rpx;
+  background-color: #2080de;
+  color: #fff;
+}
+.guestsearch input {
+  width: 80%;
+  margin: 20rpx ;
+  height: 50rpx;
+  padding-left: 20rpx;
+  border: 1rpx solid #eee;
+}
+
+.ordersec {
+  padding: 30rpx 40rpx;
+}
+
+.ordersec text {
+  line-height: 40rpx;
+}
+
+.type {
+  padding: 5rpx 10rpx;
+}
+
+/* tab部分 */
+
+.tab {
+  width: 100%; 
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+}
+
+.tab-item {
+  display: inline-block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #222;
+}
+
+.active {
+  color: #2080de;
+  border-bottom: 4rpx solid #2080de;
+}
+/* 内容 */
+.content{
+ margin-top: 20rpx;  
+ font-size: 26rpx;
+}
+.content-item{
+ overflow-y: scroll
+}
+/* 表格展示数据 */
+
+.section {
+  width: 96%;
+  overflow: hidden;
+  margin: 20rpx auto;
+  box-shadow: 0 2rpx 6rpx 0rpx rgba(204, 204, 204, 1);
+  border-radius: 10rpx;
+}
+
+.section ul {
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.section ul li {
+  flex: 1;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.li_w {
+  width: 22%;
+}
+
+.section .list_style {
+  color: #777;
+}
+
+.section .date_color {
+  color: #2080de;
+}

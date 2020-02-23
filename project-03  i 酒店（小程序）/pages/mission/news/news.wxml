@@ -1,0 +1,33 @@
+<!--pages/mission/news/news.wxml-->
+<view class="section">
+  <text class="fn_28">添加标题</text>
+  <input placeholder="请输入标题" value='{{ form.title }}' auto-focus data-flag='0' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">添加链接</text>
+  <input placeholder="请输入链接" value='{{ form.link }}' auto-focus data-flag='1' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">选择时间</text>
+  <!-- 时间选择器 -->
+    <picker class=' cg_color picker_w' mode="date" value="{{ begin_date }}" start="2000-01-01" end="2099-12-30" bindchange="bindDateChange" data-flag='1'> 
+        <view class="picker">{{ begin_date }}</view> 
+    </picker>
+</view>
+
+<view class="section">
+  <text class="fn_28">添加图片</text>
+  <view wx:if='{{ !tempFilePath.length }}' class="upload" bindtap="upload">
+    <image class='defaultImg' src="/pages/img/mission/icon-add-news.png" lazy-load="true"></image>
+  </view>
+  <view wx:for='{{tempFilePath}}' wx:key='key' class="upload" bindtap="upload">
+    <image class="newImg" src="{{ item }}" lazy-load="true" mode="widthFix"></image>
+  </view>
+</view>
+
+
+<view class='autoView sign_btn' bindtap="confirm">
+  保 存
+</view> 

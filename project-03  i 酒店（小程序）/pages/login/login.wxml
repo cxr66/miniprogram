@@ -1,0 +1,170 @@
+<!--pages/login/login.wxml-->
+<view class='header'>
+  <image src='/pages/img/bg.png' class='bg'></image>
+  <image class='logo' src='/pages/img/icon-logo.png'></image>
+</view>
+<!-- 酒店名称 -->
+<view class='title'>
+  <text>颐陆智住酒店管理手机端后台</text>
+  <text class='english'>IspiderTech. Hotel MIS</text>
+</view>
+
+<view class='form' hidden='{{ !wx_visiable }}'>
+  <!-- 用户名密码登录 -->
+  <form hidden='{{ pwd_visiable }}' bindsubmit="sendmes" report-submit="{{true}}">
+    <!-- code -->
+    <view class='login_in row'>
+      <input bindblur='blur_set' data-blur='5' class='user_name' type='text' placeholder='请输入集团代码' value='{{ form.hotel_code }}'></input>
+    </view>
+    <!-- 用户名 -->
+    <view class='login_in row'>
+      <image src='../img/icon-login-user.png'></image>
+      <input bindblur='blur_set' data-blur='0' class='user_name' type='text' placeholder='请输入账号/用户名' value='{{ form.user_name }}'></input>
+    </view>
+    <!-- 密码 -->
+    <view class='login_in row'>
+      <image src='../img/icon-login-pwd.png'></image>
+      <input bindblur='blur_set' auto-focus='' adjust-position data-blur='1' class='user_name' password='true' type='text' placeholder='请输入账号密码' value='{{ form.password }}'></input>
+    </view>
+
+    <!-- 选择酒店 -->
+    <view class='login_in' hidden='true'>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap' data-flag='0'>
+          <text class='select_text'>{{selectData[hotel_index]}}</text>
+          <image class='select_img {{selectShow&&"select_img_rotate"}}' src='../img/icon-bottom.png' background-size="contain"></image>
+        </view>
+        <view class='option_box' style='height:{{selectShow?(selectData.length>5?325:selectData.length*80):0}}rpx;'>
+          <text class='option' wx:for='{{selectData}}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='0'>{{ item }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 选择班次 -->
+    <view class='login_in'>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap' data-flag='1'>
+          <text class='select_text'>{{ banData[ban_index].desc_cn }}</text>
+          <image class='select_img {{ ban_show&&"select_img_rotate" }}' src='../img/icon-bottom.png' background-size="contain"></image>
+        </view>
+        <view class='option_box' style='height:{{ ban_show?(banData.length>5?325:banData.length*80):0 }}rpx;'>
+          <text class='option' wx:for='{{ banData }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='1'>{{ item.desc_cn }}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='login_in row fn_24' style='border: none;'>
+      <switch bindchange="switchChange" checked='{{ form.isChecked }}' color='#2080DE' />是否记住账户密码
+    </view>
+
+    <view>
+      <button form-type="submit" class='login_in login_btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录</button>
+    </view>
+    <view class='check_others'>
+      <view class='left' bindtap='bind_wx'>微信授权登录</view>
+      <view class='right' bindtap='bind_phone'>手机验证码登录</view>
+      <view class='left' style="margin-left: 108rpx;" data-link='/pages/logins/logins' bindtap='navigate'>多酒店登录</view>
+      <!-- <view class='right' bindtap='bind_phone'>用户名密码登录</view> -->
+    </view>
+  </form>
+
+  <!-- 用户手机号登录 -->
+  <form hidden='{{ !pwd_visiable }}' bindsubmit="sendmes" report-submit="{{true}}">
+ 
+    <view class='login_in row'>
+      <input bindblur='blur_set' data-blur='5' class='user_name' type='text' placeholder='请输入集团代码' value='{{ form_phone.hotel_code }}'></input>
+    </view>
+    <view class='login_in row'>
+      <view class='phone' style='border-right: 1rpx solid #eeeeee;width:25%;'>+86</view>
+      <input bindblur='blur_set' data-blur='2' class='user_name' type='text' placeholder='请输入手机号码' value='{{ form_phone.phonenum }}'></input>
+    </view>
+    <view class='login_in'>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap' data-flag='2'>
+          <text class='select_text'>{{ banData[ban_index].desc_cn }}</text>
+          <image class='select_img {{ ban_show&&"select_img_rotate" }}' src='../img/icon-bottom.png' background-size="contain"></image>
+        </view>
+        <view class='option_box' style='height:{{ ban_show?(banData.length>5?325:banData.length*80):0 }}rpx;'>
+          <text class='option' wx:for='{{ banData }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='1'>{{ item.desc_cn }}</text>
+        </view>
+      </view>
+    </view>
+    <view class='login_in row'>
+      <input style='width: 64%;' auto-focus='' adjust-position bindblur='blur_set' data-blur='3' class='user_name' type='text' placeholder='' value='{{ form_phone.code }}'></input>
+      <view wx:if='{{ showInterval }}' class='phone right fn_28 sendcode' style='border-left: 1rpx solid #eeeeee;' bindtap='check_phone'>发送验证码</view>
+      <view wx:else class='phone right fn_28 sendcode interval' style='border-left: 1rpx solid #eeeeee;'>{{ intervalTime }} S</view>
+    </view>
+
+    <view>
+      <button class='login_in login_btn' form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录</button>
+    </view>
+    <!-- 其他登录方式 -->
+    <view class='check_others'>
+      <view class='left' bindtap='bind_wx'>微信授权登录</view>
+      <view class='right' bindtap='bind_phone'>手机验证码登录</view>
+      <view class='left' style="margin-left: 108rpx;" data-link='/pages/logins/logins' bindtap='navigate'>多酒店登录</view>
+      <view class='right' bindtap='bind_phone'>用户名密码登录</view>
+    </view>
+  </form>
+
+
+</view>
+
+<!-- 微信授权登录 -->
+<view class='form' hidden='{{ wx_visiable }}'>
+  <!-- 微信授权登录 -->
+  <form bindsubmit="sendmes" report-submit="{{true}}">
+    <!-- code -->
+    <view class='login_in row'>
+      <input bindblur='blur_set' data-blur='5' class='user_name' type='text' placeholder='请输入集团代码' value='{{ form_phone.hotel_code }}'></input>
+    </view>
+    <!-- 选择班次 -->
+    <view class='login_in' hidden="true">
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap' data-flag='1'>
+          <text class='select_text'>{{ banData[ban_index].desc_cn }}</text>
+          <image class='select_img {{ ban_show&&"select_img_rotate" }}' src='../img/icon-bottom.png' background-size="contain"></image>
+        </view>
+        <view class='option_box' style='height:{{ ban_show?(banData.length>5?325:banData.length*80):0 }}rpx;'>
+          <text class='option' wx:for='{{ banData }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='1'>{{ item.desc_cn }}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 登录按钮 -->
+    <view>
+      <button class='login_in login_btn bg_green' style='background-color: #1aaf72;' form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权登录 </button>
+    </view>
+  </form>
+
+  <!-- 其他登录方式 -->
+
+  <view class='check_others'>
+    <view class='right' bindtap='bind_phone'>手机验证码登录</view>
+    <view class='left' style="margin-left: 108rpx;" data-link='/pages/logins/logins' bindtap='navigate'>多酒店登录</view>
+    <view class='right' bindtap='bind_phone'>用户名密码登录</view>
+  </view>
+</view>
+
+<!-- 多酒店登录 -->
+<view class='form' hidden='{{ more_hotel_visiable }}'>
+  <form bindsubmit="sendmes" report-submit="{{true}}">
+    <!-- 姓名 -->
+    <view class='login_in row'>
+      <input bindblur='blur_set' data-blur='6' class='user_name' type='text' placeholder='请输入用户名' value='{{ form_more.name }}'></input>
+    </view>
+    <!-- 密码 -->
+    <view class='login_in row'>
+      <input bindblur='blur_set' data-blur='7' class='user_name' type='text' placeholder='请输入密码' value='{{ form_more.psd }}'></input>
+    </view>
+    <view>
+      <button class='login_in login_btn bg_green' style='background-color: #1aaf72;' form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登 录 </button>
+    </view>
+  </form>
+
+  <!-- 其他登录方式 -->
+  <view class='check_others'>
+    <view class='left' bindtap='bind_wx'>用户名密码登录</view>
+    <view class='left' style='margin-left: 100rpx;' bindtap='bind_wx'>用户名密码登录</view>
+    <view hidden='{{ pwd_visiable }}' class='right' bindtap='bind_wx_phone'>手机验证码登录</view>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+<!--pages/my/sign/sign.wxml-->
+<view class='section'>
+  <block wx:for='{{ infoList }}' wx:key='key'>
+    <view class='section_item' data-index='{{ index }}' bindtap='{{ item.code == "地点"?"chooselocate":"" }}'>
+      {{ item.code}}:
+      <text wx:if="{{ item.code == '班次' }}">{{ schedule.desc_cn }}</text>
+      <text wx:elif="{{ item.code == '地点' }}">{{ locate }}</text>
+      <text wx:else>{{ item.desc }}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 按钮点击签到签退 -->
+<view class='row' hidden="true">
+  <view class='autoView sign_btn' bindtap='sign_in'>
+    签到
+  </view>
+  <view class='autoView sign_btn' bindtap='sign_out'>
+    签退
+  </view>
+</view>
+
+<!-- 二维码 -->
+<view class='row'>
+  <view class='autoView sign_btn' bindtap='sign_in_2d'>
+    签到
+  </view>
+  <view class='autoView sign_btn' bindtap='sign_out_2d'>
+    签退
+  </view>
+</view>
+
+<view class='row' hidden='true'>
+  <view>
+    <form bindsubmit="sendmes" report-submit="{{true}}">
+      <button formType="submit" class='btnsend'>
+        <view class='autoView sign_btn'>签到</view>
+      </button>
+    </form>
+  </view>
+  <view>
+    <form bindsubmit="sendmes" report-submit="{{true}}">
+      <button formType="submit" class='btnsend'>
+        <view class='autoView sign_btn'>签退</view>
+      </button>
+    </form>
+  </view>
+</view>

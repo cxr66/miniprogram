@@ -1,0 +1,26 @@
+<!--pages/mission/roomControl/roomControl.wxml-->
+<view class="header">
+  <view class='section name row fn_28'>
+    <input bindinput='bindinput' placeholder="请输入房间号" value='{{ room_num }}' auto-focus/>
+    <view class='title ' bindtap="query_equipment">查询</view>
+  </view>
+</view>
+
+<!-- 设备列表 -->
+<view hidden="{{ listShow }}">
+  <block wx:for='{{ lightList }}' wx:key='key'>
+    <view class='section_item'>
+      {{ item.equipment_name }}
+      <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' />
+    </view>
+  </block>
+
+
+  <view class='section_item'>
+    窗帘
+  </view>
+
+  <view class='autoView sign_btn' bindtap='no_bother'>
+    恢复房间状态
+  </view>
+</view>

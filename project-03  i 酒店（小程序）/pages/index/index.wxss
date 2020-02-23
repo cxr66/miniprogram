@@ -1,0 +1,292 @@
+/**index.wxss**/
+page{
+  padding: 0 0 100rpx 0 ;
+  width: 100%;
+  height: 100%;
+  
+}
+/* 定位切换设备态或者房态 */
+.eqstatuscg{
+  width: 78rpx;
+  height: 78rpx;
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+.eqstatuscg image{
+  width: 78rpx;
+  height: 78rpx; 
+}
+
+.color_1{
+  color: #2080DE;
+}
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 9;
+}
+.header{
+  /* padding: 0 34rpx; */
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center;
+  /* color: #2080DE; */
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+
+/* 筛选条件 */
+.pos_check{
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1rpx #eeeeee solid;
+  position: fixed;
+  top: 84rpx;
+  left:0;
+  z-index: 9;
+}
+.item_list{
+  width: 20%;
+  font-size: 24rpx;
+  color: #222222;
+  text-align: center;
+  line-height: 60rpx;
+  border: 1rpx #eeeeee solid;
+  margin:10rpx 16rpx;
+}
+.item_list_active{
+  color: #ffffff;
+  background-color:#2080DE;
+}
+.check_item{
+  
+  border-right: 1rpx solid #eeeeee;
+}
+.check_item image{
+  margin-left: 10rpx;
+  vertical-align: middle;
+  width: 14rpx;
+  height: 8rpx;
+  display: inline-block;
+}
+.change{
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: right;
+  padding: 0 20rpx;
+  font-weight:bolder;
+}
+.confirm{
+  width: 50%;
+  margin-top: 40rpx;
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-top: 1rpx solid #2080DE;
+}
+/* 蒙层 */
+.pos_checkbg{
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,1);
+  opacity:0.3;
+  position: fixed;
+  z-index: 1;
+}
+/* section部分 */
+.section{
+  margin: 170rpx auto 50rpx auto;
+}
+.section_item{
+  width: 26.8%;
+  height: 160rpx;
+  margin:2rpx 5rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+  color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  overflow: hidden; 
+  position: relative;
+}
+ .color_dot{
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%; 
+}
+.lock_img{
+  width: 30rpx;
+  height: 30rpx;
+}
+.room_state_extra{
+  position: absolute;
+  left: 10rpx;
+  bottom: 10rpx;
+}
+.room_state_extra_img{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.section_item .right_image{
+  width: 24rpx;
+  height: 42rpx;
+  float: right;
+  margin-top: 29rpx;
+}
+/* 房态更改 */
+.pos_cgbtn{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+}
+.change_item{
+  width: 25%;
+  text-align: center;
+  font-size:24rpx;
+  font-weight:400;
+  line-height: 80rpx;
+  background-color:#fff;
+  border-top: 1rpx solid #eeeeee; 
+    font-family:Arial;  
+    
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);  
+    border:0 solid #dcdcdc;  
+    -webkit-border-top-left-radius:8rpx;  
+    -moz-border-radius-topleft:8rpx;  
+    border-top-left-radius:8rpx;  
+    -webkit-border-top-right-radius:8rpx;  
+    -moz-border-radius-topright:8rpx;  
+    border-top-right-radius:8rpx;  
+    -webkit-border-bottom-left-radius:8rpx;  
+    -moz-border-radius-bottomleft:8rpx;  
+    border-bottom-left-radius:8rpx;  
+    -webkit-border-bottom-right-radius:8rpx;  
+    -moz-border-radius-bottomright:8rpx;  
+    border-bottom-right-radius:8rpx;  
+    text-decoration:none; 
+}
+.click_cg_item{
+  background-color:#2080DE;
+  color: #fff;
+}
+.check_flag{
+  background-color:#eeeeee;
+  color: #000;
+}
+checkbox{
+  zoom: .8;
+}
+/* 房务人员 */
+.modalDlg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:400rpx;
+  height:400rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.choose_title{
+  width: 360rpx;
+  margin: auto;
+}
+.choose_title picker,.choose_title_02 picker{
+  border: 2rpx solid #eeeeee;
+  padding: 20rpx;
+  line-height: 30rpx;
+}
+.choose_title textarea,.choose_title_02 textarea{
+  width: 460rpx;
+  height: 200rpx;
+  border: 2rpx solid #eeeeee;
+  line-height: 30rpx;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  transition:transform 0.3s;
+}
+.row_item{
+  width: 50%;
+  border-top: 1rpx #2080DE solid;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}
+
+/* 维修原因 */
+.modalDlg_02{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:500rpx;
+  height:800rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.choose_title_02{
+  width: 460rpx;
+  margin: auto;
+}
+
+
+/* 房态css */
+.picker_w{
+  width: 100%;
+}
+
+
+/* formId测试 */
+.sendClick{
+  position: fixed;
+  right: 30rpx;
+  bottom: 120rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #2080DE;
+  font-size: 24rpx;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+}
+.btnsend{
+  width: 5rpx;
+  height: 5rpx; 
+}
+button::after{
+  border: none;
+}
+
+/* 预定 */
+.orderClick{
+  position: fixed;
+  right: 30rpx;
+  bottom: 220rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #2080DE;
+  font-size: 24rpx;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+}

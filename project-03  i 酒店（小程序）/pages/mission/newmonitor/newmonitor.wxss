@@ -1,0 +1,44 @@
+/* pages/mission//newmonitor/newmonitor.wxss */
+page{
+  background-color: #fff;
+}
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 9;
+}
+.header{ 
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center; 
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+.check_item{
+  border-right: 1rpx solid #eeeeee;
+}
+.check_item image{
+  margin-left: 10rpx;
+  vertical-align: middle;
+  width: 14rpx;
+  height: 8rpx;
+  display: inline-block;
+}
+/* 表单 */
+.form{
+  width: 85%;
+  padding-top: 100rpx;
+  margin:20rpx auto; 
+}
+video{
+  width: 100%;
+  height: 500rpx;
+}
+.title{
+  line-height: 60rpx;
+  font-weight: bolder;
+}

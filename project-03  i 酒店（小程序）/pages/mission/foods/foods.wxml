@@ -1,0 +1,25 @@
+<!--pages/mission/foods/foods.wxml-->
+<view class='section'>
+    <block wx:for='{{ goodsList }}' wx:key='key'>
+      <view class='autoView section_item' >
+        <view class='room_num'>
+          房间： {{ item.room_no}}
+          <text wx:if='{{ item.status == "0" }}' class='send_color'>未分配</text>
+          <text wx:elif='{{ item.status == "5" }}' class='send_color'>待配送</text>
+          <text wx:elif='{{ item.status == "10" }}' class='send_color'>配送完成</text>
+          <text wx:elif='{{ item .status == "20" }}' class='send_color'>订单失效</text>
+        </view>
+        <view class='room_num'>
+            <i > 订单ID：</i>
+            {{ item.meal_order_id }}
+        </view>
+         <view class='room_num' wx:for='{{ item.goodsList }}' wx:key='key2' wx:for-item='gooditem'wx:for-index='index2'>
+            <i wx:if='{{ index2==0 }}' > 物品：</i>
+            <i wx:else></i>
+            {{ gooditem.goods_desc }}
+            <text>{{ gooditem.number }}份</text>
+        </view>
+        
+      </view>
+    </block>
+</view>

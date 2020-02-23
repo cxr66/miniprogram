@@ -1,0 +1,46 @@
+<!--pages/index/order/order.wxml-->
+<view class='section'>
+      <view class='autoView section_item' >
+        <view class='room_num'>
+          房号： <text>{{ room_number }}</text>
+        </view>
+        <view class='room_num'>
+          房类： <text>{{ room_type }}</text>
+        </view>
+        <view class='room_num row'>
+          姓名： <input class='inline_block' value='{{ orderJson.name }}' placeholder='请输入客人姓名' bindinput='bindinput' data-input_flag='0' placeholder-class='cg_color'></input>
+        </view>
+        <view class='room_num row'>
+          手机： <input class='inline_block' value='{{ orderJson.phone }}' placeholder='请输入客人手机号' bindinput='bindinput' data-input_flag='1'  placeholder-class='cg_color'></input>
+        </view>
+        <view class='room_num row'>
+          抵达： 
+           <!-- 时间选择器 -->
+            <picker class=' cg_color picker_w' mode="date" value="{{ on_date }}" start="2000-09-01" end="2099-09-01" bindchange="bindDateChange" data-flag='0'> 
+                <view class="picker">{{ on_date }}</view>
+            </picker>
+            <image class=' right_img' src='../../img/icon-right.png'></image>
+        </view> 
+        <view class='room_num row'>
+          离开： 
+          <!-- 时间选择器 -->
+            <picker class=' cg_color picker_w' mode="date" value="{{ off_date }}" start="2000-09-01" end="2099-09-01" bindchange="bindDateChange" data-flag='1'> 
+                <view class="picker">{{ off_date }}</view>
+            </picker>
+            <image class=' right_img' src='../../img/icon-right.png'></image>
+        </view>
+      </view>
+      
+      <!-- 备注 -->
+      <view class='autoView section_item' >
+        <view class='room_num row'>
+          <i>备注： </i><input class='inline_block' value='{{ orderJson.remark }}'  style='width: 88%;vertical-align:top;' placeholder='请输入备注信息' bindinput='bindinput'  data-input_flag='2'  maxlength='150'></input>
+        </view>
+      </view>
+      
+      <!-- 按钮 -->
+      <view class='fix_bot row'>
+        <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' bindtap='{{ btn_item.bind }}' style='{{ btn_index==3?"border: none;":"" }}'>{{ btn_item.desc }} </view>
+      </view>
+
+</view>

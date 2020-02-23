@@ -1,0 +1,37 @@
+/* pages/mission/procure/procure.wxss */
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item text{
+  color: #777777;
+}
+.section .send_color{
+  color: #2080DE;
+}
+.section .room_num{
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.section .room_num i{
+  display: inline-block;
+  width: 74rpx;
+}
+
+.section .room_num textarea {
+  width: 100%;
+  line-height: 40rpx;
+  min-height: 200rpx;
+  max-height: 300rpx;
+  border-left: 1rpx solid#EEEEEE;
+  border-right: 1rpx solid#EEEEEE;
+}

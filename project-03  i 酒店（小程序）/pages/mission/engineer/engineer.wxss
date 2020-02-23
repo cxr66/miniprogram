@@ -1,0 +1,101 @@
+/* pages/mission/engineer/engineer.wxss */ 
+.newBtn{
+  margin: 0 0 0 20rpx;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  color: #ffffff;
+  background-color: #2080DE;
+  border-radius: 10rpx;
+}
+.newTitle{
+  text-align: center;
+  margin: 10px auto;
+  color: #2080DE;
+  font-size: 28rpx;
+  font-weight:400;
+}
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item text{
+  float: right; 
+}
+.section .send_color{
+  color: #2080DE;
+}
+.section .room_num{
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.section .room_num i{
+  display: inline-block;
+  width: 74rpx;
+}
+
+/* 弹窗 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 90;
+  background:rgba(0,0,0,0.3);
+}
+/* 房务人员 */
+.modalDlg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:400rpx;
+  height:400rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.choose_title{
+  width: 360rpx;
+  margin: auto;
+}
+.choose_title picker,.choose_title_02 picker{
+  border: 2rpx solid #eeeeee;
+  padding: 20rpx;
+  line-height: 30rpx;
+}
+.choose_title textarea,.choose_title_02 textarea{
+  width: 460rpx;
+  height: 200rpx;
+  border: 2rpx solid #eeeeee;
+  line-height: 30rpx;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  transition:transform 0.3s;
+}
+.row_item{
+  width: 50%;
+  border-top: 1rpx #2080DE solid;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}

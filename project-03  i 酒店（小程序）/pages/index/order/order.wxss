@@ -1,0 +1,72 @@
+/* pages/index/order/order.wxss */
+page{
+  padding-bottom: 100rpx;
+}
+.autoView{
+  width: 96%;
+}
+/* section部分 */
+.section{
+  margin: 20rpx auto;
+}
+.section_item{
+  line-height: 100rpx;
+
+  font-size: 24rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item text{
+  color: #777777;
+}
+.section .send_color{
+  color: #2080DE;
+}
+.section .room_num{
+   padding: 0 20rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.section .room_num i{
+  display: inline-block;
+  width: 74rpx;
+}
+.section .room_num input{
+  width: 80%;
+  margin-top:12px;
+
+}
+.section .room_num .right_img{
+  width: 44rpx;
+  height: 44rpx;
+  margin-top: 29rpx;
+
+}
+.section .room_num  .picker_w{
+  width: 82%;
+}
+.section .room_num .room_link{
+  width: 88%;
+  vertical-align:top;
+}
+.section .room_num .room_link .link_item{
+  width: 16.6%;
+}
+
+/* 固定定位 */
+.fix_bot{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid #eeeeee;
+  background-color: #FFFFFF;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+.btn{
+  width: 100%;
+}

@@ -1,0 +1,36 @@
+<!--pages/showindex/showindex.wxml-->
+<!-- <import src="../tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{ tabbar }}"/> -->
+<view class='container'>
+  <view class='nav_top'>
+    <view class='center column fn_24 ' style="padding-top: 40rpx;">
+      <text class="fn_28" style="margin-bottom: 40rpx;">{{hotel.desc}}</text>
+      <text> 今日营收（ 元 ）</text>
+      <text class="fn_66">{{ daily_report.today }}</text>
+      <text>本月累积（元）{{ daily_report.month}}</text>
+    </view>
+    <view class='pos_btn row'>
+        <view class='pos_item column '>
+          <text>今日预计收入（元）</text>
+          <text>{{ real_time_situation.room_price[0].price }}</text>
+        </view>
+        <view class='pos_item column {{index==1?"item_sec":"" }}'>
+          <text>今日入住率（%）</text>
+          <text>{{ real_time_situation.room_occupy_rate }}</text>
+        </view>
+        <view class='pos_item column'>
+          <text>当前在住（间）</text>
+          <text>{{ real_time_situation.room_count[4].num }}</text>
+        </view>
+    </view>
+  </view>
+  <view class='section'>
+    <block wx:for='{{ settingList }}' wx:key='key'>
+      <view class='section_item column center' data-link='{{ item.link }}' data-desc="{{ item.desc }}" bindtap='navigate'>
+        <image src='{{ item.url }}'></image>
+        <text>{{ item.desc }}</text>
+      </view>
+    </block>
+    <view wx:for='3' wx:key='key2' class='section_item'></view>
+  </view>
+</view>

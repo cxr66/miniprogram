@@ -1,0 +1,28 @@
+<!--logs.wxml-->
+<!--pages/login/login.wxml-->
+<view class='header'>
+  <image src='/pages/img/bg.png' class='bg'></image>
+  <image class='logo' src='/pages/img/icon-logo.png'></image>
+</view>
+<!-- 酒店名称 -->
+<view class='title'>
+  <text>颐陆智助酒店管理手机端后台</text>
+  <text class='english'>IspiderTech. Hotel MIS</text>
+</view>
+
+<view class='form'>
+  <!-- 微信授权登录 -->
+  <form bindsubmit="sendmes" report-submit="{{true}}">
+    <!-- code -->
+    <view class='login_in row' hidden='true'>
+      <!-- <image src=''></image> -->
+      <input bindblur='blur_set' data-blur='5' class='user_name' type='text' placeholder='请输入集团代码' value='{{ form_phone.hotel_code }}'></input>
+    </view>
+    <!-- 登录按钮 -->
+    <view>
+      <button class='login_in login_btn bg_green' style='background-color: #1aaf72;' form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权绑定 </button>
+    </view>
+  </form>
+
+
+</view>

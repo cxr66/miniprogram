@@ -1,0 +1,67 @@
+<!--pages/mission/monitor/monitor.wxml-->
+<!-- 位置选取 -->
+<view class='form row'>
+  <view class='fn_26' style='line-height: 80rpx;'>楼栋选取:</view>
+
+  <view class='login_in '>
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap' data-flag='2'>
+        <text class='select_text'>{{ buildingList[build_index] }}</text>
+        <image class='select_img {{ build_show&&"select_img_rotate" }}' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+      </view>
+      <view class='option_box' style='height:{{ build_show?(buildingList.length>5?325:buildingList.length*80):0 }}rpx;'>
+        <text class='option' wx:for='{{ buildingList }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='2'>{{ item }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 楼层选取 -->
+<view class='form row'>
+  <view class='fn_26' style='line-height: 80rpx;'>楼层选取:</view>
+ 
+  <view class='login_in '>
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap' data-flag='0'>
+        <text class='select_text'>{{ floorList[floor_index] }}</text>
+        <image class='select_img {{ floor_show&&"select_img_rotate" }}' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+      </view>
+      <view class='option_box' style='height:{{ floor_show?(floorList.length>5?325:floorList.length*80):0 }}rpx;'>
+        <text class='option' wx:for='{{ floorList }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='0'>{{ item }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 位置选取 -->
+<view class='form row'>
+  <view class='fn_26' style='line-height: 80rpx;'>位置选取:</view>
+
+  <view class='login_in '>
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap' data-flag='1'>
+        <text class='select_text'>{{ posList[pos_index] }}</text>
+        <image class='select_img {{ pos_show&&"select_img_rotate" }}' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+      </view>
+      <view class='option_box' style='height:{{ pos_show?(posList.length>5?325:posList.length*80):0 }}rpx;'>
+        <text class='option' wx:for='{{ posList }}' wx:key='key' data-index='{{ index }}' catchtap='optionTap' data-flag='1'>{{ item }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 调取 -->
+<view class='form' style='overflow: hidden;'>  
+  <view class='right fn_26 bg_color color_fff confirm' bindtap='confirm'> 
+    调取
+  </view>
+</view>
+
+
+<view class='form' style='margin: 20rpx auto;' wx:for='{{ cameraList }}' wx:key='key' >
+  <view class='title fn_28'>{{ item.building }}{{ item.floor }}{{ item.position_string }}</view>
+  <video id="myVideo"  src="{{ item.live_url }}" binderror='errorPlay' data-error='{{ item.building }}{{ item.floor }}{{ item.position_string }}' controls></video>
+  <!-- <live-player src="{{ videoUrl }}" mode="live" autoplay bindstatechange="statechange" binderror="error" style="width: 100%; height: 500rpx;" /> -->
+</view>

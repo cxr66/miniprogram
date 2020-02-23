@@ -1,0 +1,75 @@
+/* pages/detail/expect/expect.wxss */
+
+page {
+  padding: 80rpx 0 0 0;
+}
+.pos_view {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.header {
+  padding: 0 34rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  text-align: center;
+  color: #2080de;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+.header .right_img {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: 34rpx;
+  top: 18rpx;
+}
+.header text {
+  position: absolute;
+  top: 0;
+  left: 34rpx;
+  font-weight: bold;
+}
+.header  .picker_w {
+  width: 100%;
+}
+/* tab部分 */
+.tab {
+  width: 100%;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-wrap: wrap;
+  line-height: 80rpx;
+}
+.tab-item {
+  width: 49.6%;
+  text-align: center;
+  font-size: 28rpx;
+  border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  border-right: 1rpx solid #eee;
+}
+
+.tab-item text {
+  width: 50%;
+}
+
+.tab-item text:nth-child(2) {
+  color: #2080de;
+}
+
+/* 内容 */
+
+.content {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.content-item {
+  overflow-y: scroll;
+}

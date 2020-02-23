@@ -1,0 +1,52 @@
+<!--pages/mission/stranger/stranger.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'>
+    <block wx:for="{{ eqCheckList }}" wx:key='key' wx:for-index='checkIndex'>
+      <view wx:if='{{ checkIndex==0 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <picker class='picker_w' data-listindex='{{ checkIndex }}' bindchange="bindDateChange" value="{{ index }}" range="{{ item.list }}" range-key='hall_name' data-flag='0'>
+          <view class="picker">
+            {{ item.name }}
+            <image src="/pages/img/icon-select.png"></image>
+          </view>
+        </picker>
+      </view>
+
+      <view wx:elif='{{ checkIndex==1 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 起始时间选择器 -->
+        <picker mode="date" value="{{ begin_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='1'>
+          <view class="picker">{{ item.name }}</view>
+        </picker>
+      </view>
+
+      <view wx:elif='{{ checkIndex==2 }}' class='check_item' style='width:{{ 100/eqCheckList.length }}%'>
+        <!-- 终止时间选择器 -->
+        <picker mode="date" value="{{ end_date }}" start="2000-01-01" end="{{ picker_date }}" bindchange="bindDateChange" data-flag='2'>
+          <view class="picker">{{ item.name }}</view>
+        </picker>
+      </view>
+
+    </block>
+  </view>
+
+</view>
+<!-- 列表展示 -->
+<view class='autoView section'>
+  <ul class='row'>
+    <li>楼栋</li>
+    <li>楼层</li>
+    <li>位置</li>
+    <!-- <li>相机编号</li> -->
+    <li style="width:40%;">时间</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ faceList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' data-url='/pages/mission/stranger/strangerDetail/strangerDetail' data-index='{{ index}}' bindtap='navigate'>
+    <li>{{ item.hotel_building }}栋</li>
+    <li>{{ item.hotel_floor }}层</li>
+    <li>{{ item.hotel_detail }}</li>
+    <!-- <li>{{ item.camera_num }}</li> -->
+    <li class='date_color' style="width:40%;">{{ item.event_time }}</li>
+  </ul>
+  <ul class='row list_style'>
+    <li style='width: 100%;'>当前条件下无更多陌生人闯入记录</li>
+  </ul>
+</view>

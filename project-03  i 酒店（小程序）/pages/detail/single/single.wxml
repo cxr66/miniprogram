@@ -1,0 +1,31 @@
+<!--pages/detail/single/single.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header'>
+    <image class='left' src='../../img/icon-right.png' bindtap='btncud'></image>
+    {{ begin_date }}
+    <image class='right' src='../../img/icon-right.png' bindtap='btnadd'></image>
+  </view>
+</view>
+
+
+<view class='autoView section'>
+  <ul class='row'>
+      <li style='width: 28%;'>房类</li>
+      <li>房数</li>
+      <li>入住率</li>
+      <li>占用</li>
+      <li>出租率</li>
+      <li>可用</li>
+      <li>维修</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ room_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' >
+      <li style='width: 28%;'>{{ item.room_type_name }}</li>
+      <li>{{ item.room_count }}</li>
+      <li>{{ item.live_rate }}</li>
+      <li>{{ item.occupy_num }}</li>
+      <li>{{ item.rsv_rate }}</li>
+      <li>{{ item.can_live_num }}</li>
+      <li>{{ item.maintenance_num }}</li>
+  </ul>
+</view>
