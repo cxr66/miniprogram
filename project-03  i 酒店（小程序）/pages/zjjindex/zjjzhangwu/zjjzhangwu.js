@@ -1,4 +1,4 @@
-// pages/zjjindex/zjjorder/zjjorder.js 
+// pages/zjjindex/zjjzhangwu/zjjzhangwu.js
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
@@ -15,9 +15,9 @@ Page({
       name: "在住单"
     }, {
       name: "退房单"
-      }, {
-        name: "异常单"
-      }],
+    }, {
+      name: "异常单"
+    }],
     tabScroll: 0,
     currentTab: 0,
 
@@ -77,7 +77,7 @@ Page({
           orderform: res.data.results
         })
       });
-    } else if (that.data.menuList[this.data.currentTab].name == '退房单'){
+    } else if (that.data.menuList[this.data.currentTab].name == '退房单') {
       http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_check_out_list/?code_market="+"ZZJ"', function (res) {
         console.log('查询退房单列表', res.data);
         wx.hideLoading();
@@ -95,14 +95,7 @@ Page({
       });
     }
   },
-  // 跳转
-  navigate: function (e) {
-    let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
-    AudioContext.AudioContext(desc);
-    wx.navigateTo({
-      url: link
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -150,5 +143,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  // 跳转
+  navigate: function (e) {
+    let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
+    AudioContext.AudioContext(desc);
+    wx.navigateTo({
+      url: link
+    })
+  },
 })
