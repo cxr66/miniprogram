@@ -95,6 +95,7 @@ Page({
       });
     }
   },
+  
   // 跳转
   navigate: function (e) {
     let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
