@@ -14,7 +14,15 @@ Page({
   onLoad: function (options) {
 
   },
+  // 跳转
+  navigate: function (e) {
+    let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
+    AudioContext.AudioContext(desc);
+    wx.navigateTo({
 
+      url: link
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

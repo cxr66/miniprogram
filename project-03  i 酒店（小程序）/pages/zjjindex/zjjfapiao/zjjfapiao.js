@@ -19,6 +19,7 @@ Page({
     let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
     AudioContext.AudioContext(desc);
     wx.navigateTo({
+      
       url: link
     })
   },
