@@ -1,4 +1,4 @@
-<!--pages/zjjindex/zjjzhangwu/zjjzhangwu.wxml--> 
+<!--pages/zjjindex/zjjzhangwu/zjjzhangwu.wxml-->
 <!-- 导航栏 -->
 <scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
   <block wx:for="{{menuList}}" wx:key="index">
@@ -10,34 +10,44 @@
 <swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
   <swiper-item class="content-item">
     <view class=' table'>
-    <ul class='row'> 
-        <li>在住人</li>
+      <ul class='row'>
         <li>房间号</li>
-        <li>入住时间</li>
-        <li>离店时间</li>
-        <li>账单状态</li> 
-        <li>是否联房</li> 
-    </ul>
-    <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li >{{ item.duty_date }}</li>
-        <li>{{ item.duty_time }}</li>
-        <li class='date_color' style="width: 22%;">签退</li>
-        <li class='date_color' style="width: 22%;">{{ item.shift_id.desc_cn }}</li>
-        <li>暂无</li> 
-        <li>账单状态</li> 
-    </ul> 
-  </view>
-   
+        <li>付款日期</li>
+        <li>付款状态</li>
+        <li>付款方式</li>
+        <li>金额</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.room_num }}</li>
+        <li>{{ item.create_time }}</li>
+        <li>{{ item.pay_status_desc }}</li>
+        <li>{{ item.incoming_account_reason_desc }}</li>
+        <li>{{ item.charge_amount }}</li>
+      </ul>
+    </view>
+
     <view class="orderform bg_fff more center">当前条件下无更多信息</view>
   </swiper-item>
 
   <swiper-item class="content-item">
-   
+    <view class=' table'>
+      <ul class='row'>
+        <li>房间号</li>
+        <li>付款日期</li>
+        <li>付款状态</li>
+        <li>付款方式</li>
+        <li>金额</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.room_num }}</li>
+        <li>{{ item.modify_time  }}</li>
+        <li>{{ item.pay_status_desc }}</li>
+        <li>{{ item.incoming_account_reason_desc }}</li>
+        <li>{{ item.charge_amount }}</li>
+      </ul>
+    </view>
+
     <view class="orderform bg_fff more center">当前条件下无更多信息</view>
   </swiper-item>
 
-  <swiper-item class="content-item">
-   
-    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
-  </swiper-item>
 </swiper>

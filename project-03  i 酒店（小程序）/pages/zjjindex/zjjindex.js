@@ -47,11 +47,11 @@ Page({
       link: '/pages/zjjindex/zjjfapiao/zjjfapiao',
       url: '/pages/img/zjjindex/icon-fapiao.png'
     },
-    {
+    /* {
       desc: '基础设置',
       link: '/pages/zjjindex/zjjsetting/zjjsetting',
       url: '/pages/img/zjjindex/icon-setting.png'
-    }
+    } */
     ],
   },
   /**

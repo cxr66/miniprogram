@@ -1,2 +1,161 @@
 <!--pages/zjjindex/zjjxieyi/zjjxieyi.wxml-->
-<text>pages/zjjindex/zjjxieyi/zjjxieyi.wxml</text>
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <!-- 身份券 -->
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>序号</li>
+        <li>CODE</li>
+        <li>名称</li>
+        <li>面值(折扣)</li>
+        <li>已销售数量</li>
+        <li>状态</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.id }}</li>
+        <li>{{ item.code }}</li>
+        <li>{{ item.name }}</li>
+        <li>{{ item. present_value }}</li>
+        <li>{{ item.sale_number }}</li>
+        <li>
+          <text wx:if='{{ item.is_halt }}'>有效</text>
+          <text wx:else>失效</text>
+        </li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+  <!-- 券销售明细 
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  未完---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>销售类型</li>
+        <li>销售对象</li>
+        <li>销售数量</li>
+        <li>创建时间</li>
+        <li>创建人</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>
+          <text wx:if='{{ item.sale_type === "U" }}'>使用</text>
+          <text wx:elif='{{ item.sale_type === "O" }}'>已完成</text>
+          <text wx:elif='{{ item.sale_type === "R" }}'>撤销</text>
+          <text wx:else>转移</text>
+        </li>
+        <li>{{ item.sales_targets_type }}</li>
+        <li>{{ item.number }}</li>
+        <li>{{ item.create_datetime }}</li>
+        <li>{{ item.create_user }}</li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+
+  <!-- 券使用明细  ： --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  未完--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>代码</li>
+        <li>类别</li>
+        <li>价格</li>
+        <li>成本</li>
+        <li>当天可用</li>
+        <li>是否可用</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>
+          <text wx:if='{{ item.sale_type === "U" }}'>使用</text>
+          <text wx:elif='{{ item.sale_type === "O" }}'>已完成</text>
+          <text wx:elif='{{ item.sale_type === "R" }}'>撤销</text>
+          <text wx:else>转移</text>
+        </li>
+        <li>{{ item.code }}</li>
+        <li>{{ item.name }}</li>
+        <li>{{ item. present_value }}</li>
+        <li>{{ item.sale_number }}</li>
+        <li>
+          <text wx:if='{{ item.is_halt === 0 }}'>有效</text>
+          <text wx:else>失效</text>
+        </li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+  <!-- ar账户设置 -->
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>名称</li>
+        <li>类型</li>
+        <li>状态</li>
+        <li>信用限额</li>
+        <li>担保类型</li>
+        <li>是否停用</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.name }}</li>
+        <li>{{ item.ar_account_type }}</li>
+        <li>{{ item.ar_status_desc }}</li>
+        <li>{{ item. credit_limit }}</li>
+        <li>{{ item.guarantor_type_id }}</li>
+        <li>
+          <text wx:if='{{ item.is_halt === 0 }}'>否</text>
+          <text wx:else>是</text>
+        </li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+
+  <!-- ar账户类型 -->
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>代码</li>
+        <li>中文</li>
+        <li>英文</li>
+        <li>是否停用</li>
+        <li>是否系统码</li>
+        <li>是否集团码</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.code }}</li>
+        <li>{{ item.descript }}</li>
+        <li>{{ item.descript_en }}</li>
+        <li>
+          <text wx:if='{{ item.is_halt === 0 }}'>否</text>
+          <text wx:else>是</text>
+        </li>
+        <li>
+          <text wx:if='{{ item.is_sys === 0 }}'>否</text>
+          <text wx:else>是</text>
+        </li>
+        <li>
+          <text wx:if='{{ item.is_group }}'>否</text>
+          <text wx:else>是</text>
+        </li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+</swiper>

@@ -12,11 +12,9 @@ Page({
 
     /* tab栏 */
     menuList: [{
-      name: "在住单"
+      name: "收款明细"
     }, {
-      name: "退房单"
-    }, {
-      name: "异常单"
+      name: "退款明细"
     }],
     tabScroll: 0,
     currentTab: 0,
@@ -41,8 +39,8 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market="+"ZZJ"', function (res) {
-      console.log('查询在住单列表', res.data);
+    http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=pay', function (res) {
+      console.log('收款明细', res.data);
       wx.hideLoading();
       that.setData({
         orderform: res.data.results
@@ -69,31 +67,23 @@ Page({
       title: ''
     });
     console.log(that.data.menuList[this.data.currentTab])
-    if (that.data.menuList[this.data.currentTab].name == '在住单') {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market="+"ZZJ"', function (res) {
-        console.log('查询在住单列表', res.data);
+    if (that.data.menuList[this.data.currentTab].name == '收款明细') {
+      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=pay', function (res) {
+        console.log('收款明细', res.data);
         wx.hideLoading();
         that.setData({
           orderform: res.data.results
         })
       });
-    } else if (that.data.menuList[this.data.currentTab].name == '退房单') {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_check_out_list/?code_market="+"ZZJ"', function (res) {
-        console.log('查询退房单列表', res.data);
+    } else if (that.data.menuList[this.data.currentTab].name == '退款明细') {
+      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=refund', function (res) {
+        console.log('退款明细', res.data);
         wx.hideLoading();
         that.setData({
           orderform: res.data.results
         })
       });
-    } else {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list_abnormal/?code_market="+"ZZJ"', function (res) {
-        console.log('查询异常单列表', res.data);
-        wx.hideLoading();
-        that.setData({
-          orderform: res.data.results
-        })
-      });
-    }
+    } 
   },
 
   /**

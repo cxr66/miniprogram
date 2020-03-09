@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "门卡管理",
+  "enablePullDownRefresh": false
 }

@@ -1,2 +1,61 @@
 <!--pages/zjjindex/zjjfapiao/zjjfapiao.wxml-->
-<text>pages/zjjindex/zjjfapiao/zjjfapiao.wxml</text>
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>名称</li>
+        <li>税号</li>
+        <li>账号</li>
+        <li>开户行</li>
+        <li>地址</li>
+        <li>电话</li>
+        <li>是否集团码</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.company_name }}</li>
+        <li>{{ item.tax_no }}</li>
+        <li>{{ item.bank_account }}</li>
+        <li>{{ item.bank_name }}</li>
+        <li>{{ item.address }}</li>
+        <li>{{ item.telephone }}</li>
+        <li>
+          <text wx:if='{{ item.is_pay===1 }}'>是</text>
+          <text wx:else>否</text>
+        </li>
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>类型</li>
+        <li>票号</li>
+        <li>抬头</li>
+        <li>日期</li>
+        <li>金额</li>
+        <li>是否合并票</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.invoice_type }}</li>
+        <li>{{ item.invoice_number }}</li>
+        <li>{{ item.invoice_title }}</li>
+        <li>{{ item.issued_date }}</li>
+        <li>{{ item.amount }}</li>
+        <li> {{ item.merge_flag }} </li>
+      </ul>
+    </view>
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+</swiper>
