@@ -1,0 +1,32 @@
+<!--pages/opeindex/opeprint/opeprint.wxml--> 
+<view class="section">
+  <text class="fn_28">打印机名称</text>
+  <input placeholder="请输入打印机名称" value='{{ form.printer_name }}' auto-focus data-flag='0' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">打印机网卡的MAC地址</text>
+  <input placeholder="请输入打印机网卡的MAC地址" value='{{ form.printer_mac }}' auto-focus data-flag='1' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">打印机序列号</text>
+  <input placeholder="请输入打印机序列号"  value='{{ form.printer_serial }}' auto-focus data-flag='2' bindinput='bindinput'/>
+
+</view>
+
+<view class="section">
+  <text class="fn_28">Mosquitto服务（MQTT协议)的用户名</text>
+  <input placeholder="请输入用户名"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+
+</view>
+
+<view class="section">
+  <text class="fn_28">Mosquitto服务（MQTT协议)的密码</text>
+  <input placeholder="请输入密码" type="number" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+
+</view>
+
+<view class='autoView sign_btn' bindtap="confirm">
+  保 存
+</view> 

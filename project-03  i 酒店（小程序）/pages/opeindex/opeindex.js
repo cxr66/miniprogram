@@ -1,4 +1,4 @@
-// pages/appindex/appindex.js 
+// pages/opeindex/opeindex.js
 var app = getApp();
 var that = undefined;
 const http = require('../../utils/http.js');
@@ -14,47 +14,17 @@ Page({
     userInfo: {},
     // 设置
     settingList: [{
-        desc: '掌屋',
-        link: '/pages/showindex/showindex',
-        url: '/pages/img/showindex/showindex-roomstatus.png'
-      },
-      /* {
-        desc: '商城',
-        link: '/pages/mallindex/mallindex',
-        url: '/pages/img/showindex/showindex-equipment.png'
-      },
-      {
-        desc: '控台',
-        link: '/pages/conindex/conindex',
-        url: '/pages/img/showindex/showindex-place.png'
-      }, */
-      {
-        desc: '自助机商家后台',
-        link: '/pages/zjjindex/zjjindex',
-        url: '/pages/img/showindex/showindex-place.png'
-      },
-      {
-        desc: '运台',
-        link: '/pages/opeindex/opeindex',
-        url: '/pages/img/showindex/showindex-place.png'
-      },
-    ],
+      desc: '云打印',
+      link: '/pages/opeindex/opeprint/opeprint',
+      url: '/pages/img/showindex/showindex-roomstatus.png'
+    }, ],
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    that = this;
-    AudioContext.AudioContext('可用模块首页');
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    let wx_userInfo = wx.getStorageSync('wx_userInfo');
-    that.setData({
-      wx_userInfo: wx_userInfo
-    })
+    that = this; 
+    
   },
 
   /**
@@ -69,10 +39,7 @@ Page({
    */
   onShow: function() {
 
-    /* http.getReq('http://organ.crowncrystalhotel.com/v1/organization/ht/master_module/get_app/', function (res) {
-      console.log('获取模块', res.data);
-
-    }); */
+    
   },
 
   /**

@@ -7,6 +7,8 @@
     "pages/appindex/appindex",
     "pages/mallindex/mallindex",
     "pages/conindex/conindex",
+    "pages/opeindex/opeindex",
+    "pages/opeindex/opeprint/opeprint",
 
     "pages/zjjindex/zjjindex",
     "pages/zjjindex/zjjorder/zjjorder",

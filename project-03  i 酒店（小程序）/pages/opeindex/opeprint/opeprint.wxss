@@ -1,0 +1,24 @@
+/* pages/opeindex/opeprint/opeprint.wxss */
+/* pages/mission/news/news.wxss */
+page{
+  background-color: #ffffff;
+}
+.section{
+  width: 96%;
+  margin: auto;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+/* button */
+.sign_btn{
+  margin: 40rpx auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}
