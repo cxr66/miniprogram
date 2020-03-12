@@ -9,6 +9,7 @@
     "pages/conindex/conindex",
     "pages/opeindex/opeindex",
     "pages/opeindex/opeprint/opeprint",
+    "pages/opeindex/opeprintlist/opeprintlist",
 
     "pages/zjjindex/zjjindex",
     "pages/zjjindex/zjjorder/zjjorder",

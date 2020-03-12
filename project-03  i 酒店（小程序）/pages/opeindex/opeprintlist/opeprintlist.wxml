@@ -1,0 +1,20 @@
+<!--pages/opeindex/opeprintlist/opeprintlist.wxml-->
+<view class=' section'>
+  <ul class='row'> 
+      <li>序号</li>
+      <li>打印机名称</li>
+      <li>网卡MAC地址</li>
+      <li>序列号</li>
+      <li>Mosquitto用户名</li> 
+      <li>Mosquitto密码</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ printList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <li>{{ item.id }}</li>
+      <li>{{ item.printer_name }}</li>
+      <li>{{ item.printer_mac }}</li>
+      <li>{{ item.printer_serial }}</li>
+      <li>{{ item.mqtt_login }}</li>
+      <li>{{ item.mqtt_password }}</li>
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前无更多数据</li></ul>
+</view>

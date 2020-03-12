@@ -11,7 +11,7 @@
 
 <view class="section">
   <text class="fn_28">打印机序列号</text>
-  <input placeholder="请输入打印机序列号"  value='{{ form.printer_serial }}' auto-focus data-flag='2' bindinput='bindinput'/>
+  <input placeholder="请输入打印机序列号" type="number" value='{{ form.printer_serial }}' auto-focus data-flag='2' bindinput='bindinput'/>
 
 </view>
 
@@ -23,10 +23,19 @@
 
 <view class="section">
   <text class="fn_28">Mosquitto服务（MQTT协议)的密码</text>
-  <input placeholder="请输入密码" type="number" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+  <input placeholder="请输入密码"  value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
 
 </view>
 
+
 <view class='autoView sign_btn' bindtap="confirm">
   保 存
+</view>
+
+<view class='autoView sign_btn' bindtap="clear">
+  清空当前数据
+</view>
+
+<view class='autoView sign_btn' style='background-color:#fff;color:#376EDE;border: 1rpx #376EDE solid;' bindtap="navigate" data-link='/pages/opeindex/opeprintlist/opeprintlist' data-desc='打印机设备列表'>
+  打印机设备列表
 </view> 

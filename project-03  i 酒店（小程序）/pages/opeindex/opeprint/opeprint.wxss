@@ -11,7 +11,12 @@ page{
   line-height: 60rpx;
   border-bottom: 1rpx solid #f2f2f2;
 }
-
+input{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  border: 1rpx solid #eeeeee;
+}
 /* button */
 .sign_btn{
   margin: 40rpx auto;

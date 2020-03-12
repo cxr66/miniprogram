@@ -2,6 +2,8 @@
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
+const prom = require('../../../utils/prom.js');
+const AudioContext = require('../../../utils/AudioContext.js');
 Page({
 
   /**
@@ -12,9 +14,9 @@ Page({
     form: {
       printer_name: '', //打印机名称
       printer_mac: '', //打印机网卡的MAC地址
-      printer_serial: '', //打印机序列号
+      printer_serial: null, //打印机序列号
       mqtt_login: '', //打印机联连我们Mosquitto服务（MQTT协议)的用户名
-      mqtt_password: null, //打印机联连我们Mosquitto服务（MQTT协议) 的密码， 明文，但以PBKDF2密文存到DB.只能比较，无法读出
+      mqtt_password: '', //打印机联连我们Mosquitto服务（MQTT协议) 的密码， 明文，但以PBKDF2密文存到DB.只能比较，无法读出
     },
     tempFilePath: []
   },
@@ -27,7 +29,35 @@ Page({
 
   },
 
+  // 跳转
+  navigate: function(e) {
+    let link = e.currentTarget.dataset.link,
+      desc = e.currentTarget.dataset.desc;
+    AudioContext.AudioContext(desc);
 
+    wx.navigateTo({
+      url: link
+    })
+
+
+  },
+
+  /*  */
+  clear(){
+    that.setData({
+      form: {
+        printer_name: '', //打印机名称
+        printer_mac: '', //打印机网卡的MAC地址
+        printer_serial: null, //打印机序列号
+        mqtt_login: '', //打印机联连我们Mosquitto服务（MQTT协议)的用户名
+        mqtt_password: '', //打印机联连我们Mosquitto服务（MQTT协议) 的密码， 明文，但以PBKDF2密文存到DB.只能比较，无法读出
+      },
+    })
+
+    wx.showToast({
+      title: '已清除',
+    })
+  },
   /* 新增新闻 */
   confirm() {
 
@@ -36,6 +66,7 @@ Page({
         title: '',
         mask: true
       })
+
       http.postReq(app.globalData.url_online.url_9503 + 'cloud_printer/config/add', that.data.form, function(res) {
         wx.hideLoading();
         wx.showToast({
@@ -67,7 +98,7 @@ Page({
       })
     } else if (e.currentTarget.dataset.flag === '2') {
       that.setData({
-        ['form.printer_serial']: e.detail.value
+        ['form.printer_serial']:  parseInt(e.detail.value)
       })
     } else if (e.currentTarget.dataset.flag === '3') {
       that.setData({
