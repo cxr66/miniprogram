@@ -15,8 +15,8 @@ Page({
     // 设置
     settingList: [{
       desc: '云打印',
-      link: '/pages/opeindex/opeprint/opeprint',
-      url: '/pages/img/showindex/showindex-roomstatus.png'
+      link: '/pages/opeindex/opeprintlist/opeprintlist',
+      url: '/pages/img/opeindex/print.png'
     }, ],
   },
   /**

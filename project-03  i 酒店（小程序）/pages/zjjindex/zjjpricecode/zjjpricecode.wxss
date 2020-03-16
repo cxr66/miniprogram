@@ -1,4 +1,4 @@
-/* pages/opeindex/opeprint/opeprint.wxss */ 
+/* pages/zjjindex/zjjpricecode/zjjpricecode.wxss */
 page{
   background-color: #ffffff;
 }

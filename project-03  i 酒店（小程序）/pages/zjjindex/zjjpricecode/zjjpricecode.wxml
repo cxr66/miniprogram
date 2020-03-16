@@ -1,0 +1,140 @@
+<!--pages/zjjindex/zjjpricecode/zjjpricecode.wxml-->
+<!--pages/opeindex/opeprint/opeprint.wxml--> 
+<view class="section">
+  <text class="fn_28 color_f00">*代码</text>
+  <input placeholder="请输入代码" value='{{ form.printer_name }}' auto-focus data-flag='0' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">对应集团码</text>
+  <input placeholder="请输入对应集团码" value='{{ form.printer_mac }}' auto-focus data-flag='1' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*描述</text>
+  <input placeholder="请输入描述" type="number" value='{{ form.printer_serial }}' auto-focus data-flag='2' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*英文描述</text>
+  <input placeholder="请输入英文描述" type="number" value='{{ form.printer_serial }}' auto-focus data-flag='2' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">特惠描述</text>
+  <input placeholder="请输入特惠描述"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">最大提前天数</text>
+  <input placeholder="请输入最大提前天数" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">最小提前天数</text>
+  <input placeholder="请输入最小提前天数" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">取消规则</text>
+  <input placeholder="请输入取消规则"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*房价码类别</text>
+  <input placeholder="请输入房价码类别"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*开始日期</text>
+  <input placeholder="请输入开始日期" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*结束日期</text>
+  <input placeholder="请输入结束日期"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28 color_f00">*类别</text>
+  <input placeholder="请输入类别" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+
+<view class="section">
+  <text class="fn_28">包价</text>
+  <input placeholder="请输入包价"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">佣金码</text>
+  <input placeholder="请输入佣金码" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">客房布置</text>
+  <input placeholder="请输入客房布置"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">市场码</text>
+  <input placeholder="请输入市场码" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">来源码</text>
+  <input placeholder="请输入来源码"  value='{{ form.mqtt_login }}' auto-focus data-flag='3' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">基础房价码设置</text>
+  <input placeholder="请输入基础房价码设置" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">*离店时间</text>
+  <input placeholder="请输入离店时间" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否集团</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否可用</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否自用房</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否免费房</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否日租房</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否房价保密</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class="section">
+  <text class="fn_28">是否协议公司私有价格</text>
+  <switch class='right' checked bindchange="switch1Change"  color='#2080DE'/>
+</view>
+
+<view class='autoView sign_btn' bindtap="confirm">
+  保 存
+</view>
+
+<view class='autoView sign_btn' bindtap="clear">
+  清空当前数据
+</view> 

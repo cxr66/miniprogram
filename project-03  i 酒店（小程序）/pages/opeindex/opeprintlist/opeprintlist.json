@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "打印机列表",
+  "enablePullDownRefresh": true
 }

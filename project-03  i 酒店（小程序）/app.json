@@ -20,6 +20,8 @@
     "pages/zjjindex/zjjgongan/zjjgongan",
     "pages/zjjindex/zjjfapiao/zjjfapiao",
     "pages/zjjindex/zjjsetting/zjjsetting",
+    "pages/zjjindex/zjjpricecode/zjjpricecode",
+    "pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist",
 
     "pages/index/index",
     "pages/index/part/part",

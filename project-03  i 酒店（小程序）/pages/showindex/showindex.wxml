@@ -34,3 +34,6 @@
     <view wx:for='3' wx:key='key2' class='section_item'></view>
   </view>
 </view>
+
+ <view class='sendClick' bindtap='navigate' data-link='/pages/appindex/appindex'>返回</view> 
+ 

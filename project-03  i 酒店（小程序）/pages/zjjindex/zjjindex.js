@@ -47,6 +47,11 @@ Page({
       link: '/pages/zjjindex/zjjfapiao/zjjfapiao',
       url: '/pages/img/zjjindex/icon-fapiao.png'
     },
+      {
+        desc: '房价码',
+        link: '/pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist',
+        url: '/pages/img/zjjindex/icon-pricecode.png'
+      }, 
     /* {
       desc: '基础设置',
       link: '/pages/zjjindex/zjjsetting/zjjsetting',
@@ -58,8 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;
-    AudioContext.AudioContext('自助机商家首页');
+    that = this; 
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo
@@ -96,12 +100,12 @@ Page({
 
     var date1 = new Date(),
       time1 = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate();
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market="+"ZZJ"', function (res) {
+    /* http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market="+"ZZJ"', function (res) {
       console.log('订单', res.data);
       that.setData({
         
       })
-    });
+    }); */
   },
 
   /**
@@ -142,9 +146,11 @@ Page({
   navigate: function (e) {
     let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
     AudioContext.AudioContext(desc);
-    wx.navigateTo({
-      url: link
-    })
+    setTimeout(function(){
+      wx.navigateTo({
+        url: link
+      })
+    },1000)
   },
 
 })

@@ -1,23 +1,32 @@
 /* pages/opeindex/opeindex.wxss */
-page{
-  background: #FFFFFF;
+
+page {
+  background: #fff;
 }
+
 /* section部分 */
-.section{
+.section {
   margin: 40rpx auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.section_item{
+.section_item {
   width: 33%;
   line-height: 50rpx;
   font-size: 22rpx;
-  color: #222222;
+  color: #ffffff;
   align-items: center;
-  margin-top: 60rpx;
+  padding: 40rpx 20rpx;
+  background: linear-gradient(0deg, rgba(67, 168, 248, 1) 0%, rgba(48, 199, 246, 1) 100%);
+  border-radius: 10rpx;
 }
-.section_item image{
-  width: 60rpx;
-  height: 60rpx;
+.section_item image {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.section_print{
+  background: linear-gradient(0deg, rgba(67, 168, 248, 1) 0%, rgba(48, 199, 246, 1) 100%);
+  border-radius: 10rpx;
 }

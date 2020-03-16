@@ -1,8 +1,8 @@
-// pages/zjjindex/zjjzhangwu/zjjzhangwu.js
+// pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist.js
 var app = getApp();
 var that = undefined;
-const http = require('../../../utils/http.js');
-const AudioContext = require('../../../utils/AudioContext.js');
+const http = require('../../../../utils/http.js');
+const AudioContext = require('../../../../utils/AudioContext.js');
 Page({
   /**
    * 页面的初始数据
@@ -12,9 +12,7 @@ Page({
 
     /* tab栏 */
     menuList: [{
-      name: "收款明细"
-    }, {
-      name: "退款明细"
+      name: "房价码列表"
     }],
     tabScroll: 0,
     currentTab: 0,
@@ -39,8 +37,8 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=pay&ordering=-create_time', function (res) {
-      console.log('收款明细', res.data);
+    http.getReq(app.globalData.url_online.url_9102 + 'room/rate_code/get_rate_code_list/?page_size=999', function (res) {
+      console.log('房价码列表', res.data);
       wx.hideLoading();
       that.setData({
         orderform: res.data.results
@@ -67,23 +65,23 @@ Page({
       title: ''
     });
     console.log(that.data.menuList[this.data.currentTab])
-    if (that.data.menuList[this.data.currentTab].name == '收款明细') {
-      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=pay&ordering=-create_time', function (res) {
-        console.log('收款明细', res.data);
+    if (that.data.menuList[this.data.currentTab].name == '发票抬头设置') {
+      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_invoice_title_list/', function (res) {
+        console.log('发票抬头设置', res.data);
         wx.hideLoading();
         that.setData({
           orderform: res.data.results
         })
       });
-    } else if (that.data.menuList[this.data.currentTab].name == '退款明细') {
-      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_charge_detail_list_by_ZZJ/?subject=refund&ordering=-create_time', function (res) {
-        console.log('退款明细', res.data);
+    } else {
+      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_invoice_detail_list', function (res) {
+        console.log('开票记录查询', res.data);
         wx.hideLoading();
         that.setData({
           orderform: res.data.results
         })
       });
-    } 
+    }
   },
 
   /**

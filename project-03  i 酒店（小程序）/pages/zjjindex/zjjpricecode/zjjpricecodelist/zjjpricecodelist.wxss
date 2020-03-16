@@ -1,0 +1,105 @@
+/* pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist.wxss */
+
+/* tab部分 */
+.tab {
+  width: 100%; 
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  line-height: 80rpx;
+}
+.tab-item {
+  display: inline-block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #222;
+}
+
+.active {
+  color: #2080de;
+  border-bottom: 4rpx solid #2080de;
+}
+/* 内容 */
+.content{
+ margin-top: 20rpx;  
+ font-size: 26rpx;
+}
+.content-item{
+ overflow-y: scroll
+}
+/* 展示 */
+.section{
+  height: 90rpx;
+  background-color: #ffffff;
+  color: #000;
+  overflow: hidden;
+  border-bottom: 1rpx #eeeeee solid;
+  margin-bottom: 20rpx;
+}
+.section input{
+  width: 80%;
+  margin: 20rpx;
+  height: 50rpx; 
+  padding-left: 20rpx;
+  border: 1rpx solid #eeeeee;
+}
+.section text {
+  margin: 20rpx 0;
+  height: 30rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 4rpx;
+  background-color: #2080de;
+  color: #fff;
+}
+.ordersec{
+  padding: 30rpx 40rpx;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.ordersec text{
+  line-height: 40rpx;
+  margin: 0 4rpx;
+}
+.type{
+  padding:5rpx 10rpx;
+}
+
+.more{
+  padding: 20rpx 0;
+}
+
+
+.table{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.table ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.table ul li{
+  width: 20%;
+  line-height: 80rpx;
+  text-align: center;
+  overflow-x: scroll;
+} 
+.table .list_style{
+  color: #777777;
+}
+.table .date_color{
+  color: #2080DE;
+}
+
+/* button */
+.sign_btn{
+  margin: 20rpx auto 0 auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}

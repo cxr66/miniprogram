@@ -27,7 +27,15 @@ Page({
       })
     });
   },
-
+  // 跳转
+  navigate: function (e) {
+    let link = e.currentTarget.dataset.link,
+      id = e.currentTarget.dataset.id;; 
+    wx.navigateTo({
+      url: link+'?id='+id
+    })
+  },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -60,7 +68,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
+    that.onLoad();
   },
 
   /**
