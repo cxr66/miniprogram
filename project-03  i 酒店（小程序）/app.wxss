@@ -47,6 +47,7 @@ button::after{
   margin: auto;
   /* border: 1px red solid; */
 }
+
 .bg_fff{
   background-color: #ffffff;
 }

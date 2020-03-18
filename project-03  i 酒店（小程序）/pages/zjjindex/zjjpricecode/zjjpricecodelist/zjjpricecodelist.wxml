@@ -6,10 +6,10 @@
     <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
   </block>
 </scroll-view>
-
+<!-- 
 <view class='autoView sign_btn' bindtap="navigate" data-link="/pages/zjjindex/zjjpricecode/zjjpricecode">
   新 增
-</view>
+</view> -->
 
 <!-- 页面 -->
 <swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
@@ -26,7 +26,7 @@
         <li>开始时间</li> 
         <li>结束时间</li> 
       </ul>
-      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' bindtap='navigate' data-link="/pages/zjjindex/zjjpricecode/zjjpricecodeitem/zjjpricecodeitem?code={{ item.code }}&&id={{item.id}}">
         <li>{{ item.code }}</li>
         <li>{{ item.multi }}</li>
         <li>{{ item.addition }}</li>

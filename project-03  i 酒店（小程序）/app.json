@@ -10,6 +10,7 @@
     "pages/opeindex/opeindex",
     "pages/opeindex/opeprint/opeprint",
     "pages/opeindex/opeprintlist/opeprintlist",
+    "pages/opeindex/opetest/opetest",
 
     "pages/zjjindex/zjjindex",
     "pages/zjjindex/zjjorder/zjjorder",
@@ -21,6 +22,7 @@
     "pages/zjjindex/zjjfapiao/zjjfapiao",
     "pages/zjjindex/zjjsetting/zjjsetting",
     "pages/zjjindex/zjjpricecode/zjjpricecode",
+    "pages/zjjindex/zjjpricecode/zjjpricecodeitem/zjjpricecodeitem",
     "pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist",
 
     "pages/index/index",

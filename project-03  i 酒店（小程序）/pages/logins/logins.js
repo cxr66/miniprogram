@@ -253,10 +253,11 @@ Page({
               }
             })
           }
+
           wx.showLoading({
             title: '',
             mask: true
-          })
+          }) 
           console.log(that.data.banData[that.data.ban_index].id);
           /* 发送请求 */
           wx.request({
@@ -270,7 +271,7 @@ Page({
             },
             success: function (res) {
               // console.log(res.data);
-              wx.hideLoading();
+              
               if (res.data.message === 'success') {
 
                 AudioContext.AudioContext('登录成功');
@@ -301,7 +302,10 @@ Page({
                   })
                 }
                 wx.navigateTo({
-                  url: '/pages/appindex/appindex'
+                  url: '/pages/appindex/appindex',
+                  success:function(){
+                    wx.hideLoading();
+                  }
                 })
 
               } else {
@@ -310,7 +314,10 @@ Page({
                   title: '登录失败：' + res.data.message,
                   icon: "none"
                 })
+                wx.hideLoading();
               }
+
+              
             },
             fail: function (res) {
               wx.showToast({

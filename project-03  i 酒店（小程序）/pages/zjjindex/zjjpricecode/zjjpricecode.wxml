@@ -1,5 +1,4 @@
-<!--pages/zjjindex/zjjpricecode/zjjpricecode.wxml-->
-<!--pages/opeindex/opeprint/opeprint.wxml--> 
+<!--pages/zjjindex/zjjpricecode/zjjpricecode.wxml--> 
 <view class="section">
   <text class="fn_28 color_f00">*代码</text>
   <input placeholder="请输入代码" value='{{ form.printer_name }}' auto-focus data-flag='0' bindinput='bindinput'/>
@@ -92,7 +91,7 @@
 </view>
 
 <view class="section">
-  <text class="fn_28">*离店时间</text>
+  <text class="fn_28 color_f00">*离店时间</text>
   <input placeholder="请输入离店时间" value='{{ form.mqtt_password }}' auto-focus data-flag='4' bindinput='bindinput'/>
 </view>
 

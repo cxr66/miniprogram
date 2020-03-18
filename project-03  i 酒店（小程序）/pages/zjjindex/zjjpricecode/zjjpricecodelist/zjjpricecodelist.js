@@ -63,27 +63,17 @@ Page({
     }
     wx.showLoading({
       title: ''
-    });
-    console.log(that.data.menuList[this.data.currentTab])
-    if (that.data.menuList[this.data.currentTab].name == '发票抬头设置') {
-      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_invoice_title_list/', function (res) {
-        console.log('发票抬头设置', res.data);
-        wx.hideLoading();
-        that.setData({
-          orderform: res.data.results
-        })
-      });
-    } else {
-      http.getReq(app.globalData.url_online.url_9102 + 'accounts/get_invoice_detail_list', function (res) {
-        console.log('开票记录查询', res.data);
-        wx.hideLoading();
-        that.setData({
-          orderform: res.data.results
-        })
-      });
-    }
+    }); 
+    
   },
-
+  changeContent: function (e) {
+    var current = e.detail.current // 获取当前内容所在index,文档有
+    var tabWidth = this.data.windowWidth / 5
+    this.setData({
+      currentTab: current,
+      tabScroll: (current - 2) * tabWidth
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -134,8 +124,7 @@ Page({
   },
   // 跳转
   navigate: function (e) {
-    let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
-    AudioContext.AudioContext(desc);
+    let link = e.currentTarget.dataset.link; 
     wx.navigateTo({
       url: link
     })

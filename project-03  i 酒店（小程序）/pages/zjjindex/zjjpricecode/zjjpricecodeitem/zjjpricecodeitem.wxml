@@ -1,0 +1,141 @@
+<!--pages/zjjindex/zjjpricecode/zjjpricecodeitem/zjjpricecodeitem.wxml-->
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+
+    <view class='sign_btn'>房价码基础信息</view>
+    <view class="sec">
+      <text class="fn_28">代码</text>
+      <input disabled value='{{ formdetail.code }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">类别</text>
+      <input disabled value='{{ formdetail.category }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">中文描述</text>
+      <input disabled value='{{ formdetail.description }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">英文描述</text>
+      <input disabled value='{{ formdetail.description_en }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">有效期起</text>
+      <input disabled value='{{ formdetail.start_date }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">有效期止</text>
+      <input disabled value='{{ formdetail.end_date }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">引用自</text>
+      <input disabled value='{{ formdetail.parent_code }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">房价码类别</text>
+      <input disabled value='{{ formdetail.rate_code_type_desc }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">乘法系数</text>
+      <input disabled value='{{ formdetail.multi }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">加法系数</text>
+      <input disabled value='{{ formdetail.addition }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">是否集团</text>
+      <switch class='right' checked='{{ formdetail.is_group }}'  disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否可用</text>
+      <switch class='right' checked='{{ formdetail.is_halt }}' disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否自用房</text>
+      <switch class='right' checked='{{ formdetail.is_house_user }}' disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否免费房</text>
+      <switch class='right' checked='{{ formdetail.is_free }}' disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否日租房</text>
+      <switch class='right' checked='{{ formdetail. is_day_user }}' disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否房价保密</text>
+      <switch class='right' checked='{{ formdetail.is_secret }}' disabled color='#2080DE' />
+    </view>
+
+    <view class="sec">
+      <text class="fn_28">是否协议公司私有价格</text>
+      <switch class='right' checked='{{ formdetail.s_nego }}' disabled color='#2080DE' />
+    </view>
+
+    <view class='sign_btn'>市场基础信息</view>
+    <view class="sec">
+      <text class="fn_28">市场码</text>
+      <input disabled value='{{ formdetail.market_desc }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">来源码</text>
+      <input disabled value='{{ formdetail.src_desc }}' />
+    </view>
+
+
+    <view class='sign_btn'>早餐及限定条件</view>
+    <view class="sec">
+      <text class="fn_28">包价</text>
+      <input disabled value='{{ formdetail.packages }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">客房布置</text>
+      <input disabled value='{{ formdetail.amenities }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">最大入住天数</text>
+      <input disabled value='{{ formdetail.checkin_max_day }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">最小入住天数</text>
+      <input disabled value='{{ formdetail. checkin_min_day }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">离店时间</text>
+      <input disabled value='{{ formdetail.check_out_time }}' />
+    </view>
+  </swiper-item>
+
+  <swiper-item class="content-item">
+  <view class='sign_btn'>{{ now_date }}</view>
+    <view class=' table'>
+      <ul class='row'>
+        <li>房型</li>
+        <li>今日价格</li> 
+        <!-- <li>操作</li>  -->
+      </ul>
+      <ul class='row list_style' wx:for='{{ form.price }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":"" }}'>
+        <li>{{ item.room_type }}</li>
+        <li> <input value='{{ item[now_date] }}' bindinput="bindinput" data-index="{{index}}" /> </li> 
+        <!-- <li>保存</li>  --> 
+      </ul> 
+    </view>
+
+    <view class='sign_btn' bindtap="save">保 存</view>
+  </swiper-item>
+</swiper>

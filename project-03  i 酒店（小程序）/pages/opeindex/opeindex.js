@@ -17,7 +17,11 @@ Page({
       desc: '云打印',
       link: '/pages/opeindex/opeprintlist/opeprintlist',
       url: '/pages/img/opeindex/print.png'
-    }, ],
+    }, {
+        desc: '测试用例',
+        link: '/pages/opeindex/opetest/opetest',
+        url: '/pages/img/opeindex/print.png'
+      },],
   },
   /**
    * 生命周期函数--监听页面加载

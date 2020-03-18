@@ -11,26 +11,57 @@ Page({
    */
   data: {
     begin_date: '2000-01-01',
-    form: {
-      printer_name: '', //打印机名称
-      printer_mac: '', //打印机网卡的MAC地址
-      printer_serial: null, //打印机序列号
-      mqtt_login: '', //打印机联连我们Mosquitto服务（MQTT协议)的用户名
-      mqtt_password: '', //打印机联连我们Mosquitto服务（MQTT协议) 的密码， 明文，但以PBKDF2密文存到DB.只能比较，无法读出
-    },
+    param: {
+      code: '',
+      group_code: '',
+      category: '',
+      description: '',
+      description_en: '',
+      remark: '',
+      start_date: '',
+      end_date: '',
+      parent_code: '',
+      code_type: '',
+      parent_id: '',
+      addition: '',
+      multi: '',
+      round_size: '',
+      round_tail: '',
+      packages: '',                         //这里可能会有问题
+      check_out_time: '' , //离店时间
+      check_in_time: '',    //入住时间
+      amenities: '',
+      adv_max_day: '',
+      adv_min_day: '',
+      cancel_rule: '',
+      cms_code: '',
+      market: '',
+      src: '',
+      order: '',
+      ta_code: '',
+      checkin_min_day: '',
+      checkin_max_day: '',
+      is_group: 1,
+      is_halt: 1,
+      is_house_user: 1,
+      is_free: 1,
+      is_day_user: 1,
+      is_nego: 1,
+      is_secret: 1,
+    }, 
     tempFilePath: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
 
   },
 
   // 跳转
-  navigate: function (e) {
+  navigate: function(e) {
     let link = e.currentTarget.dataset.link,
       desc = e.currentTarget.dataset.desc;
     AudioContext.AudioContext(desc);
@@ -67,7 +98,7 @@ Page({
         mask: true
       })
 
-      http.postReq(app.globalData.url_online.url_9503 + 'cloud_printer/config/add', that.data.form, function (res) {
+      http.postReq(app.globalData.url_online.url_9503 + 'cloud_printer/config/add', that.data.form, function(res) {
         wx.hideLoading();
         wx.showToast({
           title: '保存成功',
@@ -113,14 +144,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     if (wx.getStorageSync('news')) {
       that.data.form = wx.getStorageSync('news');
     }
@@ -133,7 +164,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     let data = that.data.form;
     wx.setStorageSync('news', data);
     wx.setStorageSync('tempFilePath', that.data.tempFilePath);
@@ -142,28 +173,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
