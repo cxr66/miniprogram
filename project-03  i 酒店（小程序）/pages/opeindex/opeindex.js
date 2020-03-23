@@ -19,9 +19,15 @@ Page({
       url: '/pages/img/opeindex/print.png'
     }, {
         desc: '测试用例',
-        link: '/pages/opeindex/opetest/opetest',
-        url: '/pages/img/opeindex/print.png'
-      },],
+        link: '/pages/opeindex/opetest/opetestlist/opetestlist',
+        url: '/pages/img/opeindex/test.png'
+      },
+      {
+        desc: '参数填入',
+        link: 'pages/opeindex/opeparfill/opeparfill',
+        url: '/pages/img/opeindex/fill.png'
+      },
+      ],
   },
   /**
    * 生命周期函数--监听页面加载

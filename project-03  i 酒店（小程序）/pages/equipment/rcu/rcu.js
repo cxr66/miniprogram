@@ -1,9 +1,10 @@
-// pages/index/eqpart/eqpart.js
+// pages/equipment/rcu/rcu.js
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
+const prom = require('../../../utils/prom.js');
+const AudioContext = require('../../../utils/AudioContext.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -14,33 +15,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     that = this;
+    wx.showLoading({});
 
-    that.setData({
-      room_num: options.room_num
-    })
-    wx.setNavigationBarTitle({
-      title: "房间号—" + options.room_num //页面标题参数
-    })
     wx.request({
-      url: app.globalData.url_online.url_eq + 'equipment/ht/rcu/auth_find_infrared_count/?room=' + options.room_num,
+      url: app.globalData.url_online.url_eq + 'equipment/ht/rcu/get_online_rcu/',
       method: 'GET',
       header: {
         'authorization': app.globalData.codeInfo.new_authorization,
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data.new_authorization) {
           app.globalData.codeInfo.new_authorization = res.data.new_authorization;
           wx.setStorageSync('codeInfo', app.globalData.codeInfo);
         }
 
         switch (res.data.message) {
-          case 'success':
-            console.log('红外异常',res.data.data)
+          case 'success': 
+            console.log('rcu列表', res.data.detail);
             that.setData({
-              infrared: res.data.data.infrared
-
+              rcuList: res.data.detail
             })
             break;
 
@@ -65,82 +60,71 @@ Page({
               icon: "none"
             })
         }
-
+        wx.hideLoading();
 
       },
-      fail: function() {
+      fail: function () {
         wx.reLaunch({
           url: '/pages/logins/logins',
         })
       }
     })
   },
+  // 跳转
+  navigate: function (e) {
+    let link = e.currentTarget.dataset.link;
+    wx.navigateTo({
+      url: link
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    that.get_eq();
+  onShow: function () {
+
   },
-  /* 
-   ** 设备详情  **
-   */
-  get_eq() {
-    let room_num = that.data.room_num;
-    http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_detail_status/', {
-      'hotel_id': app.globalData.userInfo.hotel_id,
-      "room_number": room_num
-    }, function(res) {
-      console.log('设备详情', res.data.result);
-      for (let i in res.data.result) {
-        if (res.data.result[i].time) {
-          res.data.result[i].time = res.data.result[i].time.split('.')[0];
-        }
-      }
-      that.setData({
-        room_certain_status: res.data.result
-      })
-    });
-  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+    that.onLoad();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

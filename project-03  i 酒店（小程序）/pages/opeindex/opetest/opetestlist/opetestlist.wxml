@@ -1,0 +1,18 @@
+<!--pages/opeindex/opetest/opetestlist/opetestlist.wxml-->
+<view class=' section'>
+  <ul class='row'> 
+      <li>编号</li>
+      <li>名称</li>
+      <li>系统</li>
+      <li>用途</li>
+      <li>状态</li>  
+  </ul>
+  <ul class='row list_style' wx:for='{{ testList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' bindtap='navigate' data-link='/pages/opeindex/opetest/opetest?id={{item.id}}'>
+      <li>{{ item.id }}</li>
+      <li>{{ item.name }}</li>
+      <li>{{ item.purpose_desc }}</li>
+      <li>{{ item.type_desc }}</li>
+      <li class='cg_color'>未测试</li> 
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前无更多数据</li></ul>
+</view>

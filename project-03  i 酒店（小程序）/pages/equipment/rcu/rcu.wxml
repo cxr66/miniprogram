@@ -1,0 +1,17 @@
+<!--pages/equipment/rcu/rcu.wxml-->
+<view class='autoView section_item' wx:for="{{ rcuList }}" wx:key='key'>
+  
+  <view class='sign_btn'>楼层 {{ item.floor }} </view> 
+  <view class='room_num' >
+    <i>在线: </i>
+    <view class='room_link inline_block'>
+      <view class='inline_block link_item cg_color' wx:for="{{ item.online }}" wx:key='key1' wx:for-item='onlineitem'>{{ onlineitem }}</view>
+    </view>
+  </view>
+  <view class='room_num'>
+    <i>离线: </i>
+    <view class='room_link inline_block'>
+      <view class='inline_block link_item cg_color' wx:for="{{ item.not_online }}" wx:key='key2' wx:for-item='offlineitem'>{{ offlineitem }}</view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
 <!--pages/index/eqpart/eqpart.wxml-->
+<view class='sign_btn' >设备详情</view>
 <view class='section'>
   <view class='autoView section_item'>
     <view wx:for='{{ room_certain_status }}' wx:key='key' class='room_num row'>
@@ -7,4 +8,19 @@
     </view>
 
   </view>
+</view>
+<view class='sign_btn' >红外误报信息</view>
+<!-- 列表展示 -->
+<view class='autoView box'>
+  <ul class='row'> 
+      <li>红外位置</li>
+      <li>红外描述</li>
+      <li>夜间上报次数</li>  
+  </ul>
+  <ul class='row list_style' wx:for='{{ infrared }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' > 
+      <li>{{ item.infrared_local }}</li>
+      <li>{{ item.desc }}</li>
+      <li>{{ item.number }}</li> 
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前无更多误报信息</li></ul>
 </view>

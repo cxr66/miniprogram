@@ -1,0 +1,44 @@
+/* pages/equipment/rcu/rcu.wxss */
+ page{
+   background-color: #FFFFFF;
+ }
+ .autoView{
+  width: 96%;
+}
+/* button */
+.sign_btn{
+  margin: 10rpx auto;
+  color: #FFFFFF;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}
+.section_item{
+  line-height: 100rpx;
+  font-size: 24rpx;
+  color: #222222;
+  
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.section_item text{
+  color: #777777;
+}
+.room_num{
+   padding: 0 20rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.room_num i{
+  display: inline-block;
+  width: 74rpx;
+}
+.room_num .room_link{
+  width: 88%;
+  vertical-align:top;
+}
+.room_num .room_link .link_item{
+  width: 16.6%;
+}

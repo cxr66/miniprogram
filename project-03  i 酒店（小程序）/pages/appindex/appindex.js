@@ -36,7 +36,7 @@ Page({
       {
         desc: '运台',
         link: '/pages/opeindex/opeindex',
-        url: '/pages/img/showindex/showindex-place.png'
+        url: '/pages/img/showindex/showindex-watch.png'
       },
     ],
   },

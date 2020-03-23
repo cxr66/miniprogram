@@ -1,2 +1,38 @@
-<!--pages/opeindex/opetest/opetest.wxml-->
-<text>pages/opeindex/opetest/opetest.wxml</text>
+<!--pages/opeindex/opetest/opetest.wxml--> 
+<import src="../../../utils/wxParse/wxParse.wxml" />
+
+
+<view class="section">
+  <text class="fn_28 ">酒店名称：</text>
+  <text class="right">name</text>
+</view>
+
+<view class="section">
+  <text class="fn_28 ">测试用例编号：</text>
+  <text class="right">404</text>
+</view>
+
+<view class="section">
+  <text class="fn_28 ">测试对象：</text>
+  <text class="right">404</text>
+</view>
+
+<view class="section">
+  <text class="fn_28 ">当前测试状态：</text>
+  <text class="right">未测试</text>
+</view>
+
+<view class="section">
+  <text class="fn_28 ">测试用例内容：</text>
+  <template is="wxParse" data="{{ wxParseData:description.nodes }}" />
+</view>
+
+<view class="section">
+  <text class="fn_28 ">反馈结果：</text>
+  <textarea></textarea>
+</view>
+
+
+<view class='autoView sign_btn' bindtap="confirm">
+  保 存
+</view> 

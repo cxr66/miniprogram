@@ -11,6 +11,8 @@
     "pages/opeindex/opeprint/opeprint",
     "pages/opeindex/opeprintlist/opeprintlist",
     "pages/opeindex/opetest/opetest",
+    "pages/opeindex/opetest/opetestlist/opetestlist",
+    "pages/opeindex/opeparfill/opeparfill",
 
     "pages/zjjindex/zjjindex",
     "pages/zjjindex/zjjorder/zjjorder",
@@ -32,6 +34,7 @@
     "pages/index/statusrecord/statusrecord",
 
     "pages/equipment/equipment",
+    "pages/equipment/rcu/rcu",
 
     "pages/detail/detail",
     "pages/detail/single/single",

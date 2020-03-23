@@ -4,6 +4,9 @@ page {margin: 0;padding: 0 ;background-color: #F5F5F5;}
 switch{
     zoom: .6;
 }
+textarea{
+  border: 1rpx solid #eeeeee;
+}
 .block{
   display: block;
 }

@@ -1,0 +1,53 @@
+/* pages/opeindex/opeparfill/opeparfill.wxss */
+/* pages/index/search/search.wxss */
+.contain{
+ width: 100%;
+}
+/* 上方 */
+.nav_top {
+  width: 100%;
+  background-color: #5758ea;
+  padding: 20rpx 0;
+}
+.nav_top input {
+  width: 90%;
+  height: 60rpx; 
+  margin: auto;
+  font-size: 24rpx; 
+  line-height: 60rpx; 
+  border-radius: 40rpx;
+  padding-left: 60rpx;
+  background:#ffffff url("https://www.lkpetq.com/images/wishes/icon-sousuo@2x.png")no-repeat center;
+  background-size: 32rpx 32rpx;
+  background-position:20rpx 14rpx;
+}
+
+/* tab部分 */
+.tab{
+ width: 100%;
+ height: 84rpx;
+ white-space: nowrap;
+ box-sizing: border-box;
+ overflow: hidden;
+ line-height: 80rpx;
+}
+.tab-item{
+ display: inline-block; 
+ text-align: center;
+ font-size: 26rpx;
+ color: #8f9193; 
+}
+.active{
+ color: #5758ea;
+ border-bottom: 4rpx solid #5758ea;
+}
+
+/* 内容 */
+.content{
+ margin-top: 20rpx;  
+ font-size: 26rpx;
+}
+.content-item{
+ overflow-y: scroll
+}
+
