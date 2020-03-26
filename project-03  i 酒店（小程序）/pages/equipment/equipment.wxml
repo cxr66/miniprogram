@@ -19,7 +19,7 @@
     <view class='change  bg_grey' style='overflow:hidden;'>
       <text class='color_1 left' bindtap='get_eq'>全部</text>
 
-      <text class='color_1 right' bindtap='navigateto' data-link="/pages/equipment/rcu/rcu">rcu</text>
+      <text class='color_1 right' bindtap='navigateto' data-link="/pages/equipment/rcu/rcu">RCU</text>
     </view>
   </view>
 

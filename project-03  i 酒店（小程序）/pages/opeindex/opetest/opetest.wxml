@@ -1,25 +1,28 @@
-<!--pages/opeindex/opetest/opetest.wxml--> 
+<!--pages/opeindex/opetest/opetest.wxml-->
 <import src="../../../utils/wxParse/wxParse.wxml" />
-
-
-<view class="section">
-  <text class="fn_28 ">酒店名称：</text>
-  <text class="right">name</text>
-</view>
 
 <view class="section">
   <text class="fn_28 ">测试用例编号：</text>
-  <text class="right">404</text>
+  <text class="right">{{ testDetail.id }}</text>
 </view>
 
 <view class="section">
   <text class="fn_28 ">测试对象：</text>
-  <text class="right">404</text>
+  <text class="right">{{ testDetail.test_case.purpose_desc }}</text>
 </view>
 
 <view class="section">
   <text class="fn_28 ">当前测试状态：</text>
-  <text class="right">未测试</text>
+  <view class="right color_f00">
+
+  <picker bindchange="bindPickerChange" value="{{testDetail.feedback_type}}" range-key='desc' range="{{feedback_type_array}}">
+    <view class="picker">
+      {{feedback_type_array[testDetail.feedback_type].desc}}
+    </view>
+  </picker>
+ 
+      
+  </view>
 </view>
 
 <view class="section">
@@ -29,10 +32,10 @@
 
 <view class="section">
   <text class="fn_28 ">反馈结果：</text>
-  <textarea></textarea>
+  <textarea value='{{ testDetail.feedback }}' bindblur="blur"></textarea>
 </view>
 
 
-<view class='autoView sign_btn' bindtap="confirm">
+<view class='autoView sign_btn' bindtap="update_test_case_feedback">
   保 存
-</view> 
+</view>

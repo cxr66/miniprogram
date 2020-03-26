@@ -1,0 +1,19 @@
+/* pages/mission/lockAuto/lockAuto.wxss */
+page {
+  height: 100%;
+}
+.controls {
+  position: relative;
+  top: 0%;
+}
+.noticeTXT {
+  font-size: 14px;
+  color: rgb(12, 242, 240);
+  text-align: center;
+}
+.tips{
+  width: 33%;
+  font-size: 28rpx;
+  text-align: center;
+  color: #35d0a4;
+}

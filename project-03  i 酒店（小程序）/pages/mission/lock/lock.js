@@ -82,13 +82,41 @@ Page({
     console.log(that.data.form.room_number)
     if (that.data.form.room_number){
       // 开门
-      http.postReq(app.globalData.url_online.url_eq + 'equipment/wx/lock/door/open_lock/', post_data, function (res) {
+      /* http.postReq(app.globalData.url_online.url_eq + 'equipment/wx/lock/door/open_lock/', post_data, function (res) {
         console.log(res.data);
         wx.showToast({
           title: '开门成功',
           icon: 'none'
         })
-      });
+      }); */
+      wx.navigateTo({
+        url: '/pages/mission/lockAuto/lockAuto?room_number=' + that.data.form.room_number,
+      })
+      /* wx.chooseImage({
+        success(res) {
+          const tempFilePaths = res.tempFilePaths
+          console.log(res);
+          wx.uploadFile({
+            url: app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_face_recognition/',
+            filePath: tempFilePaths,
+            name: 'file',
+            header: {
+              'authorization': app.globalData.codeInfo.new_authorization
+            },
+            formData: {
+              'room_number': that.data.form.room_number
+            },
+            success(res) {
+              const data = res.data;
+              console.log(res.data);
+              wx.showToast({
+                title: '开门成功',
+                icon: 'none'
+              })
+            }
+          })
+        }
+      }) */
     }else{
       wx.showToast({
         title: '请输入一个房间号',

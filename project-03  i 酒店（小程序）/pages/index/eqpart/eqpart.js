@@ -37,10 +37,9 @@ Page({
 
         switch (res.data.message) {
           case 'success':
-            console.log('红外异常',res.data.data)
+            console.log('红外异常',res.data)
             that.setData({
-              infrared: res.data.data.infrared
-
+              infrared: res.data.infrared
             })
             break;
 

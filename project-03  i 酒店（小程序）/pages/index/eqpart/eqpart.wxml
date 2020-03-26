@@ -17,7 +17,7 @@
       <li>红外描述</li>
       <li>夜间上报次数</li>  
   </ul>
-  <ul class='row list_style' wx:for='{{ infrared }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' > 
+  <ul class='row list_style' wx:for='{{ infrared[0].infrared_tag }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' > 
       <li>{{ item.infrared_local }}</li>
       <li>{{ item.desc }}</li>
       <li>{{ item.number }}</li> 

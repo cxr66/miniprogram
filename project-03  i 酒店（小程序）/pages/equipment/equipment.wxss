@@ -17,9 +17,7 @@ page{
   width: 78rpx;
   height: 78rpx; 
 }
-.color_1{
-  color: #2080DE;
-}
+
 .pos_view{
   width: 100%;
   position: fixed;

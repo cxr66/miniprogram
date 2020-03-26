@@ -1,9 +1,55 @@
 /* pages/opeindex/opetest/opetestlist/opetestlist.wxss */
+.pos_view{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 9;
+}
+.header{
+  /* padding: 0 34rpx; */
+  background-color: #ffffff;
+  border-top: 1rpx solid #eeeeee;
+  border-bottom: 1rpx solid #eeeeee;
+  text-align: center;
+  /* color: #2080DE; */
+  font-size: 26rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+
+/* 筛选条件 */
+.pos_check{
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1rpx #eeeeee solid;
+  position: fixed;
+  top: 84rpx;
+  left:0;
+  z-index: 9;
+}
+.check_item{
+  border-right: 1rpx solid #eeeeee;
+}
+.check_item image{
+  margin-left: 10rpx;
+  vertical-align: middle;
+  width: 14rpx;
+  height: 8rpx;
+  display: inline-block;
+}
+.change{
+  line-height: 80rpx;
+  font-size: 26rpx;
+  text-align: right;
+  padding: 0 20rpx;
+  font-weight:bolder;
+}
 /* 表格展示数据 */
 .section{
   width: 98%;
   overflow: hidden;
-  margin: 20rpx auto 0 auto;
+  margin: 100rpx auto 0 auto;
   box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
   border-radius:10rpx;
 }
@@ -19,3 +65,60 @@
   text-align: center;
   overflow-x: scroll;
 }  
+
+
+/* 加收房费原因 */ 
+.modalDlg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:400rpx;
+  height:400rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.modalDlg_02{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:500rpx;
+  height:800rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+}
+.choose_title_02{
+  width: 460rpx;
+  margin: auto;
+}
+.choose_title_02 input,.choose_title_02 picker{
+  border: 2rpx solid #eeeeee;
+  padding: 20rpx;
+  line-height: 30rpx;
+}
+.choose_title_02 textarea{
+  width: 460rpx;
+  height: 200rpx;
+  border: 2rpx solid #eeeeee;
+  line-height: 30rpx;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  transition:transform 0.3s;
+}
+.row_item{
+  width: 50%;
+  border-top: 1rpx #2080DE solid;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}

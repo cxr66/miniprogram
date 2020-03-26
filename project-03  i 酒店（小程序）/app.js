@@ -154,6 +154,7 @@ App({
       url_9101: 'https://ispider.eloadspider.com/v1/room/',
       url_9102: 'https://ispider.eloadspider.com/v1/',
       url_9103: 'https://ispider.eloadspider.com/v1/',
+      url_machine: 'https://machine.crowncrystalhotel.com/v1/',
       url_9104: 'https://ispider.eloadspider.com/v1/task/',
       url_9202: 'https://bill.eloadspider.com/v1/',
       url_8091: 'https://room.eloadspider.com/v1/',

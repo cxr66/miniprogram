@@ -1,18 +1,71 @@
 <!--pages/opeindex/opetest/opetestlist/opetestlist.wxml-->
+<!-- 头部 -->
+<view class='pos_view'>
+  <view class='header row'> 
+  <view class='check_item' style='width:50%' bindtap='display_modal' data-modal="purpose">
+        {{ purposeList[purIndex].desc  }}
+      </view> 
+      <view class='check_item' style='width:50%'>
+        <picker class='picker_w' bindchange="bindPickerChange" value="{{ checkIndex }}" range="{{ CheckList }}" range-key="desc">
+          <view class="picker">
+            {{ CheckList[checkIndex].desc }}
+            <image src="/pages/img/icon-select.png"></image>
+          </view>
+        </picker>
+      </view> 
+      
+  </view>
+
+</view>
+
 <view class=' section'>
-  <ul class='row'> 
-      <li>编号</li>
-      <li>名称</li>
-      <li>系统</li>
-      <li>用途</li>
-      <li>状态</li>  
+  <ul class='row'>
+    <li>编号</li>
+    <li>名称</li>
+    <li>测试对象</li>
+    <li>用途</li>
+    <li>状态</li>
   </ul>
   <ul class='row list_style' wx:for='{{ testList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' bindtap='navigate' data-link='/pages/opeindex/opetest/opetest?id={{item.id}}'>
-      <li>{{ item.id }}</li>
-      <li>{{ item.name }}</li>
-      <li>{{ item.purpose_desc }}</li>
-      <li>{{ item.type_desc }}</li>
-      <li class='cg_color'>未测试</li> 
+    <li>{{ item.id }}</li>
+    <li>{{ item.test_case.name }}</li>
+    <li>{{ item.test_case.purpose_desc }}</li>
+    <li>{{ item.test_case.type_desc }}</li>
+    <li class='cg_color'>{{ item.feedback_type_desc }}</li>
   </ul>
-  <ul class='row list_style'><li style='width: 100%;'>当前无更多数据</li></ul>
+  <ul class='row list_style'>
+    <li style='width: 100%;'>当前无更多数据</li>
+  </ul>
+</view>
+<!-- 选择自助机 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ purpose_modal }}'></view>
+<view class="modalDlg_02 column" catchtouchmove="preventTouchMove" style='height: 300rpx;' hidden='{{ purpose_modal }}'>
+  <view class='choose_title_02'>
+    <view class='fn_24 line_height_60 '>测试对象：</view>
+    <picker bindchange="bindMachineChange" value="{{ purIndex }}" range="{{ purposeList }}" range-key='desc' data-flag="purpose">
+      <view class="inline_block picker fn_24"> {{ purposeList[purIndex].desc }}</view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+  </view>
+
+  <view class='row'> 
+    <view class='row_item' style='width: 100%;color: #ffffff;background-color: #2080DE;' bindtap='get_by_purpose'>确认</view>
+  </view>
+</view>
+
+<!-- 选择自助机编号 -->
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ machine_modal }}'></view>
+<view class="modalDlg_02 column" catchtouchmove="preventTouchMove" style='height: 300rpx;' hidden='{{ machine_modal }}'>
+  <view class='choose_title_02'>
+    <view class='fn_24 line_height_60 '>自助机：</view>
+    <picker bindchange="bindMachineChange" value="{{ arIndex }}" range="{{ machineList }}" range-key='machine_name' data-flag="machine">
+      <view class="inline_block picker fn_24"> {{ machineList[arIndex].machine_name }}</view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='machine_modal' data-modal='machine'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='get_testlist_by_machine'>确认</view>
+  </view>
 </view>

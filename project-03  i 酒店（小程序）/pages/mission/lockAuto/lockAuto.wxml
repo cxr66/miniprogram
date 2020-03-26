@@ -1,0 +1,11 @@
+<!--pages/mission/lockAuto/lockAuto.wxml-->
+<view style='height:100%;'>
+  <view  style='height:100%;'>
+    <camera mode="normal" device-position="back" flash="{{ flash }}" device-position="front" style="width:100%; height:100%;">
+      <cover-view class="controls" style="width:100%; height:100%;">
+        <cover-image src="{{ srcFoot }}" style="width:100%; height:100%;" />
+      </cover-view>
+    </camera>
+  </view>
+</view>
+

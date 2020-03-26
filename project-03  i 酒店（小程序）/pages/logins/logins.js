@@ -573,7 +573,8 @@ Page({
           that.setData({
             code: code
           })
-          wx.request({
+          
+          /* wx.request({
             url: app.globalData.url_online.url_9103 + 'system/wechat/update_user_weixin_info/',
             header: {
               'content-type': 'application/json',
@@ -589,7 +590,7 @@ Page({
             fail: function () {
 
             }
-          })
+          }) */
           //授权
           wx.getSetting({
             success(res1) {

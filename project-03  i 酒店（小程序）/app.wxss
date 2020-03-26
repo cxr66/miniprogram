@@ -22,7 +22,9 @@ textarea{
 .right{
   float: right;
 }
-
+.color_1{
+  color: #2080DE;
+}
 ::-webkit-scrollbar{
     width: 0;
     height: 0;
