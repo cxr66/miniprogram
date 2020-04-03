@@ -65,6 +65,7 @@
     "pages/mission/clean/cleanList/cleanList",
     "pages/mission/news/news",
     "pages/mission/roomControl/roomControl",
+    "pages/bluetooth/bluetooth",
 
     "pages/index/order/order",
     

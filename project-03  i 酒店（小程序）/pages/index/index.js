@@ -1111,5 +1111,73 @@ Page({
       })
     }
 
-  }
+  },
+  /**
+   * @order 预定
+   */
+  order() {
+    let params = {
+      "rsv_type": that.data.rsv_type,   // 预定类型
+      "arr_time": that.data.on_date+ ' 12:00:00',    // 到达时间
+      "days": that.data.days,           // 住宿天数
+      "leave_time": that.data.off_date+ ' 12:00:00', // 离开时间
+      "code_market": "SK",            // 市场码
+      "code_src": "SMSK",             // 来源码
+      "rate_code": "BAR",              // 房价码 
+      "rsv_person_name": that.data.orderJson.name,        // 预定人姓名 
+      "mobile_master": that.data.orderJson.phone,          // 预定人电话  
+      "remark": that.data.orderJson.remark,                // 备注
+      "rt_rate": [
+        {
+          "room_type": that.data.room_type,
+          "room_count": 1,
+          "rate_code_price": '', 
+          "room_number_list": [that.data.room_number], 
+        }
+      ]
+    },
+    url = app.globalData.url_online.url_9102 + 'bill/add_reserve_base/';
+
+    http.postReq(url, params, function(res) {
+      console.log(res);
+      if (res.message == 'success') {
+        wx.showToast({
+          title: '预定成功,订单号为' + res.data.order_no,
+          icon: 'none'
+        }) 
+        var order_no = res.data.order_no;
+        
+        //发送消息
+        that.send_msg({
+          phone_number: that.data.orderJson.phone,
+          sign_name: "皇冠晶品酒店服务中心",
+          template_code: "SMS_173405844",
+          template_param: {
+            status: "成功",
+            order: order_no.slice(0, 4) + '****' + order_no.slice(-5, -1),
+            name: that.data.orderJson.name,
+            date: that.data.on_date,
+            hotel: "科冠晶品酒店",
+            roomtype: that.data.room_type,
+            much: "1",
+            day: day,
+            money: room_price,
+            adress: "上海市浦东新区人民东路2635弄105号",
+            tel: '4001600703'
+          }
+        });
+        setTimeout(function() {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+
+      } else {
+        wx.showToast({
+          title: '预定失败',
+          icon: 'none'
+        })
+      }
+    });
+  },
 })

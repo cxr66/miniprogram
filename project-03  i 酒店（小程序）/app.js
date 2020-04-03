@@ -136,7 +136,7 @@ App({
     url_offline: {
       url_login: 'http://47.98.113.173:9519/v1/' ,
       url_9101: 'http://47.98.113.173:9101/v1/',
-      url_9102: 'http://47.98.113. 173:9102/v1/',
+      url_9102: 'http://47.98.113.173:9102/v1/',
       url_9103: 'http://47.98.113.173:9103/v1/', 
       url_9104: 'http://47.98.113.173:9104/v1/',
       url_9202: 'http://47.98.113.173:9202/v1/',
@@ -157,6 +157,7 @@ App({
       url_machine: 'https://machine.crowncrystalhotel.com/v1/',
       url_9104: 'https://ispider.eloadspider.com/v1/task/',
       url_9202: 'https://bill.eloadspider.com/v1/',
+      url_9202_v2: 'https://bill2.crowncrystalhotel.com/v2/',
       url_8091: 'https://room.eloadspider.com/v1/',
       url_9109: 'https://price.eloadspider.com/v1/',
       url_eq:   'https://equipments.eloadspider.com/v2/',

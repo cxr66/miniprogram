@@ -39,7 +39,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function(res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300&ordering=-create_time', function(res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
       that.setData({

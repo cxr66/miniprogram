@@ -1,0 +1,4 @@
+<!--pages/bluetooth/bluetooth.wxml-->
+<view wx:for='{{ list }}' wx:key='key' wx:if='{{ item.deviceId == "4635FCD7-7738-6471-9750-089D62073BC8"}}'  data-name='{{item.name}}' data-deviceid='{{item.deviceId}}' bindtap="bindViewTap" class='list'>蓝牙名称:{{ item.name }} </view>
+
+<view  bindtap="onLoad" class='list center'>当前无更多设备</view>

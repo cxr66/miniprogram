@@ -9,3 +9,6 @@
   </view>
 </view>
 
+<cover-view class='autoView sign_btn' bindtap="takePhoto">
+  采集本人人脸
+</cover-view>

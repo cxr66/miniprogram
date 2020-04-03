@@ -80,6 +80,12 @@ Page({
         url: '/pages/img/mission/icon-room-control.png',
         link: '/pages/mission/roomControl/roomControl'
       },
+      
+      {
+        desc: '蓝牙',
+        url: '/pages/img/mission/icon-engineer.png',
+        link: '/pages/bluetooth/bluetooth'
+      },
     ]
   },
   // 跳转

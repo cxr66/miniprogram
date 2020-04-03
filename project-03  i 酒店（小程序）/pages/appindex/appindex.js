@@ -63,7 +63,14 @@ Page({
   onReady: function() {
 
   },
-
+  // 跳转
+  redirect: function(e) {
+    let link = e.currentTarget.dataset.link, desc = e.currentTarget.dataset.desc;
+    
+    wx.redirectTo({
+      url: link
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

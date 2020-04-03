@@ -13,15 +13,16 @@
       <ul class='row'>
         <li>在住人</li>
         <li>房间号</li>
-        <li>账单状态</li>
-        <li>是否联房</li>
+        <li>房间类型</li>
+        <li>达到时间</li>
+        <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.cease_name }}</li>
+        <li>{{ item.master_guest_list[0].name }}</li>
         <li>{{ item.room_number }}</li>
-        <li>{{ item.account_status }}</li>
-        <li>{{ item.link_id }}</li>
-        <li>{{ item.balance  }}</li>
+        <li>{{ item.master_type_desc }}</li>
+        <li>{{ item.arr_time }}</li> 
+        <li>{{ item.leave_time }}</li> 
       </ul>
     </view>
 
@@ -33,17 +34,19 @@
       <ul class='row'>
         <li>在住人</li>
         <li>房间号</li>
-        <li>账单状态</li>
-        <li>是否联房</li>
+        <li>房间类型</li>
+        <li>达到时间</li>
+        <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.cease_name }}</li>
+        <li>{{ item.master_guest_list[0].name }}</li>
         <li>{{ item.room_number }}</li>
-        <li>{{ item.account_status }}</li>
-        <li>{{ item.link_id }}</li>
-        <li>{{ item.balance  }}</li>
+        <li>{{ item.master_type_desc }}</li>
+        <li>{{ item.arr_time }}</li> 
+        <li>{{ item.leave_time }}</li> 
       </ul>
     </view>
+
     <view class="orderform bg_fff more center">当前条件下无更多信息</view>
   </swiper-item>
 
@@ -52,17 +55,20 @@
       <ul class='row'>
         <li>在住人</li>
         <li>房间号</li>
-        <li>账单状态</li>
-        <li>是否联房</li>
+        <li>房间类型</li>
+        <li>达到时间</li>
+        <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.cease_name }}</li>
+        <li>{{ item.master_guest_list[0].name }}</li>
         <li>{{ item.room_number }}</li>
-        <li>{{ item.account_status }}</li>
-        <li>{{ item.link_id }}</li>
-        <li>{{ item.balance  }}</li>
+        <li>{{ item.master_type_desc }}</li>
+        <li>{{ item.arr_time }}</li> 
+        <li>{{ item.leave_time }}</li> 
       </ul>
     </view>
+
     <view class="orderform bg_fff more center">当前条件下无更多信息</view>
   </swiper-item>
+  
 </swiper>

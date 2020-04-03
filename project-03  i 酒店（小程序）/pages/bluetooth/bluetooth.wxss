@@ -1,0 +1,9 @@
+/* pages/bluetooth/bluetooth.wxss */
+.list{
+  line-height: 100rpx;
+  border: 1rpx solid #eeeeee;
+  background-color: #ffffff;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  overflow: hidden;
+}

@@ -53,13 +53,13 @@
             </label>
             <text> {{ item.room_no }} </text>
 
-            <text class="color_f00" wx:if='{{ item.people_in == 0 }}'>无人</text>
-            <text class="color_f00" wx:elif='{{ item.people_in == 1 }}'>有人</text>
-            <text class="color_f00" wx:else>未知</text>
+            <text class="color_f00 fn_24" wx:if='{{ item.people_in == 0 }}'>无人</text>
+            <text class="color_f00 fn_24" wx:elif='{{ item.people_in == 1 }}'>有人</text>
+            <text class="color_f00 fn_24" wx:else>未知</text>
 
           </view>
 
-            <text class='color_btn inline_block'>{{ item.room_type }}</text>
+          <text class='color_btn inline_block'>{{ item.room_type }}</text>
           <view class="room_state_extra">
             <!--  <text > 团队 </text>
             <text > 欠费 </text>
@@ -69,7 +69,6 @@
             <text > 自用 </text>
             <text > 自助机 </text>
             <text > 今日将到 </text> -->
-
 
             <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[0]=='1' }}" src='/pages/img/icon-team.png'></image>
             <image class='inline_block room_state_extra_img' wx:if="{{ item.room_state_extra[1]=='1' }}" src='/pages/img/icon-qian.png'></image>

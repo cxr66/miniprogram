@@ -11,7 +11,6 @@ page{
 }
 .section_item{
   line-height: 100rpx;
-
   font-size: 24rpx;
   color: #222222;
   background-color: #FFFFFF;
@@ -45,7 +44,7 @@ page{
 
 }
 .section .room_num  .picker_w{
-  width: 82%;
+  width: 75%;
 }
 .section .room_num .room_link{
   width: 88%;

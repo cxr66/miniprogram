@@ -17,3 +17,17 @@ page {
   text-align: center;
   color: #35d0a4;
 }
+/* button */
+.sign_btn{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 60rpx;
+  margin: 40rpx auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}

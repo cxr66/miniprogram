@@ -27,6 +27,9 @@ Page({
     that.setData({
       begin_date: time1
     })
+    wx.showToast({
+      title: '所有都为必填项',
+    })
   },
 
   /* 图片上传 */
@@ -74,7 +77,7 @@ Page({
               })  
               
               wx.removeStorageSync('tempFilePath');
-              wx.removeStorageSync('news')
+              wx.removeStorageSync('news');
             });
           } else {
             wx.showToast({

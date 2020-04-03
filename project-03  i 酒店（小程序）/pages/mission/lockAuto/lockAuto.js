@@ -8,40 +8,49 @@ Page({
     const ctx = wx.createCameraContext();
     ctx.takePhoto({
       quality: 'high',
-      success: (res) => {
-        console.log(res.tempImagePath);
-        console.log(res); 
-        // 开门
-       /*  http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_face_recognition/', { room_number: that.data.room_number, image: res.tempImagePath }, function (res) {
-          console.log(res.data);
-          wx.showToast({
-            title: '开门成功',
-            icon: 'none'
-          })
-        }); */
+      success: (res) => {  
         let filePath = res.tempImagePath;
-        that.setData({
-          srcFoot: filePath,
-        })
-        
+        wx.showLoading({ });
         wx.uploadFile({
           url: app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_face_recognition/', 
           filePath: filePath,
-          name: 'file',
+          name: 'image',
           header: { 
             'Content-Type': 'multipart/form-data',
             'authorization': app.globalData.codeInfo.new_authorization
           },
           formData: {
-            'room_number': that.data.room_number
+            'room_number': that.data.room_number,
           },
-          success(res) {
-            const data = res.data;
-            console.log(res.data);
-            wx.showToast({
-              title: '开门成功',
-              icon: 'none'
-            })
+          success(res) { 
+            const data = JSON.parse(res.data) ;
+            console.log( JSON.parse(res.data) )
+            if (data.message  == 'success'){
+              wx.showToast({
+                title: '开门成功',
+                icon: 'none',
+                duration: 4000
+              })
+              wx.hideLoading();
+             
+            } else if (Array.isArray(data.data)){
+              wx.showToast({
+                title: data.data[0],
+                icon: 'none',
+                duration: 5000
+              })
+            }else{
+              wx.showToast({
+                title: data.data,
+                icon: 'none',
+                duration: 5000
+              })
+            }
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1
+              })
+            },1500)
           }
         })
       }
@@ -64,12 +73,6 @@ Page({
     that.setData({
       room_number: options.room_number
     })
-    wx.showToast({
-      title: '即将拍照',
-    })
-    setTimeout(function(){
-      that.takePhoto();
-    },2000)
   },
 
   /**
