@@ -48,21 +48,21 @@ Page({
         link: '/pages/orderform/orderform',
         url: '/pages/img/showindex/showindex-order.png'
       },
-      {
+      /* {
         desc: '自助机订单',
         link: '/pages/zzjform/zzjform',
         url: '/pages/img/showindex/showindex-zzj.png'
-      },
+      }, */
       {
         desc: '房情',
         link: '/pages/detail/detail',
         url: '/pages/img/showindex/showindex-detail.png'
       },
-      {
+      /* {
         desc: '迷你吧',
         link: '',
         url: '/pages/img/showindex/showindex-miniba.png'
-      },
+      }, */
     ],
   },
   /**

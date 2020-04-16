@@ -10,13 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabbar: {},
-    userInfo: {},
+    tabbar: { },
+    userInfo: { },
     // 设置
     settingList: [{
-        desc: '掌屋',
+        desc: '酒店管家',
         link: '/pages/showindex/showindex',
-        url: '/pages/img/showindex/showindex-roomstatus.png'
+        url: '/pages/img/module/icon-hotel.png'
       },
       /* {
         desc: '商城',
@@ -29,15 +29,30 @@ Page({
         url: '/pages/img/showindex/showindex-place.png'
       }, */
       {
-        desc: '自助机商家后台',
+        desc: '商台',
         link: '/pages/zjjindex/zjjindex',
-        url: '/pages/img/showindex/showindex-place.png'
+        url: '/pages/img/module/icon-mall.png'
+      },
+      {
+        desc: '任务体系',
+        link: '/pages/mission/mission',
+        url:'/pages/img/module/icon-mission.png'
       },
       {
         desc: '运台',
         link: '/pages/opeindex/opeindex',
-        url: '/pages/img/showindex/showindex-watch.png'
+        url: '/pages/img/module/icon-operate.png'
       },
+      {
+        desc: '个人中心',
+        link: '/pages/my/my',
+        url: '/pages/img/module/icon-user.png'
+      },
+      {
+        desc: '民宿管家',
+        link: '/pages/homestay/homestay',
+        url: '/pages/img/module/icon-homestay.png'
+      }
     ],
   },
   /**
@@ -121,15 +136,11 @@ Page({
     let link = e.currentTarget.dataset.link,
       desc = e.currentTarget.dataset.desc;
     AudioContext.AudioContext(desc);
-    if (link == "/pages/showindex/showindex") {
-      wx.switchTab({
-        url: link,
-      })
-    } else {
+ 
       wx.navigateTo({
         url: link
       })
-    }
+ 
 
   },
 

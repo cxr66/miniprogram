@@ -8,6 +8,7 @@
     "pages/mallindex/mallindex",
     "pages/conindex/conindex",
     "pages/opeindex/opeindex",
+    "pages/opeindex/opecateye/cateye",
     "pages/opeindex/opeprint/opeprint",
     "pages/opeindex/opeprintlist/opeprintlist",
     "pages/opeindex/opetest/opetest",
@@ -32,6 +33,8 @@
     "pages/index/eqpart/eqpart",
     "pages/index/check/check",
     "pages/index/statusrecord/statusrecord",
+    "pages/index/order/order",
+    "pages/index/orderrecord/orderrecord",
 
     "pages/equipment/equipment",
     "pages/equipment/rcu/rcu",
@@ -40,7 +43,7 @@
     "pages/detail/single/single",
     "pages/detail/expect/expect",
 
-    "pages/order/order",
+    "pages/order/order", 
     "pages/orderform/orderform",
     "pages/guestform/guestform",
     "pages/zzjform/zzjform",
@@ -67,7 +70,9 @@
     "pages/mission/roomControl/roomControl",
     "pages/bluetooth/bluetooth",
 
-    "pages/index/order/order",
+    
+    "pages/homestay/homestay",
+    
     
     "pages/my/my",
     "pages/my/info/info",
@@ -103,32 +108,7 @@
     }
   },
 
-  "tabBar": {
-    "color": "#A79F9C",
-    "selectedColor": "#4B8CF0",
-    "borderStyle": "black",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "pagePath": "pages/showindex/showindex",
-        "iconPath": "/pages/img/tab-index.png",
-        "selectedIconPath": "/pages/img/tab-index-selected.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/mission/mission",
-        "iconPath": "/pages/img/tab-mission.png",
-        "selectedIconPath": "/pages/img/tab-mission-selected.png",
-        "text": "任务"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "iconPath": "/pages/img/tab-my.png",
-        "selectedIconPath": "/pages/img/tab-my-selected.png",
-        "text": "我的"
-      }
-    ]
-  },
+  
   "sitemapLocation": "sitemap.json",
   "plugins": {
     "WechatSI": {

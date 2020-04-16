@@ -89,7 +89,7 @@
 
 
 <!-- 报表 -->
-<view class="tab row" style="background-color: #2080DE;margin: 20rpx 0 0 0;"> 
+<!-- <view class="tab row" style="background-color: #2080DE;margin: 20rpx 0 0 0;"> 
     <view class="tab-item color_fff" >
       交接班报表 
     </view>
@@ -102,7 +102,7 @@
       <text>{{ item.pay_mode }}</text>
       <text>{{ item.amount }}</text>
     </view>
-</view>
+</view> -->
 <!-- <view class="tab row bg_fff" style="line-height: 60rpx;"> 
     <view class="tab-item row color_000" >
       <text>现金</text>

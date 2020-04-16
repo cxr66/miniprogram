@@ -455,7 +455,8 @@ Page({
             AudioContext.AudioContext('登录失败：' + res.data.message);
             wx.showToast({
               title: '登录失败：' + res.data.message,
-              icon: "none"
+              icon: "none",
+              duration: 4000
             })
           }
         },
@@ -463,7 +464,8 @@ Page({
           console.log('系统错误');
           wx.showToast({
             title: '系统错误,登录失败',
-            icon: "none"
+            icon: "none",
+            duration: 4000
           })
         }
       })

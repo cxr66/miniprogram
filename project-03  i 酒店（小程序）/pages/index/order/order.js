@@ -2,6 +2,10 @@
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
+const hexMD5 = require('../../../utils/MD5.js');
+import { base64src } from '../../../utils/base64.js'
+
+
 Page({
 
   /**
@@ -13,17 +17,48 @@ Page({
     // 详细订单
     orderJson: {
       name: '', //input_flag = '0'
-      phone: '', //input_flag = '1'
+      phone: '', //input_flag = '1'  17679329004
       room_num: '',
       room_type: '',
-      id_no: '',
-      remark: ' ', //input_flag = '2'
+      id_no: '',// 500235199302104113
+      remark: '', //input_flag = '2'
     },
     // 固定定位按钮
-    btn_group: [{
-      desc: '预订',
-      bind: 'order'
-    }]
+    btn_group: [
+      {
+        desc: '查看已预订',
+        bind: 'navigate',
+      }, {
+        desc: '预订',
+        bind: 'order'
+      }],
+      guestHide: true,
+      guestList: []
+  },
+  navigate(e) {
+    let link = '/pages/index/orderrecord/orderrecord?room_number=' + that.data.room_number;
+    wx.navigateTo({
+      url: link,
+    })
+  },
+ /* 增加同住人 */
+  add_guest(){
+    if(that.data.guestList.length<(parseInt(that.data.max_can_live_num)-1)){
+      that.data.guestList.push({
+        name: '',
+        id_no: ''
+      })
+      that.setData({
+        guestList: that.data.guestList,
+        guestHide: false
+      })
+    }else{
+      wx.showToast({
+        title: "最多只能住"+that.data.max_can_live_num+'人',
+        icon: 'none'
+      })
+    }
+    console.log(that.data.guestList);
   },
   // input输入值
   bindinput(e) {
@@ -39,11 +74,25 @@ Page({
       this.setData({
         ['orderJson.id_no']: e.detail.value
       })
-    } else {
+    } else if (e.currentTarget.dataset.input_flag === '6') {
       this.setData({
         ['orderJson.remark']: e.detail.value
       })
+    }else if (e.currentTarget.dataset.input_flag === '3') {
+      let index=e.currentTarget.dataset.index,
+      value = "guestList["+index+'].name'
+      this.setData({
+        [value]: e.detail.value
+      })
+    }else if (e.currentTarget.dataset.input_flag === '4') {
+      let index=e.currentTarget.dataset.index,
+      value = "guestList["+index+'].id_no'
+      this.setData({
+        [value]: e.detail.value
+      })
     }
+
+    
   },
   // 时间选择器
   bindDateChange(e) {
@@ -85,71 +134,161 @@ Page({
       room_type_code: options.room_type_code,
       on_date: Y + '-' + M + '-' + D,
       off_date: that.setDate(1),
+      room_building: options.room_building,
+      room_floor: options.room_floor,
+      max_can_live_num: options.max_can_live_num
     })
+    that.get_user_department();
+    http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
+      "room_type_list": options.room_type,
+      "begin_date": that.data.on_date,
+      "end_date": that.data.off_date,
+      "rate_code": "BAR"
+    }, function (res) {
+      console.log('请求房价', res.data);
+      wx.showToast({
+        title: '查询房价中',
+        icon: 'none'
+      })
+      if (res.data.price[that.data.room_type_code][that.data.on_date]) {
+        that.setData({
+          price: res.data.price[that.data.room_type_code][that.data.on_date]
+        })
+
+      } else {
+        that.setData({
+          price: 1
+        })
+        wx.showToast({
+          title: '查询房价失败，将默认为1',
+          icon: 'none'
+        })
+
+        wx.hideLoading();
+      }
 
 
-    // 获取的预订单
-    /* let params = {
-      room_number: options.room_no, 
-    }
-    http.postReq(app.globalData.url_online.url_9202_v2 + 'booking/get_all_reserve_list/', params, function(res) {
-      console.log('获取是否有预订单', res.data);
+    });
+  },
+  /** 
+     * @empty_face_to_room 清空当前房间的faceId
+    */
+  empty_face_to_room(room_number) {
+    let url = 'https://equipments.eloadspider.com/v2/equipment/ht/cateye/empty_face_to_room/', params = { 'room_number': room_number };
+    http.postReq(url, params, function (res) {
+      console.log(res);
       if (res.message == 'success') {
-
-        if (res.data.results.length) {
+        wx.showToast({
+          title: '清空成功',
+          icon: 'none'
+        })
+      } else {
+        wx.showToast({
+          title: '清空失败',
+          icon: 'none'
+        })
+      }
+    });
+  },
+  /** 
+   * @add_face_to_room 添加进入当前房间，faceId
+  */
+  add_face_to_room(room_number, face_url, cb) {
+    // cb : res => { console.log(res); }
+    let url = 'https://equipments.eloadspider.com/v2/equipment/ht/cateye/add_face_to_room/', params = { 'room_number': room_number, 'face_url': face_url };
+    http.postReq(url, params, function (res) {
+      console.log(res);
+      if (res.message == 'success') {
+        wx.showToast({
+          title: '添加faceId成功',
+          icon: 'none'
+        })
+        cb(res.data.face_id)
+      } else {
+        wx.showToast({
+          title: '添加faceId失败',
+          icon: 'none'
+        })
+      }
+    });
+  },
+  /** 
+   * @get_facephoto_by_public 通过身份证在神盾获取人脸图像
+  */
+  get_facephoto_by_public(url, params, cb) {
+    // cb : res => { console.log(res); }
+    /*  测试数据（忽略）
+      console.log(hexMD5.hexMD5('76D00D59AB5F42AE99E0711B4F19081F,342427199509182517,'+that.data.on_date+' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B'));
+      
+      console.log('76D00D59AB5F42AE99E0711B4F19081F,342427199509182517,2020-04-07 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B' == '76D00D59AB5F42AE99E0711B4F19081F,342427199509182517,'+that.data.on_date+' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B'); 
+    */
+    wx.request({
+      url: url,
+      method: 'post',
+      data: params,
+      success: function (res) {
+        console.log('神盾图像返回', res.data);
+        if (res.data.code == '200') {
+          return res.data.data;
+        } else if (res.data.code == '201') {
           wx.showToast({
-            title: '已有预定',
-            icon: 'none'
+            title: params.cardID + '身份未找到相关信息',
+            icon: 'none',
+            duration: 5000
           })
-          that.setData({
-            orderJson: {
-
-              name: res.data.results[0].name, //input_flag = '0'
-              phone: res.data.results[0].telephone_master, //input_flag = '1'
-
-              remark: res.data.results[0].rt_rate[0].remark, //input_flag = '2'
-            },
-            on_date: res.data.results[0].arr_time,
-            off_date: res.data.results[0].leave_time,
-            btn_group: [{
-                desc: '已有预订',
-                bind: ''
-              },
-              {
-                desc: '入住',
-                bind: 'checkin'
-              }
-            ]
-          })
-          console.log(that.data.orderJson);
         } else {
           wx.showToast({
-            title: '暂无预定',
-            icon: 'none'
+            title: '查询身份失败',
+            icon: 'none',
+            duration: 4000
           })
-        } 
+        }
       }
-    });  */
+    })
   },
+  /** 
+   * @get_user_department 获取酒店详情信息
+   */
+  get_user_department() {
+    let url = app.globalData.url_online.url_login + 'common/hotel/get_info/' + app.globalData.userInfo.hotel_id;
+    // 获取个人部门信息 app.globalData.url_online.url_login + 'common/employee/view_self'
+    http.getReq(url, function (res) {
 
+      console.log(res.data);
+      that.setData({ "hotel_type": res.data.audit, hotelInfo: res.data })// 酒店类型： 0: 名宿； 1: 酒店
+
+    });
+  },
   /**
    * @send_msg 发送短信
    */
   send_msg(params) {
     http.postReq('https://sms.eloadspider.com/v1/authentication/ht/sms/send_message/', params, function (res) {
-      console.log(res);
-
+      console.log(res); // 发送消息是否成功
     });
   },
+
   /**
-   * @order 增加预定
+   * @order 判断是民宿或者酒店
    */
-  order(e) {
-    let url = app.globalData.url_online.url_9202_v2 + 'booking/add_reserve/';
-
-
+  order() {
+    if (that.data.hotel_type == 0) {
+      that.checkin_homestay();
+    } else if (that.data.hotel_type == 1) {
+      that.order_hotel();
+    }
+  },
+  /**
+   * @order_hotel 增加预定
+   */
+  order_hotel(e) {
     if (that.data.orderJson.name && that.data.orderJson.id_no) {
       if (that.data.orderJson.phone.length == 11) {
+        wx.showToast({
+          title: '预定中',
+          icon: 'none'
+        })
+
         /* 请求房价 */
         let room_type = [];
         room_type.push(that.data.room_type_code);
@@ -160,9 +299,13 @@ Page({
           "rate_code": "BAR"
         }, function (res) {
           console.log('请求房价', res.data);
+          wx.showToast({
+            title: '查询房价中',
+          })
+          wx.showLoading();
           that.setData({
             price: res.data.price[that.data.room_type_code][that.data.on_date]
-          }) 
+          })
           let params = {
             "reserve_base": {
               "telephone_master": that.data.orderJson.name,
@@ -190,8 +333,10 @@ Page({
               }
             ],
           }
+          let url = app.globalData.url_online.url_9202_v2 + 'booking/add_reserve/';
           http.postReq(url, params, function (res) {
             console.log(res);
+            
             if (res.message == 'success') {
               wx.showToast({
                 title: '预定成功,订单号为' + res.data.order_no,
@@ -211,20 +356,21 @@ Page({
                   hotel: "科冠晶品酒店",
                   roomtype: that.data.room_type,
                   much: "1",
-                  day: day,
+                  day: 1,
                   money: that.data.price,
                   adress: "上海市浦东新区人民东路2635弄105号",
                   tel: '4001600703'
                 }
               });
-   
+
               setTimeout(function () {
                 wx.navigateBack({
                   delta: 1
                 })
               }, 2000)
-  
+
             } else {
+              wx.hideLoading();
               wx.showToast({
                 title: '预定失败',
                 icon: 'none'
@@ -232,7 +378,387 @@ Page({
             }
           });
         });
-        
+
+      } else {
+        wx.showToast({
+          title: '手机号码不能少于11位',
+          icon: 'none'
+        })
+      }
+    } else {
+      wx.showToast({
+        title: '上述除备注都是必填项',
+        icon: 'none'
+      })
+    }
+
+  },
+
+  /**
+   * @checkin 民宿入住
+   * */
+  checkin_homestay(e) {
+    if (that.data.orderJson.name && that.data.orderJson.id_no) {
+      if (that.data.orderJson.phone.length == 11) {
+        wx.showModal({
+          title: '提示',
+          content: '请确保入住人和同住人身份证号是正确的',
+          success (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              wx.showToast({
+                title: '预定中',
+                icon: 'none'
+              })
+              that.empty_face_to_room(that.data.room_number);
+      
+              /* 请求房价 */
+              let room_type = [];
+              room_type.push(that.data.room_type_code);
+      
+              http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
+                "room_type_list": room_type,
+                "begin_date": that.data.on_date,
+                "end_date": that.data.off_date,
+                "rate_code": "BAR"
+              }, function (res) {
+                console.log('请求房价', res.data);
+                wx.showToast({
+                  title: '查询房价中',
+                })
+                wx.showLoading();
+                if (res.data.price[that.data.room_type_code][that.data.on_date]) {
+                  that.setData({
+                    price: res.data.price[that.data.room_type_code][that.data.on_date]
+                  })
+                  
+                  if(that.data.guestList.length){
+                    for(let i in that.data.guestList){
+                      /* 多人入住查看同住人的信息 */
+                      wx.request({
+                        url: app.globalData.url_online.url_public + 'SDSVCApi/YLShangHai/Get',
+                        method: 'post',
+                        data: {
+                          'type': 1,
+                          'keyID': '76D00D59AB5F42AE99E0711B4F19081F', // 用户公钥
+                          'cardID': that.data.guestList[i].id_no, // 身份证号
+                          'reqTime': that.data.on_date + ' 12:00:00',  // 请求时间
+                          'signCode': hexMD5.hexMD5('76D00D59AB5F42AE99E0711B4F19081F,' + that.data.guestList[i].id_no + ',' + that.data.on_date + ' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B') // MD5加密：校验码(“keyID,cardID,reqTime,AppSecret”)
+                        },
+                        success: function (res) {
+                          console.log('神盾图像返回', res.data);
+                          if (res.data.code == '200') {
+                            let base64Data = res.data.data; // 返回的是base64 
+                            base64Data = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(base64Data));
+                            const base64ImgUrl = "data:image/png;base64," + base64Data;
+                            base64src(base64ImgUrl, res => {
+                              console.log(res); // 返回图片地址，直接赋值到image标签即可
+                              wx.uploadFile({
+                                url: 'https://oss.crowncrystalhotel.com/resource/faceid/upload',
+                                filePath: res,
+                                name: 'file',
+                                header: {
+                                  'Content-Type': 'multipart/form-data',
+                                  'authorization': app.globalData.codeInfo.new_authorization
+                                },
+                                success(res) {
+                                  const data = JSON.parse(res.data);
+                                  console.log(JSON.parse(res.data))
+                                  let face_url = data.complete;
+                                  that.data.guestList[i].face_url = face_url;
+                                  if (data.message == 'success') {
+                                    let url = app.globalData.url_online.url_eq+'equipment/ht/cateye/add_face_to_room/', params = { 'room_number': that.data.room_number, 'face_url': face_url };
+                                    http.postReq(url, params, function (res) {
+                                      console.log(res);
+                                      if (res.message == 'success') {
+                                        wx.showToast({
+                                          title: '添加faceId成功',
+                                          icon: 'none'
+                                        })
+                                        let faceId = res.data.face_id;
+                                        
+                                        
+                                        that.data.guestList[i].faceId = faceId;
+                                        
+                                         that.setData({
+                                            guestList: that.data.guestList
+                                         })
+                                         console.log("that.data.guestList"+i,that.data.guestList)
+                                      } else {
+                                        wx.showToast({
+                                          title: '添加faceId失败',
+                                          icon: 'none'
+                                        })
+                                      }
+                                    });
+                                    wx.hideLoading({
+                                      complete: (res) => { },
+                                    })
+                                  } else {
+                                    wx.showToast({
+                                      title: data.data,
+                                      icon: 'none',
+                                      duration: 5000
+                                    })
+                                  }
+                                }
+                              })
+                            });
+                          } else if (res.data.code == '201') {
+                            wx.showToast({
+                              title: that.data.orderJson.id_no + '身份未找到相关信息',
+                              icon: 'none',
+                              duration: 5000
+                            })
+                            setTimeout(function () {
+                              wx.hideLoading();
+                            }, 5000)
+                          } else {
+                            wx.showToast({
+                              title: '查询身份失败',
+                              icon: 'none',
+                              duration: 4000
+                            })
+          
+                            setTimeout(function () {
+                              wx.hideLoading();
+                            }, 5000)
+                          }
+                        }
+                      })
+                    }
+                  }
+      
+                  wx.request({
+                    url: app.globalData.url_online.url_public + 'SDSVCApi/YLShangHai/Get',
+                    method: 'post',
+                    data: {
+                      'type': 1,
+                      'keyID': '76D00D59AB5F42AE99E0711B4F19081F', // 用户公钥
+                      'cardID': that.data.orderJson.id_no, // 身份证号
+                      'reqTime': that.data.on_date + ' 12:00:00',  // 请求时间
+                      'signCode': hexMD5.hexMD5('76D00D59AB5F42AE99E0711B4F19081F,' + that.data.orderJson.id_no + ',' + that.data.on_date + ' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B') // MD5加密：校验码(“keyID,cardID,reqTime,AppSecret”)
+                    },
+                    success: function (res) {
+                      console.log('神盾图像返回', res.data);
+                      if (res.data.code == '200') {
+                        let base64Data = res.data.data; // 返回的是base64 
+                        base64Data = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(base64Data));
+                        const base64ImgUrl = "data:image/png;base64," + base64Data;
+                        console.log(base64ImgUrl);
+                        base64src(base64ImgUrl, res => {
+                          console.log(res); // 返回图片地址，直接赋值到image标签即可
+                          wx.uploadFile({
+                            url: 'https://oss.crowncrystalhotel.com/resource/faceid/upload',
+                            filePath: res,
+                            name: 'file',
+                            header: {
+                              'Content-Type': 'multipart/form-data',
+                              'authorization': app.globalData.codeInfo.new_authorization
+                            },
+                            success(res) {
+                              const data = JSON.parse(res.data);
+                              console.log(JSON.parse(res.data))
+                              let face_url = data.complete;
+                              if (data.message == 'success') {
+                                let url = app.globalData.url_online.url_eq+'equipment/ht/cateye/add_face_to_room/', params = { 'room_number': that.data.room_number, 'face_url': face_url };
+                                http.postReq(url, params, function (res) {
+                                  console.log(res);
+                                  if (res.message == 'success') {
+                                    wx.showToast({
+                                      title: '添加faceId成功',
+                                      icon: 'none'
+                                    })
+                                    let faceId = res.data.face_id;
+                                    // 获取faceId
+                                    // that.add_face_to_room(that.data.room_number, pic_photo);
+      
+                                    let params = {
+                                      'room_list': [that.data.room_number],
+                                      'master_base': [{
+                                        'room_type': that.data.room_type,
+                                        'room_number': that.data.room_number,
+                                        "rate_code": "BAR",
+                                        "code_market": "SK",
+                                        "code_src": "SMSK",
+                                        'code_name': that.data.room_type_code,
+                                        'room_type_descript_en': that.data.room_type_code,
+                                        "arr_time": that.data.on_date + ' 12:00:00',
+                                        "leave_time": that.data.off_date + ' 12:00:00',
+      
+                                      }],
+                                      'master_rtrate': [{
+                                        'room_number': that.data.room_number,
+                                        'rate_code': "BAR",
+                                        'room_type': that.data.room_type,
+                                        'price': {
+                                          [that.data.on_date]: that.data.price
+                                        }
+                                      }],
+                                      'master_guest': [{
+                                        "arr_time": that.data.on_date + ' 12:00:00',
+                                        "leave_time": that.data.off_date + ' 12:00:00',
+                                        'room_number': that.data.room_number,
+                                        'id_code': '01',
+                                        'id_no': that.data.orderJson.id_no,
+                                        'name': that.data.orderJson.name,
+                                        'face_id': faceId,
+                                        'pic_photo': face_url,
+                                        'telephone': that.data.orderJson.phone
+                                      }],
+                                      'lock_arrary': {}
+                                    };
+                                    let name = that.data.orderJson.name;
+                                    if(that.data.guestList.length){
+                                      for(let i in that.data.guestList){
+                                        params.master_guest.push({
+                                          "arr_time": that.data.on_date + ' 12:00:00',
+                                          "leave_time": that.data.off_date + ' 12:00:00',
+                                          'room_number': that.data.room_number,
+                                          'id_code': '01',
+                                          'id_no': that.data.guestList[i].id_no,
+                                          'name': that.data.guestList[i].name,
+                                          'face_id': that.data.guestList[i].faceId,
+                                          'pic_photo': that.data.guestList[i].face_url,
+                                          'telephone': that.data.orderJson.phone
+                                        })
+                                        name+=','+that.data.guestList[i].name
+                                      }
+                                    }
+                                
+                                    let url = app.globalData.url_online.url_9202_v2 + 'checkin/homestay_checkin/';
+      
+                                    http.postReq(url, params, function (res) {
+                                      console.log(res);
+                                      wx.hideLoading();
+                                      if (res.message == 'success') {
+                                        wx.showToast({
+                                          title: '增加入住单成功,预定信息已发送至手机号，注意查收',
+                                          icon: 'none'
+                                        })
+      
+                                        if (that.data.hotelInfo.office_tel && that.data.hotelInfo.office_tel != null) {
+                                          //发送消息
+                                          that.send_msg({
+                                            phone_number: that.data.orderJson.phone,
+                                            sign_name: '皇冠晶品酒店服务中心',
+                                            template_code: "SMS_173405844",
+                                            template_param: {
+                                              status: "成功",
+                                              order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
+                                              name: name,
+                                              date: that.data.on_date,
+                                              hotel: that.data.hotelInfo.full_name,
+                                              roomtype: that.data.room_type,
+                                              much: "1",
+                                              day: 1,
+                                              money: that.data.price,
+                                              adress: that.data.hotelInfo.address_1,
+                                              tel: that.data.hotelInfo.office_tel
+                                            }
+                                          });
+                                        } else {
+                                          wx.showToast({
+                                            title: '请稍后设置酒店主机号码，方便客户联系',
+                                            icon: 'none',
+                                            duration: 3000
+                                          })
+                                          //发送消息
+                                          that.send_msg({
+                                            phone_number: that.data.orderJson.phone,
+                                            sign_name: '皇冠晶品酒店服务中心',
+                                            template_code: "SMS_173405844",
+                                            template_param: {
+                                              status: "成功",
+                                              order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
+                                              name: name,
+                                              date: that.data.on_date,
+                                              hotel: that.data.hotelInfo.full_name,
+                                              roomtype: that.data.room_type,
+                                              much: "1",
+                                              day: 1,
+                                              money: that.data.price,
+                                              adress: that.data.hotelInfo.address_1,
+                                              tel: '4001600703'
+                                            }
+                                          });
+                                        }
+      
+      
+                                        setTimeout(function () {
+                                          wx.navigateBack({
+                                            delta: 1
+                                          })
+                                        }, 3000)
+      
+                                      } else {
+                                        wx.showToast({
+                                          title: '预定失败',
+                                          icon: 'none'
+                                        })
+                                      }
+                                    });
+                                  } else {
+                                    wx.showToast({
+                                      title: '添加faceId失败',
+                                      icon: 'none'
+                                    })
+                                  }
+                                });
+                                wx.hideLoading({
+                                  complete: (res) => { },
+                                })
+                              } else {
+                                wx.showToast({
+                                  title: data.data,
+                                  icon: 'none',
+                                  duration: 5000
+                                })
+                              }
+                            }
+                          })
+                        });
+                      } else if (res.data.code == '201') {
+                        wx.showToast({
+                          title: that.data.orderJson.id_no + '身份未找到相关信息',
+                          icon: 'none',
+                          duration: 5000
+                        })
+                        setTimeout(function () {
+                          wx.hideLoading();
+                        }, 5000)
+                      } else {
+                        wx.showToast({
+                          title: '查询身份失败',
+                          icon: 'none',
+                          duration: 4000
+                        })
+      
+                        setTimeout(function () {
+                          wx.hideLoading();
+                        }, 5000)
+                      }
+                    }
+                  })
+      
+                } else {
+                  wx.showToast({
+                    title: '查询房价失败',
+                  })
+      
+                  wx.hideLoading();
+                }
+      
+      
+              });
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+
+
+       
       } else {
         wx.showToast({
           title: '手机号码不能少于11位',

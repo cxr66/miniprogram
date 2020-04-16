@@ -38,60 +38,60 @@ Page({
     check_modal: false,
 
     check_list: [{
-        name: '状态筛选',
-        checked: true,
-        list: []
-      },
-      {
-        name: '房型筛选',
-        checked: false,
-        list: []
-      },
-      {
-        name: '楼栋筛选',
-        checked: false,
-        list: []
-      },
-      {
-        name: '楼层筛选',
-        checked: false,
-        list: []
-      }
+      name: '状态筛选',
+      checked: true,
+      list: []
+    },
+    {
+      name: '房型筛选',
+      checked: false,
+      list: []
+    },
+    {
+      name: '楼栋筛选',
+      checked: false,
+      list: []
+    },
+    {
+      name: '楼层筛选',
+      checked: false,
+      list: []
+    }
     ],
     // 房态更改
     cg_visiable: true,
     // 房态更改数组
     cg_list: [{
-        name: '净房',
-        code: 'VC',
-        occupy: 'NNZ',
-        check_flag: true
-      },
-      {
-        name: '脏房',
-        code: 'VD',
-        occupy: 'NNZ',
-        check_flag: true
-      },
-      {
-        name: '锁房',
-        code: 'OS',
-        occupy: 'OSZ',
-        check_flag: true
-      },
-      /*
-      {
-        name: '取消锁房',
-        occupy: 'NNZ',
-        check_flag: true
-      },
-       */
-      {
-        name: '维修',
-        code: 'OO',
-        occupy: 'OOZ',
-        check_flag: true
-      }
+      name: '净房',
+      code: 'VC',
+      occupy: 'NNZ',
+      check_flag: true
+    },
+    {
+      name: '脏房',
+      code: 'VD',
+      occupy: 'NNZ',
+      check_flag: true
+    },
+    {
+      name: '锁房',
+      code: 'OS',
+      occupy: 'OSZ',
+      check_flag: true
+    },
+    /*
+    {
+      name: '取消锁房',
+      occupy: 'NNZ',
+      check_flag: true
+    },
+     */
+    {
+      name: '维修',
+      code: 'OO',
+      occupy: 'OOZ',
+      check_flag: true
+    }
       /*
       {
         name: '取消维修',
@@ -103,21 +103,21 @@ Page({
     ],
     // 筛选数组
     chooseList: [{
-        name: '状态筛选',
-        codeList: []
-      },
-      {
-        name: '房型筛选',
-        codeList: []
-      },
-      {
-        name: '楼层筛选',
-        codeList: []
-      },
-      {
-        name: '楼栋筛选',
-        codeList: []
-      },
+      name: '状态筛选',
+      codeList: []
+    },
+    {
+      name: '房型筛选',
+      codeList: []
+    },
+    {
+      name: '楼层筛选',
+      codeList: []
+    },
+    {
+      name: '楼栋筛选',
+      codeList: []
+    },
     ],
 
     // 房务人员picker选择
@@ -136,17 +136,17 @@ Page({
     /*******************************设备态数据*****************************************************************/
     eqstatusList: [], //设备态列表
     eqCheckList: [{
-        name: '状态筛选',
-        list: []
-      },
-      {
-        name: '房型筛选',
-        list: []
-      },
-      {
-        name: '楼层筛选',
-        list: []
-      }
+      name: '状态筛选',
+      list: []
+    },
+    {
+      name: '房型筛选',
+      list: []
+    },
+    {
+      name: '楼层筛选',
+      list: []
+    }
     ], //筛选条件
     eq_color_base: {
       'cleaning': '#245196',
@@ -175,7 +175,7 @@ Page({
       mask: true
     })
     // 状态筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function (res) {
       // console.log('状态筛选');
       // console.log(res.data);
       for (let i in that.data.check_list) {
@@ -195,7 +195,7 @@ Page({
   get_room_map_list() {
     AudioContext.AudioContext('刷新房态中');
     // 获取的当前房态信息
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function (res) {
       console.log('房态', res.data);
       let results = that.room_change_color(res.data.results);
       that.setData({
@@ -240,36 +240,36 @@ Page({
 
     that.setData({
       cg_list: [{
-          name: '净房',
-          code: 'VC',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-        {
-          name: '脏房',
-          code: 'VD',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-        {
-          name: '锁房',
-          code: 'OS',
-          occupy: 'OSZ',
-          check_flag: true
-        },
-        /*
-        {
-          name: '取消锁房',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-         */
-        {
-          name: '维修',
-          code: 'OO',
-          occupy: 'OOZ',
-          check_flag: true
-        }
+        name: '净房',
+        code: 'VC',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+      {
+        name: '脏房',
+        code: 'VD',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+      {
+        name: '锁房',
+        code: 'OS',
+        occupy: 'OSZ',
+        check_flag: true
+      },
+      /*
+      {
+        name: '取消锁房',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+       */
+      {
+        name: '维修',
+        code: 'OO',
+        occupy: 'OOZ',
+        check_flag: true
+      }
         /*
         {
           name: '取消维修',
@@ -398,7 +398,7 @@ Page({
       if (name == '锁房') {
         that.setData({
           modal_flag_02: false,
-          modal_lock: true, 
+          modal_lock: true,
           lock_index: index
         })
 
@@ -415,7 +415,7 @@ Page({
           icon: 'none'
         })
 
-      } */ 
+      } */
       else {
 
         for (let i in room_check_arr) {
@@ -425,7 +425,7 @@ Page({
               title: '',
               mask: true
             })
-            setTimeout(function() {
+            setTimeout(function () {
               that.get_room_map_list();
             }, 1000)
 
@@ -455,9 +455,9 @@ Page({
             title: '',
             mask: true
           })
-          setTimeout(function() {
+          setTimeout(function () {
             // 获取的当前房态信息
-            http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function(res) {
+            http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function (res) {
               let results = that.room_change_color(res.data.results);
               that.setData({
                 roomList: results,
@@ -490,9 +490,9 @@ Page({
             title: '',
             mask: true
           })
-          setTimeout(function() {
+          setTimeout(function () {
             // 获取的当前房态信息
-            http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function(res) {
+            http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function (res) {
               let results = that.room_change_color(res.data.results);
               that.setData({
                 roomList: results,
@@ -542,7 +542,7 @@ Page({
       "special": ""
     };
     // 更改房态信息
-    http.postReq(app.globalData.url_online.url_9101 + 'room_status/manual_change_room_status/', post_data, function(res) {
+    http.postReq(app.globalData.url_online.url_9101 + 'room_status/manual_change_room_status/', post_data, function (res) {
       wx.showToast({
         title: '修改成功',
         icon: 'none'
@@ -595,36 +595,36 @@ Page({
     that.setData({
       cg_visiable: true,
       cg_list: [{
-          name: '净房',
-          code: 'VC',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-        {
-          name: '脏房',
-          code: 'VD',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-        {
-          name: '锁房',
-          code: 'OS',
-          occupy: 'OSZ',
-          check_flag: true
-        },
-        /*
-        {
-          name: '取消锁房',
-          occupy: 'NNZ',
-          check_flag: true
-        },
-         */
-        {
-          name: '维修',
-          code: 'OO',
-          occupy: 'OOZ',
-          check_flag: true
-        }
+        name: '净房',
+        code: 'VC',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+      {
+        name: '脏房',
+        code: 'VD',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+      {
+        name: '锁房',
+        code: 'OS',
+        occupy: 'OSZ',
+        check_flag: true
+      },
+      /*
+      {
+        name: '取消锁房',
+        occupy: 'NNZ',
+        check_flag: true
+      },
+       */
+      {
+        name: '维修',
+        code: 'OO',
+        occupy: 'OOZ',
+        check_flag: true
+      }
         /*
         {
           name: '取消维修',
@@ -673,21 +673,21 @@ Page({
   reset(e) {
     that.setData({
       chooseList: [{
-          name: '状态筛选',
-          codeList: []
-        },
-        {
-          name: '房型筛选',
-          codeList: []
-        },
-        {
-          name: '楼层筛选',
-          codeList: []
-        },
-        {
-          name: '楼栋筛选',
-          codeList: []
-        },
+        name: '状态筛选',
+        codeList: []
+      },
+      {
+        name: '房型筛选',
+        codeList: []
+      },
+      {
+        name: '楼层筛选',
+        codeList: []
+      },
+      {
+        name: '楼栋筛选',
+        codeList: []
+      },
       ],
       check_index: -1
     })
@@ -742,7 +742,7 @@ Page({
     }
     var http_url = app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300' + room_state__in + building_name__in + floor_number__in + room_type_name__in;
     // 筛选当前房态信息
-    http.getReq(http_url, function(res) {
+    http.getReq(http_url, function (res) {
       let results = that.room_change_color(res.data.results);
       console.log('筛选后房态', results);
       that.setData({
@@ -755,25 +755,20 @@ Page({
     });
   },
   // 跳转
-  navigate: function(e) {
+  navigate: function (e) {
     let link = e.currentTarget.dataset.link,
       status = e.currentTarget.dataset.status;
     if (that.data.cg_visiable) {
       switch (status) {
-        // 净房
-        case 'VC':
+
+        case 'VC':   // 净房
+        case 'VD':   // 脏房
           wx.navigateTo({
-            url: "/pages/index/order/order?room_no=" + e.currentTarget.dataset.roomno + '&room_type=' + e.currentTarget.dataset.room_type + '&room_type_code=' + e.currentTarget.dataset.room_type_code //判断是否为预定房还是入住房：0：预订房；1：入住房
-          })
-          break;
-          // 脏房
-        case 'VD':
-          wx.navigateTo({
-            url: "/pages/index/order/order?room_no=" + e.currentTarget.dataset.roomno //判断是否为预定房还是入住房：0：预订房；1：入住房
+            url: "/pages/index/order/order?room_no=" + e.currentTarget.dataset.roomno + '&room_type=' + e.currentTarget.dataset.room_type + '&room_type_code=' + e.currentTarget.dataset.room_type_code + '&room_building=' + e.currentTarget.dataset.room_building + '&room_floor=' + e.currentTarget.dataset.room_floor + '&max_can_live_num=' + e.currentTarget.dataset.max_can_live_num//判断是否为预定房还是入住房：0：预订房；1：入住房
           })
           break;
 
-          // 维修房
+        // 维修房
         case 'OO':
           wx.showToast({
             title: '该房间正在维修中',
@@ -781,17 +776,22 @@ Page({
           })
           break;
 
-          // 住净房||住脏房.
+        // 住净房||住脏房.
         case 'OC':
+          case 'OD':
+
+           /**
+            * 在住单有问题 ,现在这两个房态也跳转到预定页面
+            * */
           wx.navigateTo({
-            url: link //判断是否为预定房还是入住房：0：预订房；1：入住房
+            url: link 
           })
+
+          /* wx.navigateTo({
+            url: "/pages/index/order/order?room_no=" + e.currentTarget.dataset.roomno + '&room_type=' + e.currentTarget.dataset.room_type + '&room_type_code=' + e.currentTarget.dataset.room_type_code + '&room_building=' + e.currentTarget.dataset.room_building + '&room_floor=' + e.currentTarget.dataset.room_floor+ '&max_can_live_num=' + e.currentTarget.dataset.max_can_live_num
+          }) */
           break;
-        case 'OD':
-          wx.navigateTo({
-            url: link //判断是否为预定房还是入住房：0：预订房；1：入住房
-          })
-          break;
+         
       }
     } else {
       wx.showToast({
@@ -799,8 +799,6 @@ Page({
         icon: 'none'
       })
     }
-
-
   },
   /* 无操作权限弹窗 */
   showtoast() {
@@ -810,7 +808,7 @@ Page({
     })
   },
   //事件处理函数
-  onLoad: function(options) {
+  onLoad: function (options) {
     that = this;
 
     var date = new Date();
@@ -835,7 +833,7 @@ Page({
 
 
     // 楼栋筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_building_list/', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_building_list/', function (res) {
       console.log('楼栋筛选', res.data);
       for (let i in that.data.check_list) {
         if (that.data.check_list[i].name === '楼栋筛选') {
@@ -847,7 +845,7 @@ Page({
     });
 
     // 楼层筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_floor_list/', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_floor_list/', function (res) {
       console.log('楼层筛选', res.data);
 
       for (let i in that.data.check_list) {
@@ -860,7 +858,7 @@ Page({
     });
 
     // 房型筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_type_list/', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_type_list/', function (res) {
       console.log('房型筛选', res.data.results);
       // 将房型codebase放入全局
       app.globalData.roomType = res.data.results;
@@ -876,7 +874,7 @@ Page({
     // that.change_room_status();
 
     // 获取维修原因数据
-    http.getReq(app.globalData.url_online.url_9103 + 'system/settings/get_code_base_list/?parent_code=room_maint_reason', function(res) {
+    http.getReq(app.globalData.url_online.url_9103 + 'system/settings/get_code_base_list/?parent_code=room_maint_reason', function (res) {
       console.log('维修原因', res.data);
       that.setData({
         reasonArray: res.data.results
@@ -905,15 +903,15 @@ Page({
   },
 
 
-  onShow: function(options) {
+  onShow: function (options) {
     wx.showLoading({
       title: '',
       mask: true
     })
 
-    
+
     // 状态筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function(res) {
+    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function (res) {
       console.log('状态筛选', res.data);
       for (let i in that.data.check_list) {
         if (that.data.check_list[i].name === '状态筛选') {
@@ -945,7 +943,7 @@ Page({
   /* 设备态的请求接口 */
   get_eq_check() {
     // 设备态图筛选条件查询
-    http.getReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status_parameter/?hotel_id=' + app.globalData.userInfo.hotel_id, function(res) {
+    http.getReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status_parameter/?hotel_id=' + app.globalData.userInfo.hotel_id, function (res) {
       console.log('设备态图筛选条件', res.data);
 
       // 房态Dict
@@ -970,7 +968,7 @@ Page({
   get_eq() {
     http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status/', {
       'hid': app.globalData.userInfo.hotel_id
-    }, function(res) {
+    }, function (res) {
       wx.showToast({
         title: '刷新成功',
         icon: 'none'
@@ -987,7 +985,7 @@ Page({
 
     http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status/?floor=' + that.data.eq_check_form.floor + '&room_type_name=' + that.data.eq_check_form.type + '&room_status=' + that.data.eq_check_form.status, {
       'hid': app.globalData.userInfo.hotel_id
-    }, function(res) {
+    }, function (res) {
       console.log('包含筛选条件的设备态图', res.data);
       wx.showToast({
         title: '刷新成功',
@@ -1000,7 +998,7 @@ Page({
 
   },
   // 设备态筛选
-  bindEqPickerChange: function(e) {
+  bindEqPickerChange: function (e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value, e.currentTarget.dataset.listindex);
     let listIndex = e.currentTarget.dataset.listindex,
       value = parseInt(e.detail.value);
@@ -1050,7 +1048,7 @@ Page({
 
 
   /**********************************************公共函数************************************************************************/
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.showLoading({
       title: '',
       mask: true
@@ -1061,11 +1059,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function(res) {
+  onShareAppMessage: function (res) {
 
   },
   // 禁止触摸滑动
-  preventTouchMove: function() {
+  preventTouchMove: function () {
 
   },
 
@@ -1084,7 +1082,7 @@ Page({
       formIdArray = [];
     that.get_room_status();
     that.get_eq();
-    
+
     if (formId != 'the formId is a mock one' && formId) {
       formIdArray.push(formId);
       that.setData({
@@ -1102,10 +1100,10 @@ Page({
           'content-type': 'application/json',
           'authorization': app.globalData.codeInfo.new_authorization
         }, //请求头,也可以没有
-        success: function(res) {
+        success: function (res) {
           console.log(res.data, "push msg");
         },
-        fail: function(err) {
+        fail: function (err) {
           console.log(err, "push err");
         }
       })
@@ -1118,9 +1116,9 @@ Page({
   order() {
     let params = {
       "rsv_type": that.data.rsv_type,   // 预定类型
-      "arr_time": that.data.on_date+ ' 12:00:00',    // 到达时间
+      "arr_time": that.data.on_date + ' 12:00:00',    // 到达时间
       "days": that.data.days,           // 住宿天数
-      "leave_time": that.data.off_date+ ' 12:00:00', // 离开时间
+      "leave_time": that.data.off_date + ' 12:00:00', // 离开时间
       "code_market": "SK",            // 市场码
       "code_src": "SMSK",             // 来源码
       "rate_code": "BAR",              // 房价码 
@@ -1131,22 +1129,22 @@ Page({
         {
           "room_type": that.data.room_type,
           "room_count": 1,
-          "rate_code_price": '', 
-          "room_number_list": [that.data.room_number], 
+          "rate_code_price": '',
+          "room_number_list": [that.data.room_number],
         }
       ]
     },
-    url = app.globalData.url_online.url_9102 + 'bill/add_reserve_base/';
+      url = app.globalData.url_online.url_9102 + 'bill/add_reserve_base/';
 
-    http.postReq(url, params, function(res) {
+    http.postReq(url, params, function (res) {
       console.log(res);
       if (res.message == 'success') {
         wx.showToast({
           title: '预定成功,订单号为' + res.data.order_no,
           icon: 'none'
-        }) 
+        })
         var order_no = res.data.order_no;
-        
+
         //发送消息
         that.send_msg({
           phone_number: that.data.orderJson.phone,
@@ -1166,7 +1164,7 @@ Page({
             tel: '4001600703'
           }
         });
-        setTimeout(function() {
+        setTimeout(function () {
           wx.navigateBack({
             delta: 1
           })

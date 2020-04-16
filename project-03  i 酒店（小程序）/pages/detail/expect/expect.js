@@ -69,7 +69,7 @@ Page({
     });
 
     /* 交接班 */
-    http.postReq(app.globalData.url_online.url_login + 'report/change_shifts_record/pay_summary_by_date', {
+    /* http.postReq(app.globalData.url_online.url_login + 'report/change_shifts_record/pay_summary_by_date', {
       'employee_id': app.globalData.userInfo.user_id,
       'login_date': that.data.begin_date,
       'shift_id': app.globalData.userInfo.shift_id,
@@ -82,7 +82,7 @@ Page({
         that.setData({
           shiftList: res.data
         })
-    });
+    }); */
   },
 
   /* 跳转 */

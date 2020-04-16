@@ -1,5 +1,4 @@
-<!--pages/bluetooth/bluetooth.wxml-->
-<!-- wx:if='{{ item.deviceId == "4635FCD7-7738-6471-9750-089D62073BC8"}}' -->
+<!--pages/opeindex/opecateye/cateye.wxml-->
 <view wx:for='{{ list }}' wx:key='key'   data-name='{{item.localName}}' data-deviceid='{{item.deviceId}}' bindtap="bindCheck" class='list'>蓝牙名称: {{ item.name }} —— {{ item.localName }} </view>
 <view  bindtap="onLoad" class='list center'>当前无更多设备</view>
 
@@ -14,5 +13,6 @@
   <view class='row'>
     <view class='row_item' bindtap='bindViewTap'>开锁</view>
     <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='bindChangeName'>改名</view>
+    
   </view>
 </view>

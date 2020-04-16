@@ -69,16 +69,17 @@ Page({
       mask: true
     })
     // state:0:预订房；1：入住房
-    // if(options.state == '1'){ 
-    http.getReq(app.globalData.url_online.url_9202 + "checkin/all_master_info/?room_number=" + that.data.room_no, function(res) {
-      console.log('获取是否有入住', res.data);
-      if (res.data.results.length) {
+ 
+     http.getReq(app.globalData.url_online.url_9102+'ordering/master_base_list/?room_number='+that.data.room_no
+    , function(res) {
+      console.log('任京获取是否有入住', res.data);
+      if (res.data.count) {
         that.setData({
           partList: res.data.results,
           account_id: res.data.results[0].account_id,
           master_id: res.data.results[0].order_no
         })
-        that.get_info_by_account_id(res.data.results[0].account_id);
+        // that.get_info_by_account_id(res.data.results[0].account_id);
 
         // 查询消费
         let params = {
@@ -86,22 +87,23 @@ Page({
           page_num: 1,
           page_size: 9999
         };
-        that.get_consume_by_roomnum(params);
+        // that.get_consume_by_roomnum(params);
       } else {
         wx.showToast({
           title: '未查询到入住信息',
           icon: 'none'
         })
-      }
+      } 
       wx.hideLoading();
-    });
+    }); 
 
+    
     // 付款原因
-    that.get_pay_reason();
+    // that.get_pay_reason();
     // 付款方式
-    that.get_pay_mode_reason();
+    // that.get_pay_mode_reason();
     // AR账户
-    that.get_ar_account({});
+    // that.get_ar_account({});
   },
   /* 查房 */
   checkDetail(e) {
@@ -153,8 +155,8 @@ Page({
   },
   /* 按照account_id查询单个房间的账务信息 */
   get_info_by_account_id(account_id) {
-    let url = app.globalData.url_online.url_login + 'finance/account/get_info/' + account_id;
-    http.postReq(url, {}, function(res) {
+    let url = app.globalData.url_online.url_9102 + 'accounts/get_account_base_info/' + account_id;
+   /*  http.getReq(url, function(res) {
       console.log('按照account_id查询单个房间的账务信息', res.data);
       if (res.data) {
         res.data.balance = res.data.balance * -1
@@ -167,7 +169,65 @@ Page({
           icon: 'none'
         })
       }
-    });
+    }); */
+
+    wx.request({
+      url: url,
+      method: 'GET',
+      header: {
+        'authorization': app.globalData.codeInfo.new_authorization,  
+      },
+      success: function(res) {
+        console.log(res.data)
+        if (res.data.new_authorization) {
+          app.globalData.codeInfo.new_authorization = res.data.new_authorization;
+          wx.setStorageSync('codeInfo', app.globalData.codeInfo);
+        }
+        
+        switch (res.data.message) {
+          case 'success':
+            console.log('按照account_id查询单个房间的账务信息', res.data.data);
+            if (res.data.data) {
+              res.data.data.balance = res.data.data.balance * -1
+              that.setData({
+                account: res.data.data
+              })
+            } else {
+              wx.showToast({
+                title: '查询单个房间的账务信息失败',
+                icon: 'none'
+              })
+            }
+            break;
+  
+          case 'authorization invalid':
+            app.globalData.userInfo = {};
+            app.globalData.codeInfo = {};
+            wx.reLaunch({
+              url: '/pages/logins/logins',
+            })
+            break;
+  
+          case 'access refused 6':
+            wx.showToast({
+              title: '权限不足,部分展示且不可操作',
+              icon: 'none'
+            })
+            break;
+  
+          default:
+            wx.showToast({
+              title: '服务出错,错误原因：' + res.data.message,
+              icon: "none"
+            })
+        } 
+      },
+      fail: function() {
+        wx.reLaunch({
+          url: '/pages/logins/logins',
+        }) 
+      }
+    })
   },
   /* ************************************入消费弹窗*************************************************** */
   /* 
@@ -292,7 +352,7 @@ Page({
     
   },
 
-  /* *********************************************** 挂AR账户 ************************************************************************ */
+  /* *********************************************** 挂AR账户 *********************************************  */
   /* 
     AR账户代码接口
   */
@@ -395,15 +455,16 @@ Page({
     wx.showLoading({
       title: '',
     }) 
-    http.getReq(app.globalData.url_online.url_9202 + "checkin/all_master_info/?room_number=" + that.data.room_no, function(res) {
-      console.log('获取是否有入住', res.data);
-      if (res.data.results.length) {
+    http.getReq(app.globalData.url_online.url_9102+'ordering/master_base_list/?room_number='+that.data.room_no
+    , function(res) {
+      console.log('任京获取是否有入住', res.data);
+      if (res.data.count) {
         that.setData({
           partList: res.data.results,
           account_id: res.data.results[0].account_id,
           master_id: res.data.results[0].order_no
         })
-        that.get_info_by_account_id(res.data.results[0].account_id);
+        // that.get_info_by_account_id(res.data.results[0].account_id);
 
         // 查询消费
         let params = {
@@ -411,13 +472,13 @@ Page({
           page_num: 1,
           page_size: 9999
         };
-        that.get_consume_by_roomnum(params);
+        // that.get_consume_by_roomnum(params);
       } else {
         wx.showToast({
           title: '未查询到入住信息',
           icon: 'none'
         })
-      }
+      } 
       wx.hideLoading();
     });
 

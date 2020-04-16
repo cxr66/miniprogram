@@ -1,7 +1,16 @@
-// pages/bluetooth/bluetooth.js
+// pages/opeindex/opecateye/cateye.js
 var app = getApp();
 var that = undefined;
-const http = require('../../utils/http.js');
+const http = require('../../../utils/http.js');
+const array2String = function(buffer) {
+  let hexArr = Array.prototype.map.call(
+    new Uint8Array(buffer),
+    function (bit) {
+      return ('00' + bit.toString(16)).slice(-2)
+    }
+  )
+  return `${hexArr[7]}:${hexArr[6]}:${hexArr[5]}:${hexArr[2]}:${hexArr[1]}:${hexArr[0]}`
+}
 /**
  * 搜索设备界面
  */
@@ -47,7 +56,6 @@ Page({
                 });
                 console.log("获取到蓝牙列表", that.data.list);
 
-
               },
               fail: function (res) {
                 // fail
@@ -57,6 +65,8 @@ Page({
                 // complete
               }
             })
+              
+            
           },
           fail: function (res) {
             // fail
@@ -119,6 +129,12 @@ Page({
     })
   },
   //点击事件处理
+
+  /** 
+   * @bindViewTap 点击获取蓝牙
+   *  此段代码仅为实现该项目，仅供参考，后期重写
+    （时间紧张，先凑合着用）
+  */
   bindViewTap: function (e) {
 
     var deviceId = that.data.deviceId;
@@ -188,6 +204,17 @@ Page({
                             value: that.hexStringToArrayBuffer('FFA510A1030801020304050607080284'),
                             success(res) {
                               console.log('writeBLECharacteristicValue success', res.errMsg);
+                              setTimeout(function () {
+                                /* 
+                                * 关闭蓝牙模块
+                                */
+                                wx.closeBluetoothAdapter({
+                                  success(res) {
+                                    console.log(res);
+                                    wx.hideLoading();
+                                  }
+                                })
+                              }, 800)
                               /**
                                * 回调获取 设备发过来的数据
                                */
@@ -195,17 +222,7 @@ Page({
                                 console.log(`characteristic ${res.characteristicId} has changed, now is ${res.value}`)
                                 console.log(that.ab2hex(res.value));
                                 if (that.ab2hex(res.value) == "0000000000000000000000000000000000000000") {
-                                  setTimeout(function () {
-                                    /* 
-                                    * 关闭蓝牙模块
-                                    */
-                                    wx.closeBluetoothAdapter({
-                                      success(res) {
-                                        console.log(res);
-                                        wx.hideLoading();
-                                      }
-                                    })
-                                  }, 800)
+                                   
                                 }
 
                               })
@@ -226,11 +243,17 @@ Page({
                           wx.notifyBLECharacteristicValueChange({//启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值。注意：必须设备的特征值支持 notify 或者 indicate 才可以成功调用。
                             deviceId,
                             serviceId,
-                            characteristicId: item.uuid,
+                            characteristicId: characteristicId,
                             state: true,
+                            success(res) {
+                              console.log('notifyBLECharacteristicValueChange:', res);
+                              
+                            }
                           })
                         } */
                       }
+
+                      
                     },
                     fail: function (res) {
                       // fail
@@ -326,6 +349,7 @@ Page({
     return ble_info.replace(/\s*/g, '')+result_tail
   },
 
+
   bindChangeName: function (cname) {
     var deviceId = that.data.deviceId;
     var name = that.data.deviceName;
@@ -396,15 +420,7 @@ Page({
                             value: that.hexStringToArrayBuffer(that.nameFormate(that.data.form.name)),
                             success(res) {
                               console.log('writeBLECharacteristicValue success', res);
-                              /**
-                               * 回调获取 设备发过来的数据
-                               */
-                              wx.onBLECharacteristicValueChange(function (res) {
-                                console.log(`characteristic ${res.characteristicId} has changed, now is ${res.value}`);
-                                console.log(res);
-                                console.log(that.ab2hex(res.value));
-                                if (that.ab2hex(res.value) == "0000000000000000000000000000000000000000") {
-                                  setTimeout(function () {
+                              that.InitializeCateye(that.data.form.name,that.data.form.name,that.data.deviceId,'0102030405060708')
                                     /* 
                                     * 关闭蓝牙模块
                                     */
@@ -414,6 +430,16 @@ Page({
                                         wx.hideLoading();
                                       }
                                     })
+                              /**
+                               * 回调获取 设备发过来的数据
+                               */
+                              wx.onBLECharacteristicValueChange(function (res) {
+                                console.log(`characteristic ${res.characteristicId} has changed, now is ${res.value}`);
+                                console.log(res);
+                                console.log(that.ab2hex(res.value));
+                                if (that.ab2hex(res.value) == "0000000000000000000000000000000000000000") {
+                                  setTimeout(function () {
+                                    
                                   }, 800)
                                 }
 
@@ -488,7 +514,6 @@ Page({
     })
 
   },
-
   /* ArrayBuffer转16进制字符串示例 */
   ab2hex(buffer) {
     let hexArr = Array.prototype.map.call(
@@ -555,17 +580,18 @@ Page({
     })
   },
 
-  bindInitializeCateye(cateye_device_id,room_number,ble_mac,ble_password){
+  InitializeCateye(cateye_device_id,room_number,ble_mac,ble_password){
     let params = {
       "cateye_device_id": cateye_device_id,// 猫眼设备id
       "room_number": room_number, // 房间号
       "ble_mac": ble_mac,// 蓝牙macid
       "ble_password": ble_password // 蓝牙密码
     };
-    http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_add_cateye/', post_data, function (res) {
+    console.log('------------------------------------>',params)
+    http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_add_cateye/', params, function (res) {
       console.log(res.data);
       wx.showToast({
-        title: '开门成功',
+        title: '修改成功',
         icon: 'none'
       })
     });

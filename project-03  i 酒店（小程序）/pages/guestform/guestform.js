@@ -76,7 +76,8 @@ Page({
     wx.showLoading({
       title: ''
     });
-    console.log(that.data.menuList[this.data.currentTab].name)
+    console.log(that.data.menuList[this.data.currentTab].name);
+    that.setData({guest_list: []})
     if (that.data.menuList[this.data.currentTab].name == '在住客人') {
       
       http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
@@ -87,6 +88,7 @@ Page({
         })
       });
     } else {
+      
       http.getReq(app.globalData.url_online.url_9102 + 'ordering/reserve_base_list/?page_size=300', function (res) {
         console.log('查询预定单列表', res.data);
         wx.hideLoading();

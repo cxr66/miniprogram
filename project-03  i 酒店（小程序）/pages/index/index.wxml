@@ -46,16 +46,14 @@
     <checkbox-group bindchange="checkboxChange">
       <block wx:for='{{ roomList }}' wx:key='key'>
         <view class='section_item inline_block' data-link='/pages/index/part/part?room_no={{ item.room_no }}&room_type={{item.room_type}}' data-roomno='{{ item.room_no }}' data-status='{{ item.room_state }}' data-room_type="{{item.room_type}}" data-room_type_code="{{ item.room_type_name }}"
-          style='background-color:{{ item.color }};' bindtap='navigate'>
+          style='background-color:{{ item.color }};' data-room_building="{{ item.room_building }}" data-room_floor="{{ item.room_floor }}" data-max_can_live_num="{{item.max_can_live_num}}" bindtap='navigate'>
           <view class="row">
             <label>
               <checkbox wx:if="{{ !cg_visiable }}" value="{{ item.room_no+','+item.room_state+','+item.room_occupy }}" checked="" color='#2080DE' />
             </label>
             <text> {{ item.room_no }} </text>
 
-            <text class="color_f00 fn_24" wx:if='{{ item.people_in == 0 }}'>无人</text>
-            <text class="color_f00 fn_24" wx:elif='{{ item.people_in == 1 }}'>有人</text>
-            <text class="color_f00 fn_24" wx:else>未知</text>
+            <text class="color_f00 fn_24" style="margin-left: 50rpx;">{{ item.room_guest }}</text>
 
           </view>
 

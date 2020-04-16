@@ -42,6 +42,7 @@ Page({
     http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300&ordering=-create_time', function(res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
+      res.data.results.reverse();
       that.setData({
         orderform: res.data.results
       })
@@ -66,20 +67,25 @@ Page({
     wx.showLoading({
       title: ''
     });
-    console.log(that.data.menuList[this.data.currentTab])
+    console.log(that.data.menuList[this.data.currentTab]);
+    that.setData({
+      orderform: []
+    })
     if (that.data.menuList[this.data.currentTab].name == '在住订单') {
 
       http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
         console.log('查询在住单列表', res.data);
         wx.hideLoading();
+        res.data.results.reverse();
         that.setData({
           orderform: res.data.results
         })
       });
     } else {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/reserve_base_list/?page_size=300', function (res) {
+      http.postReq(app.globalData.url_online.url_9202_v2 + 'booking/get_all_reserve_list/', {}, function (res) {
         console.log('查询预定单列表', res.data);
         wx.hideLoading();
+        res.data.results.reverse();
         that.setData({
           orderform: res.data.results
         })

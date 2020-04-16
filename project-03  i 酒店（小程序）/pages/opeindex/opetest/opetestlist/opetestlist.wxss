@@ -67,7 +67,7 @@
 }  
 
 
-/* 加收房费原因 */ 
+/* 选取自助机 */ 
 .modalDlg{
   position: fixed;
   top: 0;

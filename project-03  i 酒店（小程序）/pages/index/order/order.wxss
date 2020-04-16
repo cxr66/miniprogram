@@ -11,7 +11,7 @@ page{
 }
 .section_item{
   line-height: 100rpx;
-  font-size: 24rpx;
+  font-size: 25rpx;
   color: #222222;
   background-color: #FFFFFF;
   border-bottom: 1rpx solid#EEEEEE;
@@ -65,6 +65,7 @@ page{
   line-height: 100rpx;
   text-align: center;
   font-size: 26rpx;
+  z-index: 9;
 }
 .btn{
   width: 100%;

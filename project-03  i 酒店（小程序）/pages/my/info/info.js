@@ -43,11 +43,7 @@ Page({
           code: '所属酒店：',
           desc: ''
         },
-        {
-
-          code: '所属部门：',
-          desc: app.globalData.userInfo.real_name
-        },
+ 
         {
           code: '我的身份：',
           desc: app.globalData.userInfo.real_name
@@ -58,13 +54,12 @@ Page({
   },
 
   get_user_department(){
-    let url = app.globalData.url_online.url_login + 'common/employee/view_self';
-    // 获取个人部门信息
-    http.postReq(app.globalData.url_online.url_login + 'common/employee/view_self', {}, function (res) {
+    let url = app.globalData.url_online.url_login + 'common/hotel/get_info/'+app.globalData.userInfo.hotel_id;
+    // 获取个人部门信息 app.globalData.url_online.url_login + 'common/employee/view_self'
+    http.getReq(url, function (res) {
       if (res.data.dept_id && res.data.dept_id.name){
         that.setData({
-          ["infoList[" + 2 + "]desc"]: res.data.hotel_id.desc, 
-          ["infoList[" + 3 + "]desc"]: res.data.dept_id.name, 
+          ["infoList[" + 2 + "]desc"]: res.data.full_name,  
         })
       } 
       console.log( res.data );

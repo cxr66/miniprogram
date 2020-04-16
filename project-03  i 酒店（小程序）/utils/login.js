@@ -45,7 +45,7 @@ function userLogin() {
                       console.log('系统错误');
                       wx.showToast({
                         title: '登录失败',
-                        icon: "loading"
+                        icon: "none"
                       })
                     }
                   })
@@ -54,7 +54,7 @@ function userLogin() {
                   console.log('获取用户信息失败');
                   wx.showToast({
                     title: '登录失败',
-                    icon: "loading"
+                    icon: "none"
                   })
                 }
               })

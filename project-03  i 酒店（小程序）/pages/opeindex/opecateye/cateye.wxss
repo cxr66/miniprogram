@@ -1,4 +1,4 @@
-/* pages/bluetooth/bluetooth.wxss */
+/* pages/opeindex/opecateye/cateye.wxss */
 .list{
   line-height: 100rpx;
   border: 1rpx solid #eeeeee;

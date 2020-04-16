@@ -66,7 +66,10 @@ Page({
     wx.showLoading({
       title: ''
     });
-    console.log(that.data.menuList[this.data.currentTab])
+    console.log(that.data.menuList[this.data.currentTab]);
+    that.setData({
+      zzjform: []
+    })
     if (that.data.menuList[this.data.currentTab].name == '在住订单') {
 
       http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market=ZZJ&page_size=300', function (res) {

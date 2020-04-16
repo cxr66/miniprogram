@@ -29,6 +29,7 @@ Page({
     })
     wx.showToast({
       title: '所有都为必填项',
+      icon: 'none'
     })
   },
 

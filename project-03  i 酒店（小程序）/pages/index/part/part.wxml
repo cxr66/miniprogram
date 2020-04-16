@@ -11,14 +11,19 @@
         房类：
         <text>{{ item.room_type }}</text>
       </view>
-      <view class='room_num'>
+      <view wx:for='{{ item.master_guest_list }}' wx:key='key' wx:for-item='guestitem'>
+        <view class='room_num'>
         姓名：
-        <text>{{ item.master_guest[index].name }}</text>
+        <text>{{ guestitem.name }}</text>
       </view>
       <view class='room_num'>
         手机：
-        <text wx:if='{{ item.master_guest[index].telephone }}'>{{ item.master_guest[index].telephone }}</text>
-        <text wx:else>未填</text>
+        <text >{{ guestitem.telephone }}</text> 
+      </view>
+      <view class='room_num'>
+        身份证：
+        <text>{{ guestitem.id_no }}</text>
+      </view>
       </view>
       <view class='room_num'>
         抵达时间：
@@ -41,14 +46,14 @@
 
         <view class='room_link inline_block'>
           <view class='inline_block link_item cg_color' wx:for='{{ item.combine_room_list }}' wx:key='key2' wx:for-item='link_item' wx:for-index='link_index' bindtap='link_room_func' data-roomno='{{ link_item[0] }}' wx:if='{{ link_item[0]!=item.room_number  }}'>{{ link_item[0] }}</view>
-          <view class='inline_block link_item cg_color'>暂无更多</view>
+          <view class='inline_block link_item cg_color'>暂无</view>
         </view>
       </view>
 
     </view>
 
     <!-- 钱 -->
-    <view class='autoView section_item'>
+    <view class='autoView section_item' hidden="true">
       <view class='room_num'>
         总付款：
         <text>{{ account.pay_amount }}</text>
@@ -142,7 +147,7 @@
     </view>
 
     <!-- 下方固定定位按钮部分 -->
-    <view class='fix_bot row'>
+    <view class='fix_bot row' hidden="true">
       <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' bindtap='{{ btn_item.bind }}' style='{{ btn_index==3?"border: none;":"" }}'>{{ btn_item.desc }}</view>
     </view>
   </block>

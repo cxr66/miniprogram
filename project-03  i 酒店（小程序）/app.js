@@ -1,7 +1,32 @@
 //app.js
 let that = undefined;
 const AudioContext = require('utils/AudioContext.js');
-
+/* "tabBar": {
+    "color": "#A79F9C",
+    "selectedColor": "#4B8CF0",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/showindex/showindex",
+        "iconPath": "/pages/img/tab-index.png",
+        "selectedIconPath": "/pages/img/tab-index-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mission/mission",
+        "iconPath": "/pages/img/tab-mission.png",
+        "selectedIconPath": "/pages/img/tab-mission-selected.png",
+        "text": "任务"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "/pages/img/tab-my.png",
+        "selectedIconPath": "/pages/img/tab-my-selected.png",
+        "text": "我的"
+      }
+    ]
+  },*/
 App({
   changeTabBar: function () {
     var _curPageArr = getCurrentPages();
@@ -165,7 +190,8 @@ App({
       // url_img: 'https://image.eloadspider.com',
       url_img: 'https://ispider-oss.oss-cn-hangzhou.aliyuncs.com/',
       url_monitor: 'https://elevators.eloadspider.com/v1/',
-      url_sms:'https://sms.eloadspider.com/v1/'
+      url_sms:'https://sms.eloadspider.com/v1/',
+      url_public: 'https://www.sdlockpf.cn:19943/'
     }
   }
 })

@@ -27,6 +27,11 @@ Page({
         link: 'pages/opeindex/opeparfill/opeparfill',
         url: '/pages/img/opeindex/fill.png'
       },
+      {
+        link: '/pages/opeindex/opecateye/cateye',
+        desc: '猫眼参数',
+        url: '/pages/img/opeindex/fill.png'
+      }
       ],
   },
   /**

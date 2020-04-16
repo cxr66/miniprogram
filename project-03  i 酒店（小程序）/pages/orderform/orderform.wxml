@@ -1,5 +1,5 @@
 <!--pages/orderform/orderform.wxml-->
-<view class='section name row fn_20'>
+<view class='section name row fn_20' hidden="true">
   <input bindinput='bindinput' placeholder="手机号/订单号查询" value='{{ form.room_number }}' auto-focus/>
   <text bindtap="search">搜索</text>
 
