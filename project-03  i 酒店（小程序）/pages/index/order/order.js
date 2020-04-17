@@ -3,8 +3,15 @@ var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
 const hexMD5 = require('../../../utils/MD5.js');
-import { base64src } from '../../../utils/base64.js'
+import { base64src } from '../../../utils/base64.js';
 
+var getDaysBetween = function(dateString1,dateString2){
+  var  startDate = Date.parse(dateString1);
+  var  endDate = Date.parse(dateString2);
+  var days=(endDate - startDate)/(1*24*60*60*1000);
+  // alert(days);
+  return  days;
+}
 
 Page({
 
@@ -41,7 +48,8 @@ Page({
       url: link,
     })
   },
- /* 增加同住人 */
+ /** *
+  * @add_guest 增加同住人 */
   add_guest(){
     if(that.data.guestList.length<(parseInt(that.data.max_can_live_num)-1)){
       that.data.guestList.push({
@@ -116,6 +124,7 @@ Page({
     var time2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
     return time2;
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -278,6 +287,7 @@ Page({
       that.order_hotel();
     }
   },
+
   /**
    * @order_hotel 增加预定
    */
@@ -306,7 +316,79 @@ Page({
           that.setData({
             price: res.data.price[that.data.room_type_code][that.data.on_date]
           })
-          let params = {
+          /* let params = {
+            "rsv_type": 0,
+            "arr_time": that.data.on_date + ' 12:00:00',
+            "days": getDaysBetween(that.data.on_date,that.data.off_date),
+            "leave_time": that.data.off_date + ' 12:00:00',
+            "rate_code": "BAR",
+            "code_market": "SK",
+            "code_src": "SMSK" , 
+            "name": that.data.orderJson.name, 
+            "mobile": that.data.orderJson.phone,
+            "id_code": "01",
+            "id_no": that.data.orderJson.id_no,  
+            "remark": "YUM7yi",
+            "rt_rate": [
+              {
+                "room_type": that.data.room_type_code,
+                "room_count": 1,
+                "rate_code_price": that.data.price*getDaysBetween(that.data.on_date,that.data.off_date),
+                "price": that.data.price,
+                "room_number_list": that.data.room_number, 
+              }
+            ]
+          }
+          let url = app.globalData.url_online.url_9102 + 'bill/add_reserve_base/';
+          http.postReq(url, params, function (res) {
+            console.log(res);
+            
+            if (res.message == 'success') {
+              wx.showToast({
+                title: '预定成功,订单号为' + res.data.order_no,
+                icon: 'none'
+              })
+              var order_no = res.data.order_no;
+              //发送消息
+              that.send_msg({
+                phone_number: that.data.orderJson.phone,
+                sign_name: "皇冠晶品酒店服务中心",
+                template_code: "SMS_173405844",
+                template_param: {
+                  status: "成功",
+                  order: order_no.slice(0, 4) + '****' + order_no.slice(-5, -1),
+                  name: that.data.orderJson.name,
+                  date: that.data.on_date,
+                  hotel: "科冠晶品酒店",
+                  roomtype: that.data.room_type,
+                  much: "1",
+                  day: 1,
+                  money: that.data.price,
+                  adress: "上海市浦东新区人民东路2635弄105号",
+                  tel: '4001600703'
+                }
+              });
+
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 2000)
+
+            } else {
+              wx.hideLoading();
+              wx.showToast({
+                title: '预定失败',
+                icon: 'none'
+              })
+            }
+          }); */
+         /** 
+          * 
+          * 注释部分为老的接口，关于酒店预定的
+          * 后端接口提供者：邓玉林 
+          * 
+          **/  let params = {
             "reserve_base": {
               "telephone_master": that.data.orderJson.name,
               "biz_date": that.data.on_date,
@@ -376,7 +458,7 @@ Page({
                 icon: 'none'
               })
             }
-          });
+          }); 
         });
 
       } else {
@@ -410,6 +492,8 @@ Page({
                 title: '预定中',
                 icon: 'none'
               })
+
+              // 清空房间用户faceset
               that.empty_face_to_room(that.data.room_number);
       
               /* 请求房价 */
@@ -476,8 +560,7 @@ Page({
                                           icon: 'none'
                                         })
                                         let faceId = res.data.face_id;
-                                        
-                                        
+                                         
                                         that.data.guestList[i].faceId = faceId;
                                         
                                          that.setData({
@@ -651,8 +734,8 @@ Page({
                                               hotel: that.data.hotelInfo.full_name,
                                               roomtype: that.data.room_type,
                                               much: "1",
-                                              day: 1,
-                                              money: that.data.price,
+                                              day: getDaysBetween(that.data.on_date,that.data.off_date),
+                                              money: that.data.price*getDaysBetween(that.data.on_date,that.data.off_date),
                                               adress: that.data.hotelInfo.address_1,
                                               tel: that.data.hotelInfo.office_tel
                                             }
@@ -676,8 +759,8 @@ Page({
                                               hotel: that.data.hotelInfo.full_name,
                                               roomtype: that.data.room_type,
                                               much: "1",
-                                              day: 1,
-                                              money: that.data.price,
+                                              day: getDaysBetween(that.data.on_date,that.data.off_date),
+                                              money: that.data.price*getDaysBetween(that.data.on_date,that.data.off_date),
                                               adress: that.data.hotelInfo.address_1,
                                               tel: '4001600703'
                                             }
@@ -752,7 +835,7 @@ Page({
       
               });
             } else if (res.cancel) {
-              console.log('用户点击取消')
+              console.log('用户点击取消');
             }
           }
         })

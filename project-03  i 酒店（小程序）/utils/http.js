@@ -1,5 +1,12 @@
 var app = getApp();
 
+/** 
+ * A JavaScript For Request: （当前公共请求封装的很潦草, 后期重写的时候请抛弃, 自己都看不下去, 无参考价值）
+  
+ * 使用注意事项: 在小程序在需要的页面引入js
+  
+  * author: cxr
+*/
 function getReq(url, cb) {
   wx.request({
     url: url,
@@ -8,12 +15,12 @@ function getReq(url, cb) {
       'authorization': app.globalData.codeInfo.new_authorization,
       "content-type": "application/x-www-form-urlencoded"
     },
-    success: function(res) {
+    success: function (res) {
       if (res.data.new_authorization) {
         app.globalData.codeInfo.new_authorization = res.data.new_authorization;
         wx.setStorageSync('codeInfo', app.globalData.codeInfo);
       }
-      
+
       switch (res.data.message) {
         case 'success':
           return typeof cb == "function" && cb(res.data);
@@ -39,9 +46,9 @@ function getReq(url, cb) {
             title: '服务出错,错误原因：' + res.data.message,
             icon: "none"
           })
-      } 
+      }
     },
-    fail: function() {
+    fail: function () {
       wx.reLaunch({
         url: '/pages/logins/logins',
       })
@@ -58,11 +65,11 @@ function getDataReq(url, params, cb) {
     header: {
       'authorization': app.globalData.codeInfo.new_authorization
     },
-    success: function(res) {
+    success: function (res) {
       if (res.data.new_authorization) {
         app.globalData.codeInfo.new_authorization = res.data.new_authorization;
         wx.setStorageSync('codeInfo', app.globalData.codeInfo);
-      } 
+      }
 
       switch (res.data.message) {
         case 'success':
@@ -91,7 +98,7 @@ function getDataReq(url, params, cb) {
           })
       }
     },
-    fail: function() {
+    fail: function () {
       wx.reLaunch({
         url: '/pages/logins/logins',
       })
@@ -109,7 +116,7 @@ function postReq(url, data, cb) {
     },
     data: data,
     method: 'post',
-    success: function(res) { 
+    success: function (res) {
       if (res.data.new_authorization) {
         app.globalData.codeInfo.new_authorization = res.data.new_authorization;
         wx.setStorageSync('codeInfo', app.globalData.codeInfo);
@@ -142,7 +149,7 @@ function postReq(url, data, cb) {
           })
       }
     },
-    fail: function() {
+    fail: function () {
       wx.reLaunch({
         url: '/pages/logins/logins',
       })

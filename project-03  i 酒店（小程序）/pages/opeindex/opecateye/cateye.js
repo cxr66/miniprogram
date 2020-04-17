@@ -2,7 +2,7 @@
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js');
-const array2String = function(buffer) {
+const array2String = function (buffer) {
   let hexArr = Array.prototype.map.call(
     new Uint8Array(buffer),
     function (bit) {
@@ -20,12 +20,12 @@ Page({
     loading: false,
     list: [],
     modal: true,
-    form:{name: ''}
+    form: { name: '' }
 
   },
-  bindinput(e){
+  bindinput(e) {
     that.setData({
-      ['form.name']:e.detail.value
+      ['form.name']: e.detail.value
     })
     console.log(that.data.form)
   },
@@ -65,8 +65,8 @@ Page({
                 // complete
               }
             })
-              
-            
+
+
           },
           fail: function (res) {
             // fail
@@ -98,7 +98,7 @@ Page({
     })
   },
   onShow: function () {
-    console.log('onShow') 
+    console.log('onShow')
 
   },
   //向蓝牙设备发送一个0x00的16进制数据
@@ -116,16 +116,16 @@ Page({
     }
     return buffer;
   },
-  showmodal(){
+  showmodal() {
     that.setData({ modal: !that.data.modal })
   },
-  bindCheck(e){
+  bindCheck(e) {
 
     that.setData({
       modal: false,
       deviceId: e.currentTarget.dataset.deviceid,
       deviceName: e.currentTarget.dataset.name,
-      ['form.name']:e.currentTarget.dataset.name
+      ['form.name']: e.currentTarget.dataset.name
     })
   },
   //点击事件处理
@@ -222,7 +222,7 @@ Page({
                                 console.log(`characteristic ${res.characteristicId} has changed, now is ${res.value}`)
                                 console.log(that.ab2hex(res.value));
                                 if (that.ab2hex(res.value) == "0000000000000000000000000000000000000000") {
-                                   
+
                                 }
 
                               })
@@ -253,7 +253,7 @@ Page({
                         } */
                       }
 
-                      
+
                     },
                     fail: function (res) {
                       // fail
@@ -313,7 +313,7 @@ Page({
         val = str.charCodeAt(i).toString(16);
       else
         val += " " + str.charCodeAt(i).toString(16);
-    } 
+    }
     return val;
   },
 
@@ -336,17 +336,17 @@ Page({
 
       ble4 = ((ble_5.replace(/\s*/g, '').length / 2).toString(16)).toUpperCase(),
       ble_4 = ble4.padStart(2, '0'),
-      ble2 = ((((ble_1 + ble_3 + ble_4 + ble_5).replace(/\s*/g, '').length / 2)+3).toString(16)).toUpperCase(),
+      ble2 = ((((ble_1 + ble_3 + ble_4 + ble_5).replace(/\s*/g, '').length / 2) + 3).toString(16)).toUpperCase(),
       ble_2 = ble2.padStart(2, '0'),
       ble_info = ble_1 + ' ' + ble_2 + ' ' + ble_3 + ' ' + ble_4 + ' ' + ble_5;
-       
+
     let result = 0, array = ble_info.split(' ');
 
-    for(let i = 0; i < array.length; i++){
+    for (let i = 0; i < array.length; i++) {
       result += parseInt(array[i], 16)
-    } 
-    let result_tail = result.toString(16).padStart(4, '0'); 
-    return ble_info.replace(/\s*/g, '')+result_tail
+    }
+    let result_tail = result.toString(16).padStart(4, '0');
+    return ble_info.replace(/\s*/g, '') + result_tail
   },
 
 
@@ -356,7 +356,7 @@ Page({
     /**
       * 监听设备的连接状态
       */
-     console.log('-----name-------------',that.data.form.name)
+    console.log('-----name-------------', that.data.form.name)
     wx.onBLEConnectionStateChanged(function (res) {
       console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`)
     })
@@ -407,7 +407,7 @@ Page({
                           })
                         }
                         let characteristicId = item.uuid;
-                        
+
                         if (item.properties.write) {//向低功耗蓝牙设备特征值中写入二进制数据。注意：必须设备的特征值支持 write 才可以成功调用
                           wx.writeBLECharacteristicValue({
                             // 这里的 deviceId 需要在 getBluetoothDevices 或 onBluetoothDeviceFound 接口中获取
@@ -420,16 +420,16 @@ Page({
                             value: that.hexStringToArrayBuffer(that.nameFormate(that.data.form.name)),
                             success(res) {
                               console.log('writeBLECharacteristicValue success', res);
-                              that.InitializeCateye(that.data.form.name,that.data.form.name,that.data.deviceId,'0102030405060708')
-                                    /* 
-                                    * 关闭蓝牙模块
-                                    */
-                                    wx.closeBluetoothAdapter({
-                                      success(res) {
-                                        console.log(res);
-                                        wx.hideLoading();
-                                      }
-                                    })
+                              that.InitializeCateye(that.data.form.name, that.data.form.name, that.data.deviceId, '0102030405060708')
+                              /* 
+                              * 关闭蓝牙模块
+                              */
+                              wx.closeBluetoothAdapter({
+                                success(res) {
+                                  console.log(res);
+                                  wx.hideLoading();
+                                }
+                              })
                               /**
                                * 回调获取 设备发过来的数据
                                */
@@ -439,7 +439,7 @@ Page({
                                 console.log(that.ab2hex(res.value));
                                 if (that.ab2hex(res.value) == "0000000000000000000000000000000000000000") {
                                   setTimeout(function () {
-                                    
+
                                   }, 800)
                                 }
 
@@ -580,21 +580,56 @@ Page({
     })
   },
 
-  InitializeCateye(cateye_device_id,room_number,ble_mac,ble_password){
+  InitializeCateye(cateye_device_id, room_number, ble_mac, ble_password) {
     let params = {
       "cateye_device_id": cateye_device_id,// 猫眼设备id
       "room_number": room_number, // 房间号
       "ble_mac": ble_mac,// 蓝牙macid
       "ble_password": ble_password // 蓝牙密码
     };
-    console.log('------------------------------------>',params)
-    http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_add_cateye/', params, function (res) {
+    console.log('-------------->', params)
+    /** 
+     * http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_add_cateye/', params, function (res) {
       console.log(res.data);
       wx.showToast({
         title: '修改成功',
         icon: 'none'
       })
-    });
+    }); */
+
+    /** *
+     *  此处请求未用公共函数, 蓝牙请求的可能会是多次, 只要有一次成功就可以, 所以暂时不提供失败提示 
+     * 
+     * */
+    wx.request({
+      url: "app.globalData.url_online.url_eq + 'equipment/ht/cateye/xcx_add_cateye/'",
+      header: {
+        'content-type': 'application/json',
+        'authorization': app.globalData.codeInfo.new_authorization
+      },
+      data: params,
+      method: 'post',
+      success: function (res) {
+        if (res.data.new_authorization) {
+          app.globalData.codeInfo.new_authorization = res.data.new_authorization;
+          wx.setStorageSync('codeInfo', app.globalData.codeInfo);
+        }
+        if (res.data.message == 'success') {
+          console.log(res.data.data);
+          wx.showToast({
+            title: '修改成功',
+            icon: 'none'
+          })
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '修改失败,稍后重试',
+          icon: 'none'
+        })
+      }
+    })
+
   },
 
   onHide: function () {
