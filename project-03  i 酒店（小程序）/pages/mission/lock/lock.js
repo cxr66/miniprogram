@@ -86,8 +86,21 @@ Page({
         console.log(res.data);
         wx.showToast({
           title: '开门成功',
-          icon: 'none'
+          icon: 'none',
+          duration: 4000
         })
+        http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/lock/add_lock_detail/', {
+                "room_number":that.data.form.room_number,
+                "open_lock":"mini_program",
+                "success_flag":true,
+                "detail":that.data.form.room_number+"入住人开锁"
+            }, function (res) {
+                console.log(res.data);
+                wx.showToast({
+                  title: '添加开锁记录成功',
+                  icon: 'none'
+                })
+              });
       }); */
       wx.navigateTo({
         url: '/pages/mission/lockAuto/lockAuto?room_number=' + that.data.form.room_number,

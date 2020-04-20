@@ -1,6 +1,16 @@
+
+/** 
+ * A JavaScript For connectSocket: 
+  
+ * 使用注意事项: 在小程序在需要的页面引入js
+  
+  * author: cxr
+*/
+
 var app = getApp();
 //var socketOpen = false;
 var socketMsgQueue = [];
+
 
 function connectSocket(url) {
   wx.connectSocket({

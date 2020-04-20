@@ -72,6 +72,8 @@
 
     
     "pages/homestay/homestay",
+    "pages/homestay/homestayform/homestayform",
+    "pages/whitelist/whitelist",
     
     
     "pages/my/my",

@@ -11,7 +11,8 @@ Page({
     partList: [],
 
     // 固定定位按钮
-    btn_group: [{
+    btn_group: [
+      /* {
         desc: '入消费',
         bind: 'add_btn_charge'
       },
@@ -22,7 +23,7 @@ Page({
       {
         desc: '挂账',
         bind: 'add_ar'
-      },
+      }, */
       {
         desc: '退房',
         bind: 'check_out'
@@ -68,6 +69,8 @@ Page({
       title: '',
       mask: true
     })
+
+    
     // state:0:预订房；1：入住房
  
      http.getReq(app.globalData.url_online.url_9102+'ordering/master_base_list/?room_number='+that.data.room_no
@@ -77,7 +80,7 @@ Page({
         that.setData({
           partList: res.data.results,
           account_id: res.data.results[0].account_id,
-          master_id: res.data.results[0].order_no
+          order_no: res.data.results[0].order_no
         })
         // that.get_info_by_account_id(res.data.results[0].account_id);
 
@@ -397,12 +400,9 @@ Page({
   },
   /* 退房 */
   check_out() {
-    let url = app.globalData.url_online.url_login + 'finance/account_close_operation/add',
+    let url = app.globalData.url_online.url_9202_v2 + 'checkin/middle_check_out/',
       params = {
-        account_id: that.data.account_id, // 主账id, 
-        remark: '', // 备注,
-        force: 0, //是否强制平帐
-        close_flag: 'c' //# 平帐类型(以何种方式平帐的?): a=冲帐 t = 转帐 c=结帐
+        "order_no": that.data.order_no
       };
     http.postReq(url, params, function(res) {
       console.log('退房', res);
@@ -412,7 +412,7 @@ Page({
           icon: 'none'
         })
 
-        wx.switchTab({
+        wx.redirectTo({
           url: '/pages/index/index',
         })
       }
@@ -462,7 +462,7 @@ Page({
         that.setData({
           partList: res.data.results,
           account_id: res.data.results[0].account_id,
-          master_id: res.data.results[0].order_no
+          order_no: res.data.results[0].order_no
         })
         // that.get_info_by_account_id(res.data.results[0].account_id);
 

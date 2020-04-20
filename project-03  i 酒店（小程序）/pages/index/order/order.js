@@ -67,8 +67,10 @@ Page({
       })
     }
     console.log(that.data.guestList);
-  },
-  // input输入值
+  }, 
+  /**
+   * @bindinput input输入值
+   *  */  
   bindinput(e) {
     if (e.currentTarget.dataset.input_flag === '0') {
       this.setData({
@@ -102,7 +104,10 @@ Page({
 
     
   },
-  // 时间选择器
+   /** 
+    *  @bindDateChange 时间选择器 
+    * 
+    * */
   bindDateChange(e) {
     if (e.currentTarget.dataset.flag === '0') {
       this.setData({
@@ -159,7 +164,7 @@ Page({
         title: '查询房价中',
         icon: 'none'
       })
-      if (res.data.price[that.data.room_type_code][that.data.on_date]) {
+      if (res.data.price[that.data.room_type_code][that.data.on_date]||res.data.price[that.data.room_type_code][that.data.on_date]==0) {
         that.setData({
           price: res.data.price[that.data.room_type_code][that.data.on_date]
         })
@@ -511,7 +516,7 @@ Page({
                   title: '查询房价中',
                 })
                 wx.showLoading();
-                if (res.data.price[that.data.room_type_code][that.data.on_date]) {
+                if (res.data.price[that.data.room_type_code][that.data.on_date]||res.data.price[that.data.room_type_code][that.data.on_date]==0) {
                   that.setData({
                     price: res.data.price[that.data.room_type_code][that.data.on_date]
                   })
@@ -703,7 +708,7 @@ Page({
                                           'name': that.data.guestList[i].name,
                                           'face_id': that.data.guestList[i].faceId,
                                           'pic_photo': that.data.guestList[i].face_url,
-                                          'telephone': that.data.orderJson.phone
+                                          'telephone': ''
                                         })
                                         name+=','+that.data.guestList[i].name
                                       }

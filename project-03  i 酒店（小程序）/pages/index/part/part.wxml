@@ -63,6 +63,7 @@
         <text> {{ account.balance }}</text>
       </view>
     </view>
+    
     <!-- 列表 -->
     <view class='autoView sectionlist'>
       <ul class='row'>
@@ -147,7 +148,7 @@
     </view>
 
     <!-- 下方固定定位按钮部分 -->
-    <view class='fix_bot row' hidden="true">
+    <view class='fix_bot row'>
       <view class='btn cg_color' wx:for='{{ btn_group }}' wx:key='key4' wx:for-item='btn_item' wx:for-index='btn_index' bindtap='{{ btn_item.bind }}' style='{{ btn_index==3?"border: none;":"" }}'>{{ btn_item.desc }}</view>
     </view>
   </block>

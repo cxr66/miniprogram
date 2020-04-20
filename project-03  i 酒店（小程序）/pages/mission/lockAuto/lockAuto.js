@@ -24,33 +24,52 @@ Page({
           },
           success(res) { 
             const data = JSON.parse(res.data) ;
-            console.log( JSON.parse(res.data) )
+            console.log( JSON.parse(res.data) );
+            let lockLogParams = {
+              "room_number":that.data.room_number,
+              "open_lock":"mini_program",
+              "success_flag":true,
+              "detail":that.data.room_number+"开锁"
+          };
             if (data.message  == 'success'){
+              lockLogParams.success_flag = true
               wx.showToast({
                 title: '开门成功',
                 icon: 'none',
                 duration: 4000
               })
+              
               wx.hideLoading();
              
             } else if (Array.isArray(data.data)){
+
+              lockLogParams.success_flag = false
               wx.showToast({
                 title: data.data[0],
                 icon: 'none',
                 duration: 5000
               })
             }else{
+
+              lockLogParams.success_flag = false
               wx.showToast({
                 title: data.data,
                 icon: 'none',
                 duration: 5000
               })
             }
+            http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/lock/add_lock_detail/', lockLogParams, function (res) {
+              console.log(res.data);
+              wx.showToast({
+                title: '添加开锁记录成功',
+                icon: 'none'
+              })
+            });
             setTimeout(function(){
               wx.navigateBack({
                 delta: 1
               })
-            },1500)
+            },2000)
           }
         })
       }

@@ -13,57 +13,22 @@ Page({
     tabbar: { },
     userInfo: { },
     // 设置
-    settingList: [{
-        desc: '房态',
-        link: '/pages/index/index',
-        url: '/pages/img/showindex/showindex-roomstatus.png'
-      },
-      {
-        desc: '设备态',
-        link: '/pages/equipment/equipment',
-        url: '/pages/img/showindex/showindex-equipment.png'
-      },
-      {
-        desc: '会议',
-        link: '/pages/place/place',
-        url: '/pages/img/showindex/showindex-place.png'
-      },
-      {
-        desc: '统计',
-        link: '/pages/detail/expect/expect',
-        url: '/pages/img/showindex/showindex-expect.png'
-      },
-      {
-        desc: '监管',
-        link: '',
-        url: '/pages/img/showindex/showindex-watch.png'
-      },
-      {
-        desc: '客人',
-        link: '/pages/guestform/guestform',
-        url: '/pages/img/showindex/showindex-guest.png'
-      },
-      {
-        desc: '订单',
-        link: '/pages/orderform/orderform',
-        url: '/pages/img/showindex/showindex-order.png'
-      },
-      /* {
-        desc: '自助机订单',
-        link: '/pages/zzjform/zzjform',
-        url: '/pages/img/showindex/showindex-zzj.png'
-      }, */
-      {
-        desc: '房情',
-        link: '/pages/detail/detail',
-        url: '/pages/img/showindex/showindex-detail.png'
-      },
-      /* {
-        desc: '迷你吧',
-        link: '',
-        url: '/pages/img/showindex/showindex-miniba.png'
-      }, */
-    ],
+    
+  },
+  /** 
+   * @get_hotel_audit 获取酒店详情信息
+   */
+  get_hotel_audit() {
+    let url = app.globalData.url_online.url_login + 'common/hotel/get_info/' + app.globalData.userInfo.hotel_id;
+    // 获取个人部门信息 app.globalData.url_online.url_login + 'common/employee/view_self'
+    http.getReq(url, function (res) {
+
+      console.log(res.data);
+      app.globalData.userInfo.hotel_audit = res.data.audit;
+      return res.data.audit;
+      // that.setData({ "hotel_type": res.data.audit, hotelInfo: res.data })// 酒店类型： 0: 名宿； 1: 酒店
+
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -74,6 +39,138 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo
+      })
+    }
+
+    let audit = that.get_hotel_audit();
+    if(audit){
+      that.setData({
+        settingList: [{
+          desc: '房态',
+          link: '/pages/index/index',
+          url: '/pages/img/showindex/showindex-roomstatus.png'
+        },
+        {
+          desc: '设备态',
+          link: '/pages/equipment/equipment',
+          url: '/pages/img/showindex/showindex-equipment.png'
+        },
+        {
+          desc: '会议',
+          link: '/pages/place/place',
+          url: '/pages/img/showindex/showindex-place.png'
+        },
+        {
+          desc: '统计',
+          link: '/pages/detail/expect/expect',
+          url: '/pages/img/showindex/showindex-expect.png'
+        },
+        /* {
+          desc: '监管',
+          link: '',
+          url: '/pages/img/showindex/showindex-watch.png'
+        }, */
+        {
+          desc: '客人',
+          link: '/pages/guestform/guestform',
+          url: '/pages/img/showindex/showindex-guest.png'
+        }, 
+        {
+          desc: '房情',
+          link: '/pages/detail/detail',
+          url: '/pages/img/showindex/showindex-detail.png'
+        },
+        {
+          desc: '订单',
+          link: '/pages/orderform/orderform',
+          url: '/pages/img/showindex/showindex-order.png'
+        },
+        {
+          desc: '开锁记录',
+          link: '/pages/locklogs/locklogs',
+          url: '/pages/img/showindex/showindex-watch.png'
+        },
+         /* {
+          desc: '民宿订单',
+          link: '/pages/homestay/homestayform/homestayform',
+          url: '/pages/img/showindex/showindex-order.png'
+        }, */
+        /* {
+          desc: '迷你吧',
+          link: '',
+          url: '/pages/img/showindex/showindex-miniba.png'
+        }, */
+      ],
+      })
+    }else{
+      that.setData({
+        settingList: [{
+          desc: '房态',
+          link: '/pages/index/index',
+          url: '/pages/img/showindex/showindex-roomstatus.png'
+        },
+        {
+          desc: '设备态',
+          link: '/pages/equipment/equipment',
+          url: '/pages/img/showindex/showindex-equipment.png'
+        },
+        {
+          desc: '会议',
+          link: '/pages/place/place',
+          url: '/pages/img/showindex/showindex-place.png'
+        },
+        {
+          desc: '统计',
+          link: '/pages/detail/expect/expect',
+          url: '/pages/img/showindex/showindex-expect.png'
+        },
+        /* {
+          desc: '监管',
+          link: '',
+          url: '/pages/img/showindex/showindex-watch.png'
+        }, */
+        {
+          desc: '开锁记录',
+          link: '/pages/locklogs/locklogs',
+          url: '/pages/img/showindex/showindex-watch.png'
+        },
+        {
+          desc: '客人',
+          link: '/pages/guestform/guestform',
+          url: '/pages/img/showindex/showindex-guest.png'
+        },
+        
+        /* {
+          desc: '自助机订单',
+          link: '/pages/zzjform/zzjform',
+          url: '/pages/img/showindex/showindex-zzj.png'
+        }, */
+        {
+          desc: '房情',
+          link: '/pages/detail/detail',
+          url: '/pages/img/showindex/showindex-detail.png'
+        },
+         {
+          desc: '民宿订单',
+          link: '/pages/homestay/homestayform/homestayform',
+          url: '/pages/img/showindex/showindex-order.png'
+        },
+        {
+          desc: '房价码',
+          link: '/pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist',
+          url: '/pages/img/zjjindex/icon-pricecode.png'
+        }, 
+        {
+          desc: '白名单',
+          link: '/pages/whitelist/whitelist',
+          url: '/pages/img/showindex/showindex-guest.png'
+        },
+        /* {
+          desc: '迷你吧',
+          link: '',
+          url: '/pages/img/showindex/showindex-miniba.png'
+        }, */
+      ],
       })
     }
 

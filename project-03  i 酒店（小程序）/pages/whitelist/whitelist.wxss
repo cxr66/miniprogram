@@ -1,0 +1,26 @@
+/* pages/whitelist/whitelist.wxss */
+
+.table{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.table ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.table ul li{
+  width: 50%;
+  line-height: 80rpx;
+  text-align: center;
+  overflow-x: scroll;
+} 
+.table .list_style{
+  color: #777777;
+}
+.table .date_color{
+  color: #2080DE;
+}

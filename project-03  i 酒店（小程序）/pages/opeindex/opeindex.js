@@ -22,11 +22,11 @@ Page({
         link: '/pages/opeindex/opetest/opetestlist/opetestlist',
         url: '/pages/img/opeindex/test.png'
       },
-      {
+     /*  {
         desc: '参数填入',
         link: 'pages/opeindex/opeparfill/opeparfill',
         url: '/pages/img/opeindex/fill.png'
-      },
+      }, */
       {
         link: '/pages/opeindex/opecateye/cateye',
         desc: '猫眼参数',
