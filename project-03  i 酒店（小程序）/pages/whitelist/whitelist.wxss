@@ -1,5 +1,14 @@
 /* pages/whitelist/whitelist.wxss */
-
+/* button */
+.sign_btn{
+  margin: 20rpx auto 0 auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}
 .table{
   overflow: hidden;
   margin: 20rpx auto 0 auto;

@@ -30,7 +30,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9503 + 'security/resident/list?page_num=1&page_size=10&source=1', function (res) {
+    http.getReq(app.globalData.url_online.url_9503 + 'security/resident/list?page_num=300&source=1', function (res) {
       console.log('白名单列表', res.data);
       wx.hideLoading();
       for (let i in res.data.list){

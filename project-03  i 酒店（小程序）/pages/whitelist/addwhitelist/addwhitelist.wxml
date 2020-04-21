@@ -1,0 +1,12 @@
+<!--pages/whitelist/addwhitelist/addwhitelist.wxml-->
+<!-- 同住人 -->
+	<view class='autoView section_item '>
+		<view class='room_num row'>
+			姓名： <input class='inline_block' value='{{ addPerData.name }}' placeholder='请输入姓名' bindinput='bindinput' data-index="{{index}}" data-flag='0' placeholder-class='cg_color'></input>
+		</view>
+		<view class='room_num row'>
+			员工ID： <input class='inline_block' value='{{ addPerData.id }}' placeholder='请输入ID号' bindinput='bindinput' data-index="{{index}}" data-flag='1' placeholder-class='cg_color'></input>
+		</view>
+ 
+		<view class='room_num  bg_color center color_fff fn_28' bindtap="addPer">新增白名单</view>
+	</view>

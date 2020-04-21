@@ -1,0 +1,21 @@
+/* pages/whitelist/addwhitelist/addwhitelist.wxss */
+.autoView{
+  width: 96%;
+}
+.section_item{
+  line-height: 100rpx;
+  font-size: 25rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid#EEEEEE;
+  border-radius:10rpx;
+  margin: 10rpx auto;
+}
+.room_num{
+  padding: 0 20rpx;
+ border-bottom: 1rpx solid #EEEEEE;
+}
+.room_num input{
+  width: 80%;
+  margin-top:12px;
+}

@@ -108,7 +108,10 @@ Page({
     // AR账户
     // that.get_ar_account({});
   },
-  /* 查房 */
+  /**
+   * @checkDetail  查房 
+   * 
+   * */
   checkDetail(e) {
     let url = app.globalData.url_online.url_9104 + 'room_service/validate_room_check/',
       params = {
@@ -143,6 +146,10 @@ Page({
       })
     });
   }, */
+
+  /***
+   * @get_consume_by_roomnum 根据房间号查询消费（可能已经废弃）
+   * * */  
   get_consume_by_roomnum(params) {
     let url = app.globalData.url_online.url_login + 'finance/charge_detail/info_list';
     console.log(params);
@@ -156,7 +163,9 @@ Page({
       })
     });
   },
-  /* 按照account_id查询单个房间的账务信息 */
+  /** *
+   * @get_info_by_account_id 按照account_id查询单个房间的账务信息 
+   * */
   get_info_by_account_id(account_id) {
     let url = app.globalData.url_online.url_9102 + 'accounts/get_account_base_info/' + account_id;
    /*  http.getReq(url, function(res) {
@@ -233,8 +242,8 @@ Page({
     })
   },
   /* ************************************入消费弹窗*************************************************** */
-  /* 
-  finance/code_pay_for/info_list  
+  /**  
+  *@get_pay_reasonfinance /code_pay_for/info_list  
   付款原因接口 */
   get_pay_reason() {
     let url = app.globalData.url_online.url_login + 'finance/code_pay_for/info_list';
@@ -249,9 +258,9 @@ Page({
       });
     });
   },
-  /* 
-  finance/pay_mode/info_list  
-  付款方式接口 */
+  /**  
+  *@get_pay_reasonfinance  付款方式接口 
+  */
   get_pay_mode_reason() {
     let url = app.globalData.url_online.url_login + 'finance/pay_mode/info_list';
     http.postReq(url, {}, function(res) {
@@ -272,7 +281,6 @@ Page({
       that.setData({
         accountCodeList: res.data.list
       })
-
     });
   },
   /* 加收房费 */

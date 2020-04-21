@@ -35,7 +35,6 @@ page{
 .section .room_num input{
   width: 80%;
   margin-top:12px;
-
 }
 .section .room_num .right_img{
   width: 44rpx;
