@@ -42,7 +42,7 @@ Page({
       title: ''
     });
 
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?code_market=ZZJ&ordering=-create_time', function (res) {
+    http.getReq(app.globalData.url_online.url_9102 + "bill/get_master_base_list/?code_market=ZZJ", function (res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
       res.data.results.reverse();
@@ -77,7 +77,7 @@ Page({
       orderform: []
     })
     if (that.data.menuList[this.data.currentTab].name == '在住单') {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300&code_market=ZZJ&ordering=-create_time', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
         console.log('查询在住单列表', res.data);
         wx.hideLoading();
         res.data.results.reverse();
@@ -86,7 +86,7 @@ Page({
         })
       });
     } else if (that.data.menuList[this.data.currentTab].name == '退房单'){
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_check_out_list/?page_size=300&code_market=ZZJ&ordering=-create_time', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + "bill/get_check_out_master_base_list/?page_size=300&code_market=ZZJ", function (res) {
         console.log('查询退房单列表', res.data);
         wx.hideLoading();
         res.data.results.reverse();
@@ -95,7 +95,7 @@ Page({
         })
       });
     } else {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list_abnormal/?page_size=300&code_market=ZZJ&ordering=-create_time', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_abnormal_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
         console.log('查询异常单列表', res.data);
         wx.hideLoading();
         res.data.results.reverse();

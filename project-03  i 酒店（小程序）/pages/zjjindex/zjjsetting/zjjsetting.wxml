@@ -1,2 +1,54 @@
 <!--pages/zjjindex/zjjsetting/zjjsetting.wxml-->
-<text>pages/zjjindex/zjjsetting/zjjsetting.wxml</text>
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+	<block wx:for="{{menuList}}" wx:key="index">
+		<view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+	</block>
+</scroll-view>
+
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+	<swiper-item class="content-item">
+		<view class=' table'>
+			<ul class='row'>
+				<li>代码</li>
+				<li>中文描述</li>
+				<li>床数 </li>
+				<li>床型 </li>
+				<li>是否停用 </li>
+			</ul>
+			<ul class='row list_style' wx:for='{{ roomTypeform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+				<li>{{ item.code }}</li>
+				<li>{{ item.descript }}</li>
+				<li>{{ item.bed_num }}</li>
+				<li>{{ item.bed_type }} </li>
+				<li>
+					<switch checked='{{ item.is_halt }}' data-flag='0' data-index="{{index}}" color='#2080DE' bindchange="listenerSwitch"/>
+				</li>
+			</ul>
+		</view>
+
+	</swiper-item>
+
+	<swiper-item class="content-item">
+		<view class=' table'>
+			<ul class='row'>
+				<li>房号</li>
+				<li>房型 </li>
+				<li>楼层 </li>
+				<li>楼栋 </li>
+				<li>是否停用 </li>
+			</ul>
+			<ul class='row list_style' wx:for='{{ roomform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+				<li>{{ item.room_no  }}</li>
+				<li>{{ item.room_type }}</li>
+				<li>{{ item.floor_number }}</li>
+				<li>{{ item.room_building }} </li>
+				<li>
+					<switch checked='{{ item.is_halt }}' data-flag='1' data-index="{{index}}"  color='#2080DE' bindchange="listenerSwitch"/>
+				</li>
+			</ul>
+		</view>
+	</swiper-item>
+</swiper>

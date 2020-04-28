@@ -18,6 +18,7 @@
 
   <view class='section_item'>
     窗帘
+    <switch class='right' checked='true' data-code='curtain' bindchange="switchChange" color='#2080DE' />
   </view>
 
   <view class='autoView sign_btn' bindtap='no_bother'>

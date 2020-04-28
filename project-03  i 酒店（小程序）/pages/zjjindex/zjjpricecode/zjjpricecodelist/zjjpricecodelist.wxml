@@ -17,23 +17,23 @@
     <view class=' table'>
       <ul class='row'>
         <li>代码</li>
-        <li>乘法系数</li>
-        <li>加法系数</li>
-        <li>类别</li>
+        <!-- <li>乘法系数</li>
+        <li>加法系数</li> -->
+        <!-- <li>类别</li> -->
         <li>描述</li>
-        <li>市场码</li> 
-        <li>来源码</li> 
+        <!-- <li>市场码</li>  -->
+        <!-- <li>来源码</li>  -->
         <li>开始时间</li> 
         <li>结束时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' bindtap='navigate' data-link="/pages/zjjindex/zjjpricecode/zjjpricecodeitem/zjjpricecodeitem?code={{ item.code }}&&id={{item.id}}">
         <li>{{ item.code }}</li>
-        <li>{{ item.multi }}</li>
-        <li>{{ item.addition }}</li>
-        <li>{{ item.category }}</li>
+        <!-- <li>{{ item.multi }}</li>
+        <li>{{ item.addition }}</li> -->
+        <!-- <li>{{ item.category }}</li> -->
         <li>{{ item.description }}</li>
-        <li>{{ item.market }}</li> 
-        <li>{{ item.src }}</li>
+        <!-- <li>{{ item.market }}</li>  -->
+        <!-- <li>{{ item.src }}</li> -->
         <li>{{ item.start_date }}</li>
         <li>{{ item.end_date }}</li> 
       </ul>

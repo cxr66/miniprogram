@@ -1,5 +1,5 @@
 <!--pages/opeindex/opecateye/cateye.wxml-->
-<view wx:for='{{ list }}' wx:key='key'   data-name='{{item.localName}}' data-deviceid='{{item.deviceId}}' bindtap="bindCheck" class='list'>蓝牙名称: {{ item.name }} —— {{ item.localName }} </view>
+<view wx:for='{{ list }}' wx:key='key'   data-name='{{item.localName}}' data-deviceid='{{item.deviceId}}' bindtap="bindCheck" class='list'>蓝牙名称: {{ item.name }} MACIP：{{item.deviceId}} </view>
 <view  bindtap="onLoad" class='list center'>当前无更多设备</view>
 
 

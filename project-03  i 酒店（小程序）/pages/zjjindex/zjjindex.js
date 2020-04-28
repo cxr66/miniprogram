@@ -52,11 +52,11 @@ Page({
         link: '/pages/zjjindex/zjjpricecode/zjjpricecodelist/zjjpricecodelist',
         url: '/pages/img/zjjindex/icon-pricecode.png'
       }, 
-    /* {
-      desc: '基础设置',
-      link: '/pages/zjjindex/zjjsetting/zjjsetting',
-      url: '/pages/img/zjjindex/icon-setting.png'
-    } */
+      {
+        desc: '房设置',
+        link: '/pages/zjjindex/zjjsetting/zjjsetting',
+        url: '/pages/img/zjjindex/icon-setting.png'
+      },  
     ],
   },
   /**

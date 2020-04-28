@@ -574,217 +574,219 @@ Page({
                     }
                   }
 
-                  wx.request({
-                    url: app.globalData.url_online.url_public + 'SDSVCApi/YLShangHai/Get',
-                    method: 'post',
-                    data: {
-                      'type': 1,
-                      'keyID': '76D00D59AB5F42AE99E0711B4F19081F', // 用户公钥
-                      'cardID': that.data.orderJson.id_no, // 身份证号
-                      'reqTime': that.data.on_date + ' 12:00:00',  // 请求时间
-                      'signCode': hexMD5.hexMD5('76D00D59AB5F42AE99E0711B4F19081F,' + that.data.orderJson.id_no + ',' + that.data.on_date + ' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B') // MD5加密：校验码(“keyID,cardID,reqTime,AppSecret”)
-                    },
-                    success: function (res) {
-                      console.log('神盾图像返回', res.data);
-                      if (res.data.code == '200') {
-                        let base64Data = res.data.data; // 返回的是base64 
-                        base64Data = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(base64Data));
-                        const base64ImgUrl = "data:image/png;base64," + base64Data;
-                        console.log(base64ImgUrl);
-                        base64src(base64ImgUrl, res => {
-                          console.log(res); // 返回图片地址，直接赋值到image标签即可
-                          wx.uploadFile({
-                            url: 'https://oss.crowncrystalhotel.com/resource/faceid/upload',
-                            filePath: res,
-                            name: 'file',
-                            header: {
-                              'Content-Type': 'multipart/form-data',
-                              'authorization': app.globalData.codeInfo.new_authorization
-                            },
-                            success(res) {
-                              const data = JSON.parse(res.data);
-                              console.log(JSON.parse(res.data))
-                              let face_url = data.complete;
-                              if (data.message == 'success') {
-                                let url = app.globalData.url_online.url_eq + 'equipment/ht/cateye/add_face_to_room/', params = { 'room_number': that.data.room_number, 'face_url': face_url };
-                                http.postReq(url, params, function (res) {
-                                  console.log(res);
-                                  if (res.message == 'success') {
-                                    wx.showToast({
-                                      title: '添加faceId成功',
-                                      icon: 'none'
-                                    })
-                                    let faceId = res.data.face_id;
-                                    // 获取faceId
-                                    // that.add_face_to_room(that.data.room_number, pic_photo);
-
-                                    let params = {
-                                      'room_list': [that.data.room_number],
-                                      'master_base': [{
-                                        'room_type': that.data.room_type,
-                                        'room_number': that.data.room_number,
-                                        "rate_code": "BAR",
-                                        "code_market": "SK",
-                                        "code_src": "SMSK",
-                                        'code_name': that.data.room_type_code,
-                                        'room_type_descript_en': that.data.room_type_code,
-                                        "arr_time": that.data.on_date + ' 12:00:00',
-                                        "leave_time": that.data.off_date + ' 12:00:00',
-
-                                      }],
-                                      'master_rtrate': [{
-                                        'room_number': that.data.room_number,
-                                        'rate_code': "BAR",
-                                        'room_type': that.data.room_type,
-                                        'price': {
-                                          [that.data.on_date]: that.data.price
-                                        }
-                                      }],
-                                      'master_guest': [{
-                                        "arr_time": that.data.on_date + ' 12:00:00',
-                                        "leave_time": that.data.off_date + ' 12:00:00',
-                                        'room_number': that.data.room_number,
-                                        'id_code': '01',
-                                        'id_no': that.data.orderJson.id_no,
-                                        'name': that.data.orderJson.name,
-                                        'face_id': faceId,
-                                        'pic_photo': face_url,
-                                        'telephone': that.data.orderJson.phone
-                                      }],
-                                      'lock_arrary': {}
-                                    };
-                                    let name = that.data.orderJson.name;
-                                    if (that.data.guestList.length) {
-                                      for (let i in that.data.guestList) {
-                                        params.master_guest.push({
+                  setTimeout(() => {
+                    wx.request({
+                      url: app.globalData.url_online.url_public + 'SDSVCApi/YLShangHai/Get',
+                      method: 'post',
+                      data: {
+                        'type': 1,
+                        'keyID': '76D00D59AB5F42AE99E0711B4F19081F', // 用户公钥
+                        'cardID': that.data.orderJson.id_no, // 身份证号
+                        'reqTime': that.data.on_date + ' 12:00:00',  // 请求时间
+                        'signCode': hexMD5.hexMD5('76D00D59AB5F42AE99E0711B4F19081F,' + that.data.orderJson.id_no + ',' + that.data.on_date + ' 12:00:00,7E435E10870D4C2FA42EC0979FC3C07B') // MD5加密：校验码(“keyID,cardID,reqTime,AppSecret”)
+                      },
+                      success: function (res) {
+                        console.log('神盾图像返回', res.data);
+                        if (res.data.code == '200') {
+                          let base64Data = res.data.data; // 返回的是base64 
+                          base64Data = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(base64Data));
+                          const base64ImgUrl = "data:image/png;base64," + base64Data;
+                          console.log(base64ImgUrl);
+                          base64src(base64ImgUrl, res => {
+                            console.log(res); // 返回图片地址，直接赋值到image标签即可
+                            wx.uploadFile({
+                              url: 'https://oss.crowncrystalhotel.com/resource/faceid/upload',
+                              filePath: res,
+                              name: 'file',
+                              header: {
+                                'Content-Type': 'multipart/form-data',
+                                'authorization': app.globalData.codeInfo.new_authorization
+                              },
+                              success(res) {
+                                const data = JSON.parse(res.data);
+                                console.log(JSON.parse(res.data))
+                                let face_url = data.complete;
+                                if (data.message == 'success') {
+                                  let url = app.globalData.url_online.url_eq + 'equipment/ht/cateye/add_face_to_room/', params = { 'room_number': that.data.room_number, 'face_url': face_url };
+                                  http.postReq(url, params, function (res) {
+                                    console.log(res);
+                                    if (res.message == 'success') {
+                                      wx.showToast({
+                                        title: '添加faceId成功',
+                                        icon: 'none'
+                                      })
+                                      let faceId = res.data.face_id;
+                                      // 获取faceId
+                                      // that.add_face_to_room(that.data.room_number, pic_photo);
+  
+                                      let params = {
+                                        'room_list': [that.data.room_number],
+                                        'master_base': [{
+                                          'room_type': that.data.room_type,
+                                          'room_number': that.data.room_number,
+                                          "rate_code": "BAR",
+                                          "code_market": "SK",
+                                          "code_src": "SMSK",
+                                          'code_name': that.data.room_type_code,
+                                          'room_type_descript_en': that.data.room_type_code,
+                                          "arr_time": that.data.on_date + ' 12:00:00',
+                                          "leave_time": that.data.off_date + ' 12:00:00',
+  
+                                        }],
+                                        'master_rtrate': [{
+                                          'room_number': that.data.room_number,
+                                          'rate_code': "BAR",
+                                          'room_type': that.data.room_type,
+                                          'price': {
+                                            [that.data.on_date]: that.data.price
+                                          }
+                                        }],
+                                        'master_guest': [{
                                           "arr_time": that.data.on_date + ' 12:00:00',
                                           "leave_time": that.data.off_date + ' 12:00:00',
                                           'room_number': that.data.room_number,
                                           'id_code': '01',
-                                          'id_no': that.data.guestList[i].id_no,
-                                          'name': that.data.guestList[i].name,
-                                          'face_id': that.data.guestList[i].faceId,
-                                          'pic_photo': that.data.guestList[i].face_url,
-                                          'telephone': ''
-                                        })
-                                        name += ',' + that.data.guestList[i].name
+                                          'id_no': that.data.orderJson.id_no,
+                                          'name': that.data.orderJson.name,
+                                          'face_id': faceId,
+                                          'pic_photo': face_url,
+                                          'telephone': that.data.orderJson.phone
+                                        }],
+                                        'lock_arrary': {}
+                                      };
+                                      let name = that.data.orderJson.name;
+                                      if (that.data.guestList.length) {
+                                        for (let i in that.data.guestList) {
+                                          params.master_guest.push({
+                                            "arr_time": that.data.on_date + ' 12:00:00',
+                                            "leave_time": that.data.off_date + ' 12:00:00',
+                                            'room_number': that.data.room_number,
+                                            'id_code': '01',
+                                            'id_no': that.data.guestList[i].id_no,
+                                            'name': that.data.guestList[i].name,
+                                            'face_id': that.data.guestList[i].faceId,
+                                            'pic_photo': that.data.guestList[i].face_url,
+                                            'telephone': ''
+                                          })
+                                          name += ',' + that.data.guestList[i].name
+                                        }
                                       }
-                                    }
-
-                                    let url = app.globalData.url_online.url_9202_v2 + 'checkin/homestay_checkin/';
-
-                                    http.postReq(url, params, function (res) {
-                                      console.log(res);
-                                      wx.hideLoading();
-                                      if (res.message == 'success') {
-                                        wx.showToast({
-                                          title: '增加入住单成功,预定信息已发送至手机号，注意查收',
-                                          icon: 'none'
-                                        })
-
-                                        if (that.data.hotelInfo.office_tel && that.data.hotelInfo.office_tel != null) {
-                                          //发送消息
-                                          that.send_msg({
-                                            phone_number: that.data.orderJson.phone,
-                                            sign_name: '皇冠晶品酒店服务中心',
-                                            template_code: "SMS_173405844",
-                                            template_param: {
-                                              status: "成功",
-                                              order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
-                                              name: name,
-                                              date: that.data.on_date,
-                                              hotel: that.data.hotelInfo.full_name,
-                                              roomtype: that.data.room_type,
-                                              much: "1",
-                                              day: getDaysBetween(that.data.on_date, that.data.off_date),
-                                              money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
-                                              adress: that.data.hotelInfo.address_1,
-                                              tel: that.data.hotelInfo.office_tel
-                                            }
-                                          });
+                                      console.log(params.master_guest);
+                                      let url = app.globalData.url_online.url_9202_v2 + 'checkin/homestay_checkin/';
+  
+                                      http.postReq(url, params, function (res) {
+                                        console.log(res);
+                                        wx.hideLoading();
+                                        if (res.message == 'success') {
+                                          wx.showToast({
+                                            title: '增加入住单成功,预定信息已发送至手机号，注意查收',
+                                            icon: 'none'
+                                          })
+  
+                                          if (that.data.hotelInfo.office_tel && that.data.hotelInfo.office_tel != null) {
+                                            //发送消息
+                                            that.send_msg({
+                                              phone_number: that.data.orderJson.phone,
+                                              sign_name: '皇冠晶品酒店服务中心',
+                                              template_code: "SMS_173405844",
+                                              template_param: {
+                                                status: "成功",
+                                                order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
+                                                name: name,
+                                                date: that.data.on_date,
+                                                hotel: that.data.hotelInfo.full_name,
+                                                roomtype: that.data.room_type,
+                                                much: "1",
+                                                day: getDaysBetween(that.data.on_date, that.data.off_date),
+                                                money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
+                                                adress: that.data.hotelInfo.address_1,
+                                                tel: that.data.hotelInfo.office_tel
+                                              }
+                                            });
+                                          } else {
+                                            wx.showToast({
+                                              title: '请稍后设置酒店主机号码，方便客户联系',
+                                              icon: 'none',
+                                              duration: 3000
+                                            })
+                                            //发送消息
+                                            that.send_msg({
+                                              phone_number: that.data.orderJson.phone,
+                                              sign_name: '皇冠晶品酒店服务中心',
+                                              template_code: "SMS_173405844",
+                                              template_param: {
+                                                status: "成功",
+                                                order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
+                                                name: name,
+                                                date: that.data.on_date,
+                                                hotel: that.data.hotelInfo.full_name,
+                                                roomtype: that.data.room_type,
+                                                much: "1",
+                                                day: getDaysBetween(that.data.on_date, that.data.off_date),
+                                                money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
+                                                adress: that.data.hotelInfo.address_1,
+                                                tel: '4001600703'
+                                              }
+                                            });
+                                          }
+  
+  
+                                          setTimeout(function () {
+                                            wx.navigateBack({
+                                              delta: 1
+                                            })
+                                          }, 3000)
+  
                                         } else {
                                           wx.showToast({
-                                            title: '请稍后设置酒店主机号码，方便客户联系',
-                                            icon: 'none',
-                                            duration: 3000
+                                            title: '预定失败',
+                                            icon: 'none'
                                           })
-                                          //发送消息
-                                          that.send_msg({
-                                            phone_number: that.data.orderJson.phone,
-                                            sign_name: '皇冠晶品酒店服务中心',
-                                            template_code: "SMS_173405844",
-                                            template_param: {
-                                              status: "成功",
-                                              order: '您预约入住' + that.data.hotelInfo.full_name + '，房间号为' + that.data.room_number,
-                                              name: name,
-                                              date: that.data.on_date,
-                                              hotel: that.data.hotelInfo.full_name,
-                                              roomtype: that.data.room_type,
-                                              much: "1",
-                                              day: getDaysBetween(that.data.on_date, that.data.off_date),
-                                              money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
-                                              adress: that.data.hotelInfo.address_1,
-                                              tel: '4001600703'
-                                            }
-                                          });
                                         }
-
-
-                                        setTimeout(function () {
-                                          wx.navigateBack({
-                                            delta: 1
-                                          })
-                                        }, 3000)
-
-                                      } else {
-                                        wx.showToast({
-                                          title: '预定失败',
-                                          icon: 'none'
-                                        })
-                                      }
-                                    });
-                                  } else {
-                                    wx.showToast({
-                                      title: '添加faceId失败',
-                                      icon: 'none'
-                                    })
-                                  }
-                                });
-                                wx.hideLoading({
-                                  complete: (res) => { },
-                                })
-                              } else {
-                                wx.showToast({
-                                  title: data.data,
-                                  icon: 'none',
-                                  duration: 5000
-                                })
+                                      });
+                                    } else {
+                                      wx.showToast({
+                                        title: '添加faceId失败',
+                                        icon: 'none'
+                                      })
+                                    }
+                                  });
+                                  wx.hideLoading({
+                                    complete: (res) => { },
+                                  })
+                                } else {
+                                  wx.showToast({
+                                    title: data.data,
+                                    icon: 'none',
+                                    duration: 5000
+                                  })
+                                }
                               }
-                            }
+                            })
+                          });
+                        } else if (res.data.code == '201') {
+                          wx.showToast({
+                            title: that.data.orderJson.id_no + '身份未找到相关信息',
+                            icon: 'none',
+                            duration: 5000
                           })
-                        });
-                      } else if (res.data.code == '201') {
-                        wx.showToast({
-                          title: that.data.orderJson.id_no + '身份未找到相关信息',
-                          icon: 'none',
-                          duration: 5000
-                        })
-                        setTimeout(function () {
-                          wx.hideLoading();
-                        }, 5000)
-                      } else {
-                        wx.showToast({
-                          title: '查询身份失败',
-                          icon: 'none',
-                          duration: 4000
-                        })
-
-                        setTimeout(function () {
-                          wx.hideLoading();
-                        }, 5000)
+                          setTimeout(function () {
+                            wx.hideLoading();
+                          }, 5000)
+                        } else {
+                          wx.showToast({
+                            title: '查询身份失败',
+                            icon: 'none',
+                            duration: 4000
+                          })
+  
+                          setTimeout(function () {
+                            wx.hideLoading();
+                          }, 5000)
+                        }
                       }
-                    }
-                  })
+                    })
+                  }, 4000);
 
                 } else {
                   wx.showToast({
@@ -800,10 +802,7 @@ Page({
               console.log('用户点击取消');
             }
           }
-        })
-
-
-
+        }) 
       } else {
         wx.showToast({
           title: '手机号码不能少于11位',

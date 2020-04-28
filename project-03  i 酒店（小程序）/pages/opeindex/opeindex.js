@@ -31,6 +31,11 @@ Page({
         link: '/pages/opeindex/opecateye/cateye',
         desc: '猫眼参数',
         url: '/pages/img/opeindex/fill.png'
+      },
+      {
+        link: '/pages/opeindex/switch/switch',
+        desc: '开关配置',
+        url: '/pages/img/opeindex/fill.png'
       }
       ],
   },

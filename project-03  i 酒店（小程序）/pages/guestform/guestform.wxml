@@ -1,5 +1,5 @@
 <!--pages/guestform/guestform.wxml-->
-<view class='guestsearch name row fn_20'>
+<view class='guestsearch name row fn_20' hidden="true">
   <input bindinput='bindinput' placeholder="姓名/手机号/房号" value='{{ searchValue }}' auto-focus/>
   <text bindtap="search">搜索</text>
 </view>
@@ -47,7 +47,7 @@
       </ul>
       <ul class='row list_style' wx:for='{{ guest_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li class='date_color'>{{ item.rsv_type_desc }}</li>
-        <li>{{ item.reserve_guest_list.name  }}</li>
+        <li>{{ item.name  }}</li>
         <li>{{ item.room_price }}</li>
         <li>{{ item.arr_time }}</li>
         <li>{{ item.leave_time }}</li>

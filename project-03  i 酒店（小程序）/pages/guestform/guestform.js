@@ -41,7 +41,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
       that.setData({
@@ -80,7 +80,7 @@ Page({
     that.setData({guest_list: []})
     if (that.data.menuList[this.data.currentTab].name == '在住客人') {
       
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300', function (res) {
         console.log('查询在住单列表', res.data);
         wx.hideLoading();
         that.setData({
@@ -89,7 +89,7 @@ Page({
       });
     } else {
       
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/reserve_base_list/?page_size=300', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_reserve_base_list/?page=1&page_size=300', function (res) {
         console.log('查询预定单列表', res.data);
         wx.hideLoading();
         that.setData({

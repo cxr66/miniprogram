@@ -39,7 +39,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300&ordering=-create_time', function(res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&code_market=ZZJ', function(res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
       res.data.results.reverse();
@@ -73,7 +73,7 @@ Page({
     })
     if (that.data.menuList[this.data.currentTab].name == '在住订单') {
 
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300', function (res) {
         console.log('查询在住单列表', res.data);
         wx.hideLoading();
         res.data.results.reverse();
@@ -82,7 +82,7 @@ Page({
         })
       });
     } else {
-      http.postReq(app.globalData.url_online.url_9202_v2 + 'booking/get_all_reserve_list/', {}, function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_reserve_base_list/?page_size=300', function (res) {
         console.log('查询预定单列表', res.data);
         wx.hideLoading();
         res.data.results.reverse();
@@ -91,6 +91,7 @@ Page({
         })
       });
     }
+    console.log('hahhahahahh');
   },
 
   /* 输入 */

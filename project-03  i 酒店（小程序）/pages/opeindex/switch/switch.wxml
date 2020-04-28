@@ -1,0 +1,7 @@
+<!--pages/opeindex/switch/switch.wxml-->
+<!-- 二维码 -->
+<view class='row'>
+  <view class='autoView sign_btn' bindtap='scan'>
+    扫描
+  </view> 
+</view>

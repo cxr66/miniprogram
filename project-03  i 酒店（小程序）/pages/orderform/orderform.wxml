@@ -38,8 +38,8 @@
           <text class='type fn_22 color_fff bg_color'>{{item.code_market_desc }}</text>
           <text class='type fn_22 color_fff bg_color'>{{item.code_src_desc }}</text>
         </view>
-        <text>预订人：{{ item.reserve_guest_list.name }}</text>
-        <text>联系电话：{{ item.reserve_guest_list.telephone }}</text>
+        <text>预订人：{{ item.name }}</text>
+        <text>联系电话：{{ item.telephone }}</text>
         <text>到店：{{ item.arr_time }} 离店：{{ item.leave_time }}</text>
       </view>
     </view>
