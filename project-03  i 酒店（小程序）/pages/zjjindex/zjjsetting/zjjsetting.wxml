@@ -15,14 +15,16 @@
 				<li>代码</li>
 				<li>中文描述</li>
 				<li>床数 </li>
-				<li>床型 </li>
+				<li>是否自助机可见 </li>
 				<li>是否停用 </li>
 			</ul>
 			<ul class='row list_style' wx:for='{{ roomTypeform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
 				<li>{{ item.code }}</li>
 				<li>{{ item.descript }}</li>
 				<li>{{ item.bed_num }}</li>
-				<li>{{ item.bed_type }} </li>
+				<li>
+					<switch checked='{{ item.is_self_machine_use }}' data-flag='2' data-index="{{index}}" color='#2080DE' bindchange="listenerSwitch"/>
+				</li>
 				<li>
 					<switch checked='{{ item.is_halt }}' data-flag='0' data-index="{{index}}" color='#2080DE' bindchange="listenerSwitch"/>
 				</li>
@@ -36,15 +38,17 @@
 			<ul class='row'>
 				<li>房号</li>
 				<li>房型 </li>
-				<li>楼层 </li>
-				<li>楼栋 </li>
+				<li>楼栋-楼层 </li>
+				<li>是否自助机可见</li> 
 				<li>是否停用 </li>
 			</ul>
 			<ul class='row list_style' wx:for='{{ roomform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
 				<li>{{ item.room_no  }}</li>
 				<li>{{ item.room_type }}</li>
-				<li>{{ item.floor_number }}</li>
-				<li>{{ item.room_building }} </li>
+				<li>{{ item.floor_number }}-{{ item.room_building }}</li>
+				<li> 
+					<switch checked='{{ item.is_self_machine_use }}' data-flag='3' data-index="{{index}}"  color='#2080DE' bindchange="listenerSwitch"/>
+				</li>
 				<li>
 					<switch checked='{{ item.is_halt }}' data-flag='1' data-index="{{index}}"  color='#2080DE' bindchange="listenerSwitch"/>
 				</li>

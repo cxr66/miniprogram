@@ -84,12 +84,12 @@ Page({
       let url =app.globalData.url_online.url_9102 + 'room/room_status/update_room_type/'+that.data.roomTypeform[index].id+'/';
       that.data.roomTypeform[index].is_halt = value;
       http.postReq(url,that.data.roomTypeform[index], function(res) {
-        console.log('更新房型', res.data);
+        console.log('更新房型', res);
         wx.showToast({
           title: '更新成功',
         }); 
       });
-    }else{
+    }else if(flag == '1'){
       let url =app.globalData.url_online.url_9102 + 'room/room_status/update_room_map/'+that.data.roomform[index].id+'/';
       that.data.roomform[index].is_halt = value;
       console.log(that.data.roomform[index]);
@@ -99,6 +99,26 @@ Page({
           title: '更新成功',
         });
         
+      });
+    }else if(flag == '2'){
+      let url =app.globalData.url_online.url_9102 + 'room/room_status/update_room_type/'+that.data.roomTypeform[index].id+'/';
+      that.data.roomTypeform[index].is_self_machine_use = value;
+      http.postReq(url,that.data.roomTypeform[index], function(res) {
+        console.log('更新房型', res);
+        wx.showToast({
+          title: '更新成功',
+        }); 
+      });
+    }
+    else if(flag == '3'){
+      let url =app.globalData.url_online.url_9102 + 'room/room_status/update_room_map/'+that.data.roomform[index].id+'/';
+      that.data.roomform[index].is_self_machine_use = value;
+      console.log(that.data.roomform[index]);
+      http.postReq(url,that.data.roomform[index], function(res) {
+        console.log('更新房间设置', res);
+        wx.showToast({
+          title: '更新成功',
+        });
       });
     }
 

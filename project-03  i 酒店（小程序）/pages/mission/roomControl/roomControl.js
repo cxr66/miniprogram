@@ -103,6 +103,33 @@ Page({
       })
     });
   },
+   /* 开关转换 */
+   switchOpenOrOff(e) {
+    console.log(e.currentTarget.dataset);
+
+    switch (e.currentTarget.dataset.code) {
+      case 'light':
+        let equipment_type = e.currentTarget.dataset.eqid;
+        that.control_light(equipment_type, e.currentTarget.dataset.value);
+        break;
+
+
+      case 'curtain': 
+      let value ;
+      if(e.currentTarget.dataset.value){
+        value=1
+      }else{
+        value = 0
+      }
+        that.control_curtain(value);
+        break
+      default:
+        wx.showToast({
+          title: '稍后重试',
+          icon: "none"
+        })
+    }
+  },
   /* 开关转换 */
   switchChange(e) {
     console.log(e.detail.value);

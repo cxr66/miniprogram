@@ -31,7 +31,15 @@
   background-color: #FFFFFF;
   border-bottom: 1rpx solid#EEEEEE;
 }
-
+.switchbtn{
+  background-color: #2080DE;
+  padding: 0 20rpx;
+  color: #FFFFFF;
+  height: 40rpx; 
+  margin: 20rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+}
 /* button */
 .sign_btn{
   margin: 40rpx auto;

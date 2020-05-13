@@ -58,11 +58,11 @@ Page({
 
     wx.showLoading({
       title: ''
-    });
+    }); 
     http.postReq(app.globalData.url_online.url_9102 + 'room/rate_code/get_rate_code/', {
       rate_code: options.code,
       begin_date: Y + '-' + M + '-' + D,
-      end_date: Y + '-' + M + '-' + (D + 1)
+      end_date: Y + '-' + M + '-' + D
     }, function(res) {
       console.log('单个房价码价格详情', res.data);
       wx.hideLoading();

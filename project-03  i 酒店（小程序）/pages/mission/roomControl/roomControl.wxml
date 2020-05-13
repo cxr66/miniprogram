@@ -11,7 +11,11 @@
   <block wx:for='{{ lightList }}' wx:key='key'>
     <view class='section_item'>
       {{ item.equipment_name }}
-      <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' />
+      <view class="right row">
+        <view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='1' bindtap="switchOpenOrOff" >开</view>
+        <view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='0' bindtap="switchOpenOrOff" >关</view>
+      </view>
+      <!-- <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' /> -->
     </view>
   </block>
 
