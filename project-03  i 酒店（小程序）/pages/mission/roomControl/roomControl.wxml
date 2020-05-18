@@ -1,31 +1,70 @@
 <!--pages/mission/roomControl/roomControl.wxml-->
 <view class="header">
-  <view class='section name row fn_28'>
-    <input bindinput='bindinput' placeholder="请输入房间号" value='{{ room_num }}' auto-focus/>
-    <view class='title ' bindtap="query_equipment">查询</view>
-  </view>
+	<view class='section name row fn_28'>
+		<input bindinput='bindinput' placeholder="请输入房间号" value='{{ room_num }}' auto-focus />
+		<view class='title ' bindtap="query_equipment">查询</view>
+	</view>
 </view>
 
 <!-- 设备列表 -->
 <view hidden="{{ listShow }}">
-  <block wx:for='{{ lightList }}' wx:key='key'>
-    <view class='section_item'>
-      {{ item.equipment_name }}
-      <view class="right row">
-        <view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='1' bindtap="switchOpenOrOff" >开</view>
-        <view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='0' bindtap="switchOpenOrOff" >关</view>
+	<block wx:for='{{ lightList }}' wx:key='key'>
+		<view class='section_item'>
+			{{ item.equipment_name }}
+			<view class="right row">
+				<view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='1' bindtap="switchOpenOrOff">开</view>
+				<view class="switchbtn" data-code='light' data-eqid="{{item.equipment_type}}" data-value='0' bindtap="switchOpenOrOff">关</view>
+			</view>
+			<!-- <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' /> -->
+		</view>
+	</block>
+
+
+	<view class='section_item'>
+		窗帘
+		<!-- <switch class='right' checked='true' data-code='curtain' bindchange="switchChange" color='#2080DE' /> -->
+		<view class="right row">
+			<view class="switchbtn" data-code='curtain' data-value='1' bindtap="switchOpenOrOff">开</view>
+			<view class="switchbtn" data-code='curtain' data-value='0' bindtap="switchOpenOrOff">关</view>
+      <view class="switchbtn" data-code='curtain' data-value='2' bindtap="switchOpenOrOff">停</view>
+		</view>
+	</view>
+
+	<view class='autoView sign_btn' bindtap='no_bother'>
+		恢复房间状态
+	</view>
+
+  <view class='autoView sign_btn' bindtap='getAddRoomType'>
+		增加灯光
+	</view>
+</view>
+
+<!-- 增加灯光 -->
+
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ AddRoomTypeModal }}'></view>
+<view class="modalDlg column" catchtouchmove="preventTouchMove" style="height:60%;" hidden='{{ AddRoomTypeModal }}'>
+  <view class='choose_title'>
+    <view class='fn_24 line_height_60 '>厂家：</view>
+    <picker bindchange="bindPickerChange" value="{{ manConstIndex }}" range="{{ manConstList }}" range-key='manufacture_name' data-flag="1">
+      <view class="inline_block picker fn_24">
+        {{ manConstList[manConstIndex].manufacture_name }}
       </view>
-      <!-- <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' /> -->
-    </view>
-  </block>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
 
-
-  <view class='section_item'>
-    窗帘
-    <switch class='right' checked='true' data-code='curtain' bindchange="switchChange" color='#2080DE' />
+    <view class='fn_24 line_height_60 '>灯光类别：</view>
+    <picker bindchange="bindPickerChange" value="{{ roomLightTypeIndex }}" range="{{ roomLightTypeList }}" range-key='equipment_name' data-flag="2">
+      <view class="inline_block picker fn_24">
+        {{ roomLightTypeList[roomLightTypeIndex].equipment_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+ 
+ 
   </view>
 
-  <view class='autoView sign_btn' bindtap='no_bother'>
-    恢复房间状态
+  <view class='row'>
+    <view class='row_item' bindtap='openOrOffModal'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='addRoomTypePost'>确认</view>
   </view>
 </view>

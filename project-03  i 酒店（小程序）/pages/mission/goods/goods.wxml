@@ -48,7 +48,7 @@
   </view>
 </view>
 
-<!-- 新建送物任务 -->
+<!-- 新建modal -->
 <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ new_flag }}'></view>
 <!-- 房务人员 -->
 <view class="modalDlg column" catchtouchmove="preventTouchMove" style="height:60%;" hidden='{{ new_flag }}'>
