@@ -1,0 +1,115 @@
+/* pages/opeindex/roomControlSet/roomControlSet.wxss */
+/* pages/mission/roomControl/roomControl.wxss */
+.header{
+  background-color: #2080DE;
+  padding: 20rpx 0;
+}
+.section{
+  width: 96%;
+  margin: auto;
+  line-height: 60rpx;
+  background-color: #ffffff;
+  color: #000;
+  overflow: hidden;
+  border-radius: 40rpx;
+}
+.section .title{
+  width: 15%; 
+  line-height: 60rpx;
+  color: #2080DE;
+}
+.section input{
+  width: 80%;
+  height: 60rpx;
+  margin: 0 20rpx;
+}
+
+.section_item{
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  color: #222222;
+  background-color: #FFFFFF;
+  border-top: 1rpx solid#EEEEEE;
+  border-bottom: 1rpx solid#EEEEEE;
+}
+.switchbtn{
+  background-color: #2080DE;
+  padding: 0 20rpx;
+  color: #FFFFFF;
+  height: 40rpx; 
+  margin: 20rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+}
+/* button */
+.sign_btn{
+  margin: 40rpx auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
+}
+
+/* 弹窗 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 80;
+  background:rgba(0,0,0,0.3);
+}
+/* 房务人员 */
+.modalDlg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+  width:400rpx; 
+  height: 500rpx;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+  
+}
+.choose_title{
+  width: 360rpx;
+  margin: auto;
+}
+.choose_title picker,.choose_title_02 picker{
+  border: 2rpx solid #eeeeee;
+  padding: 20rpx;
+  line-height: 30rpx;
+}
+.choose_title textarea,.choose_title_02 textarea{
+  width: 460rpx;
+  height: 200rpx;
+  border: 2rpx solid #eeeeee;
+  line-height: 30rpx;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  transition:transform 0.3s;
+}
+.row_item{
+  width: 50%;
+  border-top: 1rpx #2080DE solid;
+  text-align: center;
+  color: #2080DE;
+  font-size: 26rpx;
+  line-height: 80rpx;
+}
+input{
+  border: 1rpx solid #eeeeee;
+  
+}

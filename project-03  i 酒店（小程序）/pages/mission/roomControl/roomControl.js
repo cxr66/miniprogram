@@ -85,6 +85,9 @@ Page({
       wx.hideLoading();
     });
   },
+  /**
+   * @getAddRoomType 获取添加房间类型 
+   * */  
   getAddRoomType(){
     that.openOrOffModal();
     http.getReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_equipment_type/?hierarchy=3', function (res) {

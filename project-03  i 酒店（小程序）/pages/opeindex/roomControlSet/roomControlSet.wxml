@@ -1,0 +1,76 @@
+<!--pages/opeindex/roomControlSet/roomControlSet.wxml--> 
+<!-- <view class="header">
+	<view class='section name row fn_28'>
+		<input bindinput='bindinput' placeholder="请输入房间号" value='{{ room_num }}' auto-focus />
+		<view class='title ' bindtap="query_equipment">查询</view>
+	</view>
+</view> -->
+
+<!-- 设备列表 -->
+<view >
+	<block wx:for='{{ roomList }}' wx:key='key'>
+		<view class='section_item'>
+			{{ item.room_number }}
+			<view class="right row">
+				<view class="switchbtn" data-roomno="{{item.room_number}}" bindtap="getRoomSetData">客控设置</view>
+			</view>
+			<!-- <switch class='right' checked='{{ item.checked }}' data-code='light' data-eqid="{{item.equipment_type}}" bindchange="switchChange" color='#2080DE' /> -->
+		</view>
+	</block>
+</view>
+
+<!-- 设置 -->
+
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal }}'></view>
+<view class="modalDlg column" catchtouchmove="preventTouchMove" hidden='{{ modal }}'>
+  <view class='choose_title'>
+    <view class='fn_24 line_height_60 '>厂家：</view>
+    <picker bindchange="bindPickerChange" value="{{ manConstIndex }}" range="{{ manConstList }}" range-key='manufacture_name' data-flag="1">
+      <view class="inline_block picker fn_24">
+        {{ manConstList[manConstIndex].manufacture_name }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+
+    <view class='fn_24 line_height_60 '>开关类别：</view>
+    <picker bindchange="bindPickerChange" value="{{ roomSettingIndex }}" range="{{ roomSettingList }}" range-key='number_of_keys_detail' data-flag="2">
+      <view class="inline_block picker fn_24">
+        {{ roomSettingList[roomSettingIndex].number_of_keys_detail }}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+ 
+ 
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='openOrOffModal'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='switchsetmodal'>确认</view>
+  </view>
+</view>
+
+
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ setmodal }}'></view>
+<scroll-view class="modalDlg column" catchtouchmove="preventTouchMove" scroll-y style=" -webkit-overflow-scrolling: touch;overflow-y: scroll;" hidden='{{ setmodal }}'>
+  <view class='choose_title'  wx:for='{{ switch_codes }}' wx:key='key'>
+    <view class='fn_24 line_height_60 '>开关显示 {{index+1}}：</view>
+    <picker bindchange="bindPickerChange" value="{{ switchCodeIndex }}" range="{{ lightShowList }}" range-key='switch_code_detail' data-flag="3" data-index="{{index}}">
+      <view class="inline_block picker fn_24"> 
+        {{switch_code_detail_list[index].switch_code_detail}}
+      </view>
+      <image class='select_img right' src='/pages/img/icon-bottom.png' background-size="contain"></image>
+    </picker>
+
+    <view>
+      <view class='fn_24 line_height_60 '>开关键值{{index+1}}：</view> 
+		  <input class="fn_26" bindinput='bindinput' data-index="{{index}}" placeholder="请输入开关键值" value='{{ item.switch_code }}' /> 
+    </view>
+    
+   
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='switchsetmodal'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='addRoomSetPost'>确认</view>
+  </view>
+</scroll-view>

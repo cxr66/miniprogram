@@ -36,6 +36,11 @@ Page({
         link: '/pages/opeindex/switch/switch',
         desc: '开关配置',
         url: '/pages/img/opeindex/fill.png'
+      },
+      {
+        link: '/pages/opeindex/roomControlSet/roomControlSet',
+        desc: '客控设置',
+        url: '/pages/img/opeindex/fill.png'
       }
       ],
   },

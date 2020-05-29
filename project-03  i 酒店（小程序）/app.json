@@ -15,6 +15,7 @@
     "pages/opeindex/opetest/opetestlist/opetestlist",
     "pages/opeindex/opeparfill/opeparfill",
     "pages/opeindex/switch/switch",
+    "pages/opeindex/roomControlSet/roomControlSet",
 
     "pages/zjjindex/zjjindex",
     "pages/zjjindex/zjjorder/zjjorder",

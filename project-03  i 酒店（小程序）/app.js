@@ -51,7 +51,7 @@ App({
 
   onLaunch: function() {
     that = this;
-
+    
     if (wx.getStorageSync('codeInfo')){
       // 展示本地存储能力
       that.globalData.codeInfo = wx.getStorageSync('codeInfo');
