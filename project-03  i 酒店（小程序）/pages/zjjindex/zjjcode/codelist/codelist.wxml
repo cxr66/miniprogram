@@ -1,0 +1,34 @@
+<!--pages/zjjindex/zjjcode/codelist/codelist.wxml-->
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+<!-- 
+<view class='autoView sign_btn' bindtap="navigate" data-link="/pages/zjjindex/zjjpricecode/zjjpricecode">
+  新 增
+</view> -->
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+    <view class=' table'>
+      <ul class='row'>
+        <li>姓名</li> 
+        <li>房间号</li> 
+        <li>入住时间</li> 
+        <li>离店时间</li> 
+      </ul>
+      <ul class='row list_style' wx:for='{{ codeList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}' bindtap='navigate' data-link="/pages/zjjindex/zjjcanvas/zjjcanvas?qrcode={{ item.QRCode }}">
+        <li>{{ item.name }}</li> 
+        <li>{{ item.room_number }}</li> 
+        <li>{{ item.arr_time }}</li>
+        <li>{{ item.leave_time }}</li> 
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item>
+
+</swiper>

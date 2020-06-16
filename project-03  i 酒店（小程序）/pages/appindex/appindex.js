@@ -65,7 +65,7 @@ Page({
     http.getReq(url, function (res) {
 
       console.log(res.data);
-      let audit = res.data.audit;
+      let audit = res.data.audit;// 0 民宿
       if(audit){
         that.setData({
           settingList: [{

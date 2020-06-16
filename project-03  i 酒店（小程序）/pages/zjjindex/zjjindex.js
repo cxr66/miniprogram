@@ -37,11 +37,11 @@ Page({
       link: '/pages/zjjindex/zjjcode/zjjcode',
       url: '/pages/img/zjjindex/icon-ercode.png'
     },
-    {
+    /* {
       desc: '公安黑名单',
       link: '/pages/zjjindex/zjjgongan/zjjgongan',
       url: '/pages/img/zjjindex/icon-gongan.png'
-    },
+    }, */
     {
       desc: '发票管理',
       link: '/pages/zjjindex/zjjfapiao/zjjfapiao',

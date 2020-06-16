@@ -8,6 +8,7 @@ var app = getApp();
   * author: cxr
 */
 function getReq(url, cb) {
+  wx.showLoading();
   wx.request({
     url: url,
     method: 'GET',
@@ -53,11 +54,15 @@ function getReq(url, cb) {
         url: '/pages/logins/logins',
       })
       return typeof cb == "function" && cb(false);
+    },
+    complete: function () {
+      wx.hideLoading();
     }
   })
 }
 
 function getDataReq(url, params, cb) {
+  wx.showLoading();
   wx.request({
     url: url,
     method: 'GET',
@@ -103,11 +108,15 @@ function getDataReq(url, params, cb) {
         url: '/pages/logins/logins',
       })
       return typeof cb == "function" && cb(false);
+    },
+    complete: function () {
+      wx.hideLoading();
     }
   })
 }
 
 function postReq(url, data, cb) {
+  wx.showLoading();
   wx.request({
     url: url,
     header: {
@@ -154,6 +163,9 @@ function postReq(url, data, cb) {
         url: '/pages/logins/logins',
       })
       return typeof cb == "function" && cb(false)
+    },
+    complete: function () {
+      wx.hideLoading();
     }
   })
 }

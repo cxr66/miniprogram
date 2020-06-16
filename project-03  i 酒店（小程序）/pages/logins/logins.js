@@ -489,6 +489,7 @@ Page({
         form: wx.getStorageSync('form')
       })
     }
+ 
   },
 
   /**

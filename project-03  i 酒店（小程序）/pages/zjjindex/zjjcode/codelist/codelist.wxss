@@ -1,22 +1,13 @@
-/* pages/homestay/homestayform/homestayform.wxss */
+/* pages/zjjindex/zjjcode/codelist/codelist.wxss */
 
 /* tab部分 */
-.red{
-  background-color: red;
-}
-.cancle{
-  position: absolute;
-  top: 30rpx;
-  right: 40rpx;
-}
 .tab {
   width: 100%; 
   white-space: nowrap;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: scroll;
   line-height: 80rpx;
 }
-
 .tab-item {
   display: inline-block;
   text-align: center;
@@ -63,7 +54,6 @@
 .ordersec{
   padding: 30rpx 40rpx;
   border-bottom: 1rpx solid #eeeeee;
-  position: relative;
 }
 .ordersec text{
   line-height: 40rpx;
@@ -75,4 +65,41 @@
 
 .more{
   padding: 20rpx 0;
+}
+
+
+.table{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.table ul{
+  width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.table ul li{
+  width: 25%;
+  line-height: 80rpx;
+  text-align: center;
+  overflow-x: scroll;
+} 
+.table .list_style{
+  color: #777777;
+}
+.table .date_color{
+  color: #2080DE;
+}
+
+/* button */
+.sign_btn{
+  margin: 20rpx auto 0 auto;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #2080DE;
 }

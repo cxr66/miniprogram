@@ -36,17 +36,7 @@ Page({
         })
       },
     })
-    wx.showLoading({
-      title: ''
-    });
-    http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300&ordering=-create_time', function(res) {
-      console.log('查询在住单列表', res.data);
-      wx.hideLoading();
-      res.data.results.reverse();
-      that.setData({
-        orderform: res.data.results
-      })
-    });
+    
   },
 
   /* 点击切换 */
@@ -73,19 +63,17 @@ Page({
     })
     if (that.data.menuList[this.data.currentTab].name == '在住订单') {
 
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list/?page_size=300', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300', function (res) {
         console.log('查询在住单列表', res.data);
-        wx.hideLoading();
-        res.data.results.reverse();
+        wx.hideLoading(); 
         that.setData({
           orderform: res.data.results
         })
       });
     } else {
-      http.getReq(app.globalData.url_online.url_9102 + 'ordering/master_base_list_homestay/', function (res) {
+      http.getReq(app.globalData.url_online.url_9102 + 'bill/get_temporary_master_base_list/?page_size=300', function (res) {
         console.log('查询预定单列表', res.data);
-        wx.hideLoading();
-        res.data.results.reverse();
+        wx.hideLoading(); 
         that.setData({
           orderform: res.data.results
         })
@@ -101,6 +89,45 @@ Page({
   search() {
 
   },
+  /** *
+   * @navigate 跳转
+    */
+   navigate(e){
+     wx.navigateTo({
+       url: e.currentTarget.dataset.link,
+     })
+   },
+  /** *
+   * @cancle 取消订单
+  */
+  cancle(e){
+    wx.showModal({
+      title: '提示',
+      content: '是否确认取消?',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          http.postReq(app.globalData.url_online.url_9102 + 'bill/home_stay_cancel/',{id: e.currentTarget.dataset.id},function (res) {
+            console.log('取消预定单', res.data);
+            wx.showToast({
+              title: '取消成功',
+              icon:'none'
+            })
+            http.getReq(app.globalData.url_online.url_9102 + 'bill/get_temporary_master_base_list/?page_size=300', function (res) {
+              console.log('查询预定单列表', res.data);
+              wx.hideLoading();
+              that.setData({
+                orderform: res.data.results
+              })
+            });
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
+  },
   
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -113,7 +140,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    wx.showLoading({
+      title: ''
+    });
+    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&ordering=-create_time', function(res) {
+      console.log('查询在住单列表', res.data);
+      wx.hideLoading(); 
+      that.setData({
+        orderform: res.data.results
+      })
+    });
   },
 
   /**

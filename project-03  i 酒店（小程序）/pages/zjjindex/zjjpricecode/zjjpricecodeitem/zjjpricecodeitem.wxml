@@ -131,7 +131,7 @@
       </ul>
       <ul class='row list_style' wx:for='{{ form.price }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":"" }}'>
         <li>{{ item.room_type }}</li>
-        <li> <input value='{{ item[now_date] }}' bindinput="bindinput" data-index="{{index}}" /> </li> 
+        <li> <input value='{{ item.price_list[0].room_price }}' bindinput="bindinput" data-index="{{index}}" /> </li> 
         <!-- <li>保存</li>  --> 
       </ul> 
     </view>

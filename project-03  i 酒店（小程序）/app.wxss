@@ -80,6 +80,10 @@ button::after{
 .line_height_60{
   line-height: 60rpx;
 }
+
+.width_50{
+  width: 50%;
+}
 .fn_20{
   font-size: 20rpx;
 }

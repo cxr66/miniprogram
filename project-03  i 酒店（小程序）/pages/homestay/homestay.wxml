@@ -1,2 +1,82 @@
-<!--pages/homestay/homestay.wxml-->
-<text>pages/homestay/homestay.wxml</text>
+<!--pages/homestay/homestay.wxml--> 
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+    <view class='sign_btn'>客人信息</view>
+    <view class='section'>
+      <ul class='row'>
+        <li>姓名</li>
+        <li>身份证号</li>
+        <li>人脸状态</li>
+      </ul>
+      <ul class='row list_style' wx:for='{{ formdetail.master_guest }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.name }}</li>
+        <li>{{ item.id_no }}</li>
+        <li>{{ item.face_id }}</li> 
+      </ul>
+      <ul class='row list_style'>
+        <li style='width: 100%;'>当前条件下无更多客人信息</li>
+      </ul>
+    </view>
+    <view class='sign_btn'>基础信息</view>
+    <view class="sec">
+      <text class="fn_28">单号</text>
+      <input disabled value='{{ formdetail.order_no }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">预定人</text>
+      <input disabled value='{{ formdetail.master_guest_list }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">预定电话号码</text>
+      <input disabled value='{{ formdetail.master_phone_list }}' />
+    </view>
+    <!-- <view class="sec">
+      <text class="fn_28">来源码</text>
+      <input disabled value='{{ formdetail.code_src_desc }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">市场码</text>
+      <input disabled value='{{ formdetail.code_market_desc }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">房价码</text>
+      <input disabled value='{{ formdetail.rate_code_desc }}' />
+    </view> -->
+    <view class="sec">
+      <text class="fn_28">房间号</text>
+      <input disabled value='{{ formdetail.room_number }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">房价</text>
+      <input disabled value='{{ formdetail.room_price }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">入住天数</text>
+      <input disabled value='{{ formdetail.days }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">订单状态</text>
+      <input disabled value='{{ formdetail.master_status_lable_desc }}' />
+    </view>  
+    <view class="sec">
+      <text class="fn_28">入住时间</text>
+      <input disabled value='{{ formdetail.arr_time }}' />
+    </view>
+    <view class="sec">
+      <text class="fn_28">离店时间</text>
+      <input disabled value='{{ formdetail.leave_time }}' />
+    </view>  
+    <view class='sign_btn' style="background-color: #ff0000;" bindtap="cancle">取消订单</view>
+    
+  </swiper-item>
+ 
+</swiper>

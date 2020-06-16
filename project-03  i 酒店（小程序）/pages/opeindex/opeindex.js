@@ -16,11 +16,13 @@ Page({
     settingList: [{
       desc: '云打印',
       link: '/pages/opeindex/opeprintlist/opeprintlist',
-      url: '/pages/img/opeindex/print.png'
+      url: '/pages/img/opeindex/print.png',
+      bg:'background:linear-gradient(0deg,rgba(254,76,78,1) 0%,rgba(254,104,106,1) 100%);'
     }, {
         desc: '测试用例',
         link: '/pages/opeindex/opetest/opetestlist/opetestlist',
-        url: '/pages/img/opeindex/test.png'
+        url: '/pages/img/opeindex/test.png',
+        bg:'background:linear-gradient(0deg,rgba(136,90,253,1) 0%,rgba(146,130,254,1) 100%);'
       },
      /*  {
         desc: '参数填入',
@@ -30,17 +32,20 @@ Page({
       {
         link: '/pages/opeindex/opecateye/cateye',
         desc: '猫眼参数',
-        url: '/pages/img/opeindex/fill.png'
+        url: '/pages/img/opeindex/fill.png',
+        bg:'background:linear-gradient(0deg,rgba(116,207,50,1) 0%,rgba(163,227,70,1) 100%);'
       },
       {
         link: '/pages/opeindex/switch/switch',
         desc: '开关配置',
-        url: '/pages/img/opeindex/fill.png'
+        url: '/pages/img/opeindex/fill.png',
+        bg:''
       },
       {
         link: '/pages/opeindex/roomControlSet/roomControlSet',
         desc: '客控设置',
-        url: '/pages/img/opeindex/fill.png'
+        url: '/pages/img/opeindex/fill.png',
+        bg:'background:linear-gradient(0deg,rgba(116,207,50,1) 0%,rgba(163,227,70,1) 100%);'
       }
       ],
   },

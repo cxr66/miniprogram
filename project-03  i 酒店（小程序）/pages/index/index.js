@@ -175,7 +175,7 @@ Page({
       mask: true
     })
     // 状态筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function (res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'system/settings/get_code_room_state_list/', function (res) {
       // console.log('状态筛选');
       // console.log(res.data);
       for (let i in that.data.check_list) {
@@ -190,6 +190,7 @@ Page({
       })
       // 获取的当前房态信息
       that.get_room_map_list();
+      that.get_select();
     });
   },
   get_room_map_list() {
@@ -758,6 +759,7 @@ Page({
   navigate: function (e) {
     let link = e.currentTarget.dataset.link,
       status = e.currentTarget.dataset.status;
+      console.log(link)
     if (that.data.cg_visiable) {
       switch (status) {
 
@@ -832,8 +834,22 @@ Page({
     }
 
 
-    // 楼栋筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_building_list/', function (res) {
+  //  that.change_room_status();
+
+    // 获取维修原因数据
+    http.getReq(app.globalData.url_online.url_9103 + 'system/settings/get_code_base_list/?parent_code=room_maint_reason', function (res) {
+      console.log('维修原因', res.data);
+      that.setData({
+        reasonArray: res.data.results
+      })
+    });
+  },
+  /**
+   * @get_select 获取筛选
+   *  */  
+  get_select(){
+     // 楼栋筛选
+     http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_building_list/', function (res) {
       console.log('楼栋筛选', res.data);
       for (let i in that.data.check_list) {
         if (that.data.check_list[i].name === '楼栋筛选') {
@@ -871,15 +887,7 @@ Page({
         }
       }
     });
-    // that.change_room_status();
-
-    // 获取维修原因数据
-    http.getReq(app.globalData.url_online.url_9103 + 'system/settings/get_code_base_list/?parent_code=room_maint_reason', function (res) {
-      console.log('维修原因', res.data);
-      that.setData({
-        reasonArray: res.data.results
-      })
-    });
+    // 
   },
   //  更改房态钱颜色的函数
   room_change_color(results) {
@@ -911,7 +919,7 @@ Page({
 
 
     // 状态筛选
-    http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_state_list/', function (res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'system/settings/get_code_room_state_list/', function (res) {
       console.log('状态筛选', res.data);
       for (let i in that.data.check_list) {
         if (that.data.check_list[i].name === '状态筛选') {
@@ -927,11 +935,6 @@ Page({
       that.get_room_map_list()
     });
 
-    // 占用code
-    /* http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_code_room_occupy_list/', function(res) {
-      console.log('占用code',res.data);
-
-    }); */
 
     // 设备态请求接口
     /* that.get_eq_check();

@@ -158,29 +158,31 @@ App({
     userInfo: null, //微信登录信息
     systemInfo: null, //系统信息
     platform: null, //平台信息
-    url_online: {
+    url_offline: {
       url_login: 'http://47.98.113.173:9519/v1/' ,
-      url_9101: 'http://47.98.113.173:9107/v1/room/',
-      url_9102: 'http://47.98.113.173:9107/v1/',
-      url_9103: 'http://47.98.113.173:9107/v1/', 
-      url_9104: 'http://47.98.113.173:9104/v1/',
+      url_9101: 'http://dev.eloadspider.cn/v1/room/',
+      url_9102: 'http://dev.eloadspider.cn/v1/',
+      url_9103: 'http://dev.eloadspider.cn/v1/', 
+      url_9104: 'http://dev.eloadspider.cn/v1/',
       url_9202: 'http://47.98.113.173:9202/v1/',
       url_8091: 'http://47.98.113.173:8091/v1/',
-      url_9109: 'http://47.98.113.173:9101/v1/',
+      url_9109: 'http://dev.eloadspider.cn/v1/',
       url_eq: 'https://equipments.crowncrystalhotel.com/v2/',
       url_9503: 'http://47.98.113.173:9503/v1/',
       // url_img: 'https://image.eloadspider.com',
       url_img: 'https://ispider-oss.oss-cn-hangzhou.aliyuncs.com/',
       url_monitor: 'http://47.98.113.173:8082/v1/', 
+      url_public: 'https://www.sdlockpf.cn:19943/',
+      url_pro: 'http://pro.eloadspider.cn/v1/'
     },
 
     url_online: { 
       url_login:'https://login.eloadspider.com/v1/',
-      url_9101: 'https://ispider.eloadspider.com/v1/room/',
-      url_9102: 'https://ispider.eloadspider.com/v1/',
-      url_9103: 'https://ispider.eloadspider.com/v1/',
+      url_9101: 'https://pro.eloadspider.cn/v1/room/',
+      url_9102: 'https://pro.eloadspider.cn/v1/',
+      url_9103: 'https://pro.eloadspider.cn/v1/',
       url_machine: 'https://machine.crowncrystalhotel.com/v1/',
-      url_9104: 'https://ispider.eloadspider.com/v1/task/',
+      url_9104: 'https://pro.eloadspider.cn/v1/task/',
       url_9202: 'https://bill.eloadspider.com/v1/',
       url_9202_v2: 'https://bill2.crowncrystalhotel.com/v2/',
       url_8091: 'https://room.eloadspider.com/v1/',
@@ -191,7 +193,8 @@ App({
       url_img: 'https://ispider-oss.oss-cn-hangzhou.aliyuncs.com/',
       url_monitor: 'https://elevators.eloadspider.com/v1/',
       url_sms:'https://sms.eloadspider.com/v1/',
-      url_public: 'https://www.sdlockpf.cn:19943/'
+      url_public: 'https://www.sdlockpf.cn:19943/',
+      url_pro: 'http://pro.eloadspider.cn/v1/'
     }
   }
 })

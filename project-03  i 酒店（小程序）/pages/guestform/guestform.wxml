@@ -25,7 +25,7 @@
       </ul>
       <ul class='row list_style' wx:for='{{ guest_list }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li class='date_color'>{{ item.room_number }}</li>
-        <li>{{ item.master_guest_list[0].name }}</li>
+        <li>{{ item.master_guest[0].name }}</li>
         <li>{{ item.room_price }}</li>
         <li>{{ item.arr_time }}</li>
         <li>{{ item.leave_time }}</li>

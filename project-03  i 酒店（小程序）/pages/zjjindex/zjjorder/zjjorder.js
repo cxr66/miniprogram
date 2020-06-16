@@ -45,7 +45,7 @@ Page({
     http.getReq(app.globalData.url_online.url_9102 + "bill/get_master_base_list/?code_market=ZZJ", function (res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
-      res.data.results.reverse();
+      // res.data.results.reverse();
       that.setData({
         orderform: res.data.results
       })
@@ -80,7 +80,7 @@ Page({
       http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
         console.log('查询在住单列表', res.data);
         wx.hideLoading();
-        res.data.results.reverse();
+        // res.data.results.reverse();
         that.setData({
           orderform: res.data.results
         })
@@ -89,7 +89,7 @@ Page({
       http.getReq(app.globalData.url_online.url_9102 + "bill/get_check_out_master_base_list/?page_size=300&code_market=ZZJ", function (res) {
         console.log('查询退房单列表', res.data);
         wx.hideLoading();
-        res.data.results.reverse();
+        // res.data.results.reverse();
         that.setData({
           orderform: res.data.results
         })
@@ -98,7 +98,7 @@ Page({
       http.getReq(app.globalData.url_online.url_9102 + 'bill/get_abnormal_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
         console.log('查询异常单列表', res.data);
         wx.hideLoading();
-        res.data.results.reverse();
+        // res.data.results.reverse();
         that.setData({
           orderform: res.data.results
         })

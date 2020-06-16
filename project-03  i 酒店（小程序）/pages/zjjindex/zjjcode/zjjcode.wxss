@@ -1,1 +1,44 @@
 /* pages/zjjindex/zjjcode/zjjcode.wxss */
+
+page{
+  height: 100%;
+  background-color: #fff;
+}
+.page-section{
+  margin-bottom: 20rpx;
+  padding:30% 0;
+}
+.button-hover {
+  background-color: red;
+}
+/** 添加自定义button点击态样式类**/
+.other-button-hover {
+  background-color: blue;
+}
+.login_in {
+  /* overflow: hidden; */
+  color: #777;
+  border-radius: 10rpx;
+  border: 4rpx solid #eee;
+  margin: 15rpx 0;
+  line-height: 120rpx;
+  font-size: 24rpx;
+}
+ input{
+   height: 120rpx;
+   border: 1rpx solid #eee;
+  line-height: 120rpx;
+  font-size: 30rpx;
+}
+
+/* 按钮 */
+
+.login_btn {
+  color: #fff;
+  background-color: #2080de;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.r1_2 canvas{width: 400rpx;height: 400rpx;margin-top: -30rpx;position: relative;left: 50%;margin-left: -200rpx;}

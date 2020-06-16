@@ -43,14 +43,13 @@ Page({
     wx.showLoading();
     // 获取的预订单
     let params = {
-      room_number: room_number,
-      "search_type": "1",
+      room_number: room_number
     }
-    http.postReq(app.globalData.url_online.url_9202_v2 + 'booking/get_reserve_method/', params, function (res) {
+    http.getDataReq(app.globalData.url_online.url_9102 + 'bill/get_temporary_master_base_list/?page_size=300', params, function (res) {
       console.log('获取是否有预订单', res.data);
       if (res.message == 'success') {
         wx.hideLoading();
-        res.data.results.reverse();
+        // res.data.results.reverse();
         that.setData({ orderform: res.data.results })
       }
     });

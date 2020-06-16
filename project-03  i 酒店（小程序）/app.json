@@ -23,6 +23,8 @@
     "pages/zjjindex/zjjcard/zjjcard",
     "pages/zjjindex/zjjxieyi/zjjxieyi",
     "pages/zjjindex/zjjcode/zjjcode",
+    "pages/zjjindex/zjjcode/codelist/codelist",
+    "pages/zjjindex/zjjcanvas/zjjcanvas",
     "pages/zjjindex/zjjgongan/zjjgongan",
     "pages/zjjindex/zjjfapiao/zjjfapiao",
     "pages/zjjindex/zjjsetting/zjjsetting",
@@ -36,6 +38,7 @@
     "pages/index/check/check",
     "pages/index/statusrecord/statusrecord",
     "pages/index/order/order",
+    "pages/index/order/orderDetail/orderDetail",
     "pages/index/orderrecord/orderrecord",
 
     "pages/equipment/equipment",

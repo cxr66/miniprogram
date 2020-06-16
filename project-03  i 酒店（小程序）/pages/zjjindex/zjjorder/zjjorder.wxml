@@ -18,7 +18,7 @@
         <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.master_guest_list[0].name }}</li>
+        <li>{{ item.master_guest_list }}</li>
         <li>{{ item.room_number }}</li>
         <li>{{ item.master_type_desc }}</li>
         <li>{{ item.arr_time }}</li> 
@@ -39,7 +39,7 @@
         <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.master_guest_list[0].name }}</li>
+        <li>{{ item.master_guest_list }}</li>
         <li>{{ item.room_number }}</li>
         <li>{{ item.master_type_desc }}</li>
         <li>{{ item.arr_time }}</li> 
@@ -60,7 +60,7 @@
         <li>离开时间</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-        <li>{{ item.master_guest_list[0].name }}</li>
+        <li>{{ item.master_guest_list }}</li>
         <li>{{ item.room_number }}</li>
         <li>{{ item.master_type_desc }}</li>
         <li>{{ item.arr_time }}</li> 

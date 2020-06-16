@@ -1,0 +1,4 @@
+<!--pages/zjjindex/zjjcanvas/zjjcanvas.wxml-->
+<view class="r1_2">
+    <canvas style="width:400rpx;height:400rpx;" canvas-id="mycanvas" />
+  </view>

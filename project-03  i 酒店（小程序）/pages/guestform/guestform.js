@@ -15,9 +15,10 @@ Page({
     /* tab栏 */
     menuList: [{
       name: "在住客人"
-    }, {
+    }, /* {
       name: "预抵客人"
-    }, ],
+    },  */
+  ],
     tabScroll: 0,
     currentTab: 0,
     /* 客人列表 */
@@ -41,7 +42,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_list/?page_size=300&code_market=ZZJ', function (res) {
+    http.getReq(app.globalData.url_online.url_pro + 'bill/get_master_base_list/?page_size=300', function (res) {
       console.log('查询在住单列表', res.data);
       wx.hideLoading();
       that.setData({
@@ -87,7 +88,8 @@ Page({
           guest_list: res.data.results
         })
       });
-    } else {
+    } 
+    /* else {
       
       http.getReq(app.globalData.url_online.url_9102 + 'bill/get_reserve_base_list/?page=1&page_size=300', function (res) {
         console.log('查询预定单列表', res.data);
@@ -96,7 +98,7 @@ Page({
           guest_list: res.data.results
         })
       });
-    }
+    } */
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

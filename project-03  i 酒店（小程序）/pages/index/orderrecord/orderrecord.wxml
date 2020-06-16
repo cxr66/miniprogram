@@ -12,13 +12,13 @@
   <swiper-item class="content-item">
     <view class="orderform bg_fff">
       <view class="ordersec column fn_22" wx:for='{{ orderform }}' wx:key='key'>
-        <view class="cg_color fn_26">订单号：{{ item.reserve_rate[0].order_no }}
+        <view class="cg_color fn_26">订单号：{{ item.order_no }}
           <!-- <text class='type fn_22 color_fff bg_color'>{{item.code_market_desc }}</text>
           <text class='type fn_22 color_fff bg_color'>{{item.code_src_desc }}</text> -->
         </view>
-        <text>预订人：{{  item.reserve_base[0].rsv_person_name }}</text>
-        <text>联系电话：{{  item.reserve_base[0].mobile_master }}</text>
-        <text>到店：{{ item.reserve_base[0].arr_time }} 离店：{{ item.reserve_base[0].leave_time }}</text>
+        <text>预订人：{{  item.master_guest_list }}</text>
+        <text>联系电话：{{  item.master_phone_list }}</text>
+        <text>到店：{{ item.arr_time }} 离店：{{ item.leave_time }}</text>
       </view>
     </view>
     <view class="orderform bg_fff more center">当前条件下无更多信息</view>

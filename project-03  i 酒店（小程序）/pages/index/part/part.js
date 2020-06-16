@@ -52,7 +52,7 @@ Page({
   },
   link_room_func(e) {
     wx.redirectTo({
-      url: '/pages/index/part/part?room_no=' + e.currentTarget.dataset.roomno,
+      url: '/pages/index/part/part?room_no=' + e.currentTarget.dataset.roomno+'&masterId='+e.currentTarget.dataset.id,
     })
   },
   /**
@@ -61,7 +61,8 @@ Page({
   onLoad: function(options) {
     that = this;
     that.setData({
-      room_no: options.room_no
+      room_no: options.room_no,
+      master_id: options.masterId
     })
     // console.log(options.id);
     /* 发送请求 */
@@ -69,28 +70,24 @@ Page({
       title: '',
       mask: true
     })
-
+    that.get_user_department();
     
     // state:0:预订房；1：入住房
  
-     http.getReq(app.globalData.url_online.url_9102+'ordering/master_base_list/?room_number='+that.data.room_no
+     http.getReq(app.globalData.url_online.url_9102+'bill/get_master_base_info/'+that.data.master_id+'/'
     , function(res) {
       console.log('任京获取是否有入住', res.data);
-      if (res.data.count) {
+      if (res.data) {
         that.setData({
-          partList: res.data.results,
-          account_id: res.data.results[0].account_id,
-          order_no: res.data.results[0].order_no
+          partList: res.data,
+          account_id: res.data.account.id,
+          order_no: res.data.order_no
         })
         // that.get_info_by_account_id(res.data.results[0].account_id);
 
-        // 查询消费
-        let params = {
-          account_id: that.data.account_id,
-          page_num: 1,
-          page_size: 9999
-        };
-        // that.get_consume_by_roomnum(params);
+        // 查询消费 
+        that.get_combine_list();
+        that.get_consume_by_roomnum();
       } else {
         wx.showToast({
           title: '未查询到入住信息',
@@ -107,6 +104,17 @@ Page({
     // that.get_pay_mode_reason();
     // AR账户
     // that.get_ar_account({});
+  },
+  /** 
+   * @get_user_department 获取酒店详情信息
+   */
+  get_user_department() {
+    let url = app.globalData.url_online.url_login + 'common/hotel/get_info/' + app.globalData.userInfo.hotel_id;
+    http.getReq(url, function (res) {
+      console.log(res.data);
+      that.setData({ "hotel_type": res.data.audit, hotelInfo: res.data })// 酒店类型： 0: 名宿； 1: 酒店
+
+    });
   },
   /**
    * @checkDetail  查房 
@@ -136,33 +144,43 @@ Page({
     });
 
   },
-  /* 根据 account_id 单个房间查消费 */
-  /* get_consume_by_roomnum(params) {
-    let url = app.globalData.url_online.url_login + 'finance/account/get_by_room_numbers';
-    http.postReq(url, params, function(res) {
-      console.log('消费', res.data);
-      that.setData({
-        custom_list: res.data,
-      })
-    });
-  }, */
+ 
 
   /***
    * @get_consume_by_roomnum 根据房间号查询消费（可能已经废弃）
    * * */  
-  get_consume_by_roomnum(params) {
-    let url = app.globalData.url_online.url_login + 'finance/charge_detail/info_list';
-    console.log(params);
+  get_consume_by_roomnum() {
+    let url = app.globalData.url_online.url_9102+ 'accounts/get_charge_detail_list/';
+    // console.log(params);
+    // 查询消费 
+    let accountArr = [];
+    accountArr.push(that.data.account_id);
+    console.log(accountArr)
+    let params = {
+      account:  accountArr,
+      only_self: 1
+    };
     http.postReq(url, params, function(res) {
       console.log('消费', res.data);
-      for (let i in res.data.list) {
-        res.data.list[i].charge_amount = res.data.list[i].charge_amount * -1
+      for (let i in res.data.results) {
+        res.data.results[i].charge_amount =Math.abs(res.data.results[i].charge_amount ) 
       }
       that.setData({
-        custom_list: res.data.list
+        custom_list: res.data.results
       })
     });
   },
+  /** *
+  * @get_combine_list 获取联房列表
+  */
+ get_combine_list(){
+  http.getReq(app.globalData.url_online.url_9102 + 'bill/get_combine_master_list/'+that.data.master_id+'/', function(res) {
+    console.log('联房列表', res.data);
+    that.setData({
+      combineList: res.data
+    })
+  });
+ },
   /** *
    * @get_info_by_account_id 按照account_id查询单个房间的账务信息 
    * */
@@ -312,13 +330,9 @@ Page({
             icon: 'none'
           })
           that.add_btn_charge();
-          // 查询消费
-          let params = {
-            account_id: that.data.account_id,
-            page_num: 1,
-            page_size: 9999
-          };
-          that.get_consume_by_roomnum(params);
+          // 查询消费 
+
+          that.get_consume_by_roomnum();
 
           that.get_info_by_account_id(that.data.account_id);
         } else {
@@ -406,11 +420,12 @@ Page({
       });
 
   },
-  /* 退房 */
+  /** *
+   *@check_out  退房 
+   */
   check_out() {
-    let url = app.globalData.url_online.url_9202_v2 + 'checkin/middle_check_out/',
-      params = {
-        "order_no": that.data.order_no
+    let url = app.globalData.url_online.url_9102 + 'bill/check_out/'+that.data.master_id+'/',
+      params = { 
       };
     http.postReq(url, params, function(res) {
       console.log('退房', res);
@@ -420,7 +435,7 @@ Page({
           icon: 'none'
         })
 
-        wx.redirectTo({
+        wx.reLaunch({ 
           url: '/pages/index/index',
         })
       }
@@ -463,24 +478,19 @@ Page({
     wx.showLoading({
       title: '',
     }) 
-    http.getReq(app.globalData.url_online.url_9102+'ordering/master_base_list/?room_number='+that.data.room_no
+    http.getReq(app.globalData.url_online.url_9102+'bill/get_master_base_info/'+that.data.master_id+'/'
     , function(res) {
       console.log('任京获取是否有入住', res.data);
-      if (res.data.count) {
+      if (res.data) {
         that.setData({
-          partList: res.data.results,
-          account_id: res.data.results[0].account_id,
-          order_no: res.data.results[0].order_no
+          partList: res.data,
+          account_id: res.data.account.id,
+          order_no: res.data.order_no
         })
         // that.get_info_by_account_id(res.data.results[0].account_id);
 
-        // 查询消费
-        let params = {
-          account_id: that.data.account_id,
-          page_num: 1,
-          page_size: 9999
-        };
-        // that.get_consume_by_roomnum(params);
+        
+        that.get_consume_by_roomnum();
       } else {
         wx.showToast({
           title: '未查询到入住信息',
@@ -488,7 +498,7 @@ Page({
         })
       } 
       wx.hideLoading();
-    });
+    }); 
 
     wx.stopPullDownRefresh();
   },

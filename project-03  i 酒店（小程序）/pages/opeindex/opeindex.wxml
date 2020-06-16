@@ -2,7 +2,7 @@
 <view class='container'>
   <view class='section'>
     <block wx:for='{{ settingList }}' wx:key='key'>
-      <view class='section_item column center' data-link='{{ item.link }}' data-desc="{{ item.desc }}" bindtap='navigate'>
+      <view class='section_item column center' style="{{item.bg}}" data-link='{{ item.link }}' data-desc="{{ item.desc }}" bindtap='navigate'>
         <image src='{{ item.url }}'></image>
         <text>{{ item.desc }}</text>
       </view>

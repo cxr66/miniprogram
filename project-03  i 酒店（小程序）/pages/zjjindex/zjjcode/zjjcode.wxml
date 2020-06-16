@@ -1,2 +1,8 @@
 <!--pages/zjjindex/zjjcode/zjjcode.wxml-->
-<text>pages/zjjindex/zjjcode/zjjcode.wxml</text>
+<view class="page-section">
+	<view > 
+			<input bindinput="bindKeyInput" type='text' placeholder='请输入团队订单号'></input>
+		<button class='login_in login_btn' bindtap="get_all_reserve_info"> 查询 </button>
+	</view>
+
+</view>

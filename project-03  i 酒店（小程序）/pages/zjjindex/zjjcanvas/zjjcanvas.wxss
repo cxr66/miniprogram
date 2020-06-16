@@ -1,0 +1,5 @@
+/* pages/zjjindex/zjjcanvas/zjjcanvas.wxss */
+page{
+  background-color: #fff;
+}
+.r1_2 canvas{margin:0 auto;margin-top: 150px}
