@@ -416,7 +416,7 @@ Page({
       console.log(res.data);
       that.setData({
         "hotel_type": res.data.audit,
-        hotelInfo: res.data
+        "hotelInfo": res.data
       }) // 酒店类型： 0: 名宿； 1: 酒店
 
     });
@@ -792,7 +792,7 @@ Page({
                     //   }
                     // });
                   }
-                  console.log(params.master_guest);
+                  // console.log(params.master_guest);
                   let url = app.globalData.url_online.url_9102 + 'bill/home_stay_check_in/';
                   console.log(params);
                   http.postReq(url, params, function (res) {
@@ -855,7 +855,7 @@ Page({
                         wx.navigateBack({
                           delta: 1
                         })
-                      }, 3000)
+                      }, 1000)
 
                     } else {
                       wx.showToast({
