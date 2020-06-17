@@ -20,9 +20,8 @@ Page({
 
     /* tab栏 */
     menuList: [{
-        name: "基础信息"
-      }
-    ],
+      name: "基础信息"
+    }],
     tabScroll: 0,
     currentTab: 0,
 
@@ -32,7 +31,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     that = this;
     AudioContext.AudioContext('刷新中');
 
@@ -51,17 +50,21 @@ Page({
 
     wx.showLoading({
       title: ''
-    }); 
+    });
 
-    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_info/' + options.id + '/', function(res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_info/' + options.id + '/', function (res) {
       console.log('单个预定单详情', res.data);
       wx.hideLoading();
-      for(let i in res.data.master_guest){
+      for (let i in res.data.master_guest) {
         // let id_no= res.data.master_guest[i].id_no,face_id=res.data.master_guest[i].face_id;
+        if (res.data.master_guest[i].id_no && res.data.master_guest[i].id_no != null) {
+          res.data.master_guest[i].id_no_show = res.data.master_guest[i].id_no.slice(0, 4) + '****' + res.data.master_guest[i].id_no.substr(res.data.master_guest[i].id_no.length - 4);
 
-        res.data.master_guest[i].id_no = res.data.master_guest[i].id_no.slice(0, 4) + '****' + res.data.master_guest[i].id_no.substr(res.data.master_guest[i].id_no.length - 4);
+        }
+        if (res.data.master_guest[i].face_id && res.data.master_guest[i].face_id != null) {
+          res.data.master_guest[i].face_id_show = res.data.master_guest[i].face_id.slice(0, 4) + '****' + res.data.master_guest[i].face_id.substr(res.data.master_guest[i].face_id.length - 4);
+        }
 
-        res.data.master_guest[i].face_id = res.data.master_guest[i].face_id.slice(0, 4) + '****' + res.data.master_guest[i].face_id.substr(res.data.master_guest[i].face_id.length - 4);
       }
       that.setData({
         formdetail: res.data
@@ -70,31 +73,33 @@ Page({
   },
   /** *
    * @cancle 取消订单
-  */
- cancle(e){
-  wx.showModal({
-    title: '提示',
-    content: '是否确认取消?',
-    success (res) {
-      if (res.confirm) {
-        console.log('用户点击确定');
-        http.postReq(app.globalData.url_online.url_9102 + 'bill/home_stay_cancel/',{id: that.data.id },function (res) {
-          console.log('取消预定单', res.data);
-          wx.showToast({
-            title: '取消成功',
-            icon:'none'
-          })
-          wx.navigateBack({
-            delta: 1
-          })
-        });
-      } else if (res.cancel) {
-        console.log('用户点击取消');
+   */
+  cancle(e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否确认取消?',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          http.postReq(app.globalData.url_online.url_9102 + 'bill/home_stay_cancel/', {
+            id: that.data.id
+          }, function (res) {
+            console.log('取消预定单', res.data);
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none'
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+        }
       }
-    }
-  })
-  
-},
+    })
+
+  },
 
   bindinput(e) {
     let index = e.currentTarget.dataset.index,
@@ -104,9 +109,9 @@ Page({
     // console.log(that.data.form.price[index][that.data.now_date]); 
 
   },
- 
+
   /* 点击切换 */
-  clickMenu: function(e) {
+  clickMenu: function (e) {
     var current = e.currentTarget.dataset.current //获取当前tab的index
     var tabWidth = this.data.windowWidth / 4
     this.setData({
@@ -123,7 +128,7 @@ Page({
     console.log(that.data.menuList[this.data.currentTab])
 
   },
-  changeContent: function(e) {
+  changeContent: function (e) {
     var current = e.detail.current // 获取当前内容所在index,文档有
     var tabWidth = this.data.windowWidth / 5
     this.setData({
@@ -134,53 +139,53 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
   // 跳转
-  navigate: function(e) {
+  navigate: function (e) {
     let link = e.currentTarget.dataset.link;
     wx.navigateTo({
       url: link

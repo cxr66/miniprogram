@@ -19,8 +19,8 @@
       </ul>
       <ul class='row list_style' wx:for='{{ formdetail.master_guest }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li>{{ item.name }}</li>
-        <li>{{ item.id_no }}</li>
-        <li>{{ item.face_id }}</li> 
+        <li>{{ item.id_no_show }}</li>
+        <li>{{ item.face_id_show }}</li> 
       </ul>
       <ul class='row list_style'>
         <li style='width: 100%;'>当前条件下无更多客人信息</li>

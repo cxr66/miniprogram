@@ -474,7 +474,7 @@ Page({
                   price: res.data.price[0].price_list[0].room_price
                 })
                 /* 
-                  新街口
+                  新接口
                 */
                 let params = {
                   rsv_type: 0, // ( (0, "全日房"), (1, "钟点房"), (2, "免费房"), )
@@ -507,19 +507,8 @@ Page({
                     'name': resp.name,
                   }
                 });
-                // console.log(that.data.guestList);
-                /*   let name = that.data.orderJson.name;
-                  for (let i in that.data.guestList) {
-                    params.reserve_guest.push({
-                      'id_no': that.data.guestList[i].id_no,
-                      'name': that.data.guestList[i].name,
-                    })
-                    name += ',' + that.data.guestList[i].name
-                  } */
                 let url = app.globalData.url_online.url_9102 + 'bill/unity_booking/';
                 http.postReq(url, params, function (res) {
-                  console.log(res);
-
                   if (res.message == 'success') {
                     wx.showToast({
                       title: '预定成功,订单号为' + res.data.order_no,
@@ -550,7 +539,7 @@ Page({
                       wx.navigateBack({
                         delta: 1
                       })
-                    }, 2000)
+                    }, 1000)
 
                   } else {
                     wx.hideLoading();
@@ -581,143 +570,7 @@ Page({
   },
 
   /**
-   * @order_hotel 增加预定
-   */
-  order_hotel(e) {
-    if (that.data.orderJson.name && that.data.orderJson.id_no) {
-      if (that.data.orderJson.phone.length == 11) {
-        wx.showModal({
-          title: '提示',
-          content: '请确保入住人和同住人身份证号是正确的',
-          success(res) {
-            if (res.confirm) {
-              wx.showToast({
-                title: '预定中',
-                icon: 'none'
-              })
-
-              /* 请求房价 */
-              let room_type = [];
-              room_type.push(that.data.room_type_code);
-              http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
-                "room_type_list": room_type,
-                "begin_date": that.data.on_date,
-                "end_date": that.data.off_date,
-                "rate_code": "BAR"
-              }, function (res) {
-                console.log('请求房价', res.data);
-                wx.showToast({
-                  title: '查询房价中',
-                })
-                wx.showLoading();
-                that.setData({
-                  price: res.data.price[0].price_list[0].room_price
-                })
-                /** 
-                 * 
-                 * 老的接口，关于酒店预定
-                 * 后端接口提供者：邓玉林 
-                 * 
-                 **/
-                let params = {
-                  "reserve_base": {
-                    "telephone_master": that.data.orderJson.name,
-                    "biz_date": that.data.on_date,
-                    "arr_time": that.data.on_date + ' 12:00:00',
-                    "leave_time": that.data.off_date + ' 12:00:00',
-                    "rsv_person_name": that.data.orderJson.name,
-                    "mobile_master": that.data.orderJson.phone,
-                    "rate_code": "BAR",
-                    "code_market": "SK",
-                    "code_src": "SMSK"
-                  },
-                  "reserve_rate": [{
-                    "room_number": that.data.room_number,
-                    "room_price": that.data.price,
-                    "room_type_code": that.data.room_type_code,
-                    "room_count": "1"
-                  }],
-                  "reserve_guest": [{
-                    "name": that.data.orderJson.name,
-                    "id_no": that.data.orderJson.id_no
-                  }],
-                };
-
-                console.log(that.data.guestList);
-                let name = that.data.orderJson.name;
-                for (let i in that.data.guestList) {
-                  params.reserve_guest.push({
-                    'id_no': that.data.guestList[i].id_no,
-                    'name': that.data.guestList[i].name,
-                  })
-                  name += ',' + that.data.guestList[i].name
-                }
-                let url = app.globalData.url_online.url_9202_v2 + 'booking/add_reserve/';
-                http.postReq(url, params, function (res) {
-                  console.log(res);
-
-                  if (res.message == 'success') {
-                    wx.showToast({
-                      title: '预定成功,订单号为' + res.data.order_no,
-                      icon: 'none'
-                    })
-                    var order_no = res.data.order_no;
-                    //发送消息
-                    that.send_msg({
-                      phone_number: that.data.orderJson.phone,
-                      sign_name: "皇冠晶品酒店服务中心",
-                      template_code: "SMS_173405844",
-                      template_param: {
-                        status: "成功",
-                        order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
-                        name: that.data.orderJson.name,
-                        date: that.data.on_date,
-                        hotel: that.data.hotelInfo.full_name,
-                        roomtype: that.data.room_type,
-                        much: "1",
-                        day: parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
-                        money: that.data.price * parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
-                        adress: that.data.hotelInfo.address_1,
-                        tel: that.data.hotelInfo.office_tel
-                      }
-                    });
-
-                    setTimeout(function () {
-                      wx.navigateBack({
-                        delta: 1
-                      })
-                    }, 2000)
-
-                  } else {
-                    wx.hideLoading();
-                    wx.showToast({
-                      title: '预定失败',
-                      icon: 'none'
-                    })
-                  }
-                });
-              });
-            } else if (res.cancel) {
-              console.log('用户点击取消');
-            }
-          }
-        })
-      } else {
-        wx.showToast({
-          title: '手机号码不能少于11位',
-          icon: 'none'
-        })
-      }
-    } else {
-      wx.showToast({
-        title: '上述除备注都是必填项',
-        icon: 'none'
-      })
-    }
-  },
-
-  /**
-   * @checkin 民宿入住备份
+   * @checkin_homestay 民宿入住备份
    * */
   async checkin_homestay(e) {
     if (that.data.orderJson.name && that.data.orderJson.id_no) {
