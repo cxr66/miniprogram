@@ -48,11 +48,15 @@ Page({
     })
 
 
+    
+    that.get_face_detail(options.id);
+    
+  },
+  get_face_detail(id){
     wx.showLoading({
-      title: ''
+      title: '刷新中'
     });
-
-    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_info/' + options.id + '/', function (res) {
+    http.getReq(app.globalData.url_online.url_9102 + 'bill/get_master_base_info/' + id + '/', function (res) {
       console.log('单个预定单详情', res.data);
       wx.hideLoading();
       for (let i in res.data.master_guest) {
@@ -72,6 +76,20 @@ Page({
     });
   },
   /** *
+   * @update_face_id 更新宾客face_id
+   */
+  update_face_id(e){
+    let id=e.currentTarget.dataset.id,url = app.globalData.url_online.url_9102 + 'home_stay/update_face_id/'+id+'/';
+    http.postReq(url,{}, function (res) {
+      console.log('重新添加face_id', res);
+      wx.showToast({
+        title: '更新成功',
+        icon: 'none'
+      })
+      that.get_face_detail(that.data.id);
+    });
+  },
+  /** *
    * @cancle 取消订单
    */
   cancle(e) {
@@ -81,7 +99,7 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
-          http.postReq(app.globalData.url_online.url_9102 + 'bill/home_stay_cancel/', {
+          http.postReq(app.globalData.url_online.url_9102 + 'home_stay/cancel/', {
             id: that.data.id
           }, function (res) {
             console.log('取消预定单', res.data);

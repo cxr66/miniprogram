@@ -46,7 +46,13 @@ Page({
         desc: '客控设置',
         url: '/pages/img/opeindex/fill.png',
         bg:'background:linear-gradient(0deg,rgba(116,207,50,1) 0%,rgba(163,227,70,1) 100%);'
-      }
+      },
+      {
+        link: '/pages/opeindex/zjjsetting/zjjsetting',
+        desc: '自助机配置',
+        url: '/pages/img/opeindex/fill.png',
+        bg:'background:linear-gradient(0deg,rgba(254,76,78,1) 0%,rgba(254,104,106,1) 100%);'
+      },
       ],
   },
   /**

@@ -457,7 +457,7 @@ Page({
               })
 
               /* 请求房价 */
-              let room_type = [];
+              /* let room_type = [];
               room_type.push(that.data.room_type_code);
               http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
                 "room_type_list": room_type,
@@ -473,82 +473,83 @@ Page({
                 that.setData({
                   price: res.data.price[0].price_list[0].room_price
                 })
-                /* 
+                
+              }); */
+              /* 
                   新接口
                 */
-                let params = {
-                  rsv_type: 0, // ( (0, "全日房"), (1, "钟点房"), (2, "免费房"), )
-                  arr_time: that.data.on_date + " 12:00:00", // 到达时间
-                  days: parseInt(getDaysBetween(that.data.on_date, that.data.off_date)), //   入住天数
-                  leave_time: that.data.off_date + " 12:00:00", // 离开时间
-                  code_market: "SK", // 市场码
-                  code_src: "SMSK", // 来源码
-                  rate_code: "BAR", // 房价码
-                  name: that.data.orderJson.name, // 预定人姓名
-                  mobile: that.data.orderJson.phone, // 预定人手机号码
-                  remark: that.data.orderJson.remark, // 备注
-                  new_rt_rate: [{
-                    room_type: that.data.room_type_code, // 房型代码
-                    room_count: 1, // 房间数量
-                    rate_code_price: that.data.price, // 价格
-                    room_number_list: "" // 预定的房间，为空则不排房 that.data.room_number
-                  }]
+               let params = {
+                rsv_type: 0, // ( (0, "全日房"), (1, "钟点房"), (2, "免费房"), )
+                arr_time: that.data.on_date + " 12:00:00", // 到达时间
+                days: parseInt(getDaysBetween(that.data.on_date, that.data.off_date)), //   入住天数
+                leave_time: that.data.off_date + " 12:00:00", // 离开时间
+                code_market: "SK", // 市场码
+                code_src: "SMSK", // 来源码
+                rate_code: "BAR", // 房价码
+                name: that.data.orderJson.name, // 预定人姓名
+                mobile: that.data.orderJson.phone, // 预定人手机号码
+                remark: that.data.orderJson.remark, // 备注
+                new_rt_rate: [{
+                  room_type: that.data.room_type_code, // 房型代码
+                  room_count: 1, // 房间数量
+                  rate_code_price: that.data.price, // 价格
+                  room_number_list: "" // 预定的房间，为空则不排房 that.data.room_number
+                }]
 
+              }
+              /** 
+               * 
+               * 老的接口，关于酒店预定
+               * 后端接口提供者：邓玉林 
+               * 
+               **/
+              params.guest_list = that.data.guestList.map((resp, index) => {
+                return {
+                  'id_no': resp.id_no,
+                  'name': resp.name,
                 }
-                /** 
-                 * 
-                 * 老的接口，关于酒店预定
-                 * 后端接口提供者：邓玉林 
-                 * 
-                 **/
-                params.guest_list = that.data.guestList.map((resp, index) => {
-                  return {
-                    'id_no': resp.id_no,
-                    'name': resp.name,
-                  }
-                });
-                let url = app.globalData.url_online.url_9102 + 'bill/unity_booking/';
-                http.postReq(url, params, function (res) {
-                  if (res.message == 'success') {
-                    wx.showToast({
-                      title: '预定成功,订单号为' + res.data.order_no,
-                      icon: 'none'
-                    })
-                    var order_no = res.data.order_no;
-                    //发送消息
-                    that.send_msg({
-                      phone_number: that.data.orderJson.phone,
-                      sign_name: "皇冠晶品酒店服务中心",
-                      template_code: "SMS_173405844",
-                      template_param: {
-                        status: "成功",
-                        order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
-                        name: that.data.orderJson.name,
-                        date: that.data.on_date,
-                        hotel: that.data.hotelInfo.full_name,
-                        roomtype: that.data.room_type,
-                        much: "1",
-                        day: parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
-                        money: that.data.price * parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
-                        adress: that.data.hotelInfo.address_1,
-                        tel: that.data.hotelInfo.office_tel
-                      }
-                    });
+              });
+              let url = app.globalData.url_online.url_9102 + 'bill/unity_booking/';
+              http.postReq(url, params, function (res) {
+                if (res.message == 'success') {
+                  wx.showToast({
+                    title: '预定成功,订单号为' + res.data.order_no,
+                    icon: 'none'
+                  })
+                  var order_no = res.data.order_no;
+                  //发送消息
+                  that.send_msg({
+                    phone_number: that.data.orderJson.phone,
+                    sign_name: "皇冠晶品酒店服务中心",
+                    template_code: "SMS_173405844",
+                    template_param: {
+                      status: "成功",
+                      order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
+                      name: that.data.orderJson.name,
+                      date: that.data.on_date,
+                      hotel: that.data.hotelInfo.full_name,
+                      roomtype: that.data.room_type,
+                      much: "1",
+                      day: parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
+                      money: that.data.price * parseInt(getDaysBetween(that.data.on_date, that.data.off_date)),
+                      adress: that.data.hotelInfo.address_1,
+                      tel: that.data.hotelInfo.office_tel
+                    }
+                  });
 
-                    setTimeout(function () {
-                      wx.navigateBack({
-                        delta: 1
-                      })
-                    }, 1000)
-
-                  } else {
-                    wx.hideLoading();
-                    wx.showToast({
-                      title: '预定失败',
-                      icon: 'none'
+                  setTimeout(function () {
+                    wx.navigateBack({
+                      delta: 1
                     })
-                  }
-                });
+                  }, 1000)
+
+                } else {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '预定失败',
+                    icon: 'none'
+                  })
+                }
               });
             } else if (res.cancel) {
               console.log('用户点击取消');
@@ -590,7 +591,7 @@ Page({
               let room_type = [];
               room_type.push(that.data.room_type_code);
 
-              http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
+              /* http.postReq(app.globalData.url_online.url_9101 + 'rate_code/get_rate_code/', {
                 "room_type_list": room_type,
                 "begin_date": that.data.on_date,
                 "end_date": that.data.off_date,
@@ -606,117 +607,7 @@ Page({
                     price: res.data.price[0].price_list[0].room_price
                   })
 
-                  let params = {
-                    'master_base': {
-                      "arr_time": that.data.on_date,
-                      "leave_time": that.data.off_date,
-                      "days": getDaysBetween(that.data.on_date, that.data.off_date),
-                      "rate_code": "BAR",
-                      'room_type': that.data.room_type_code,
-                      'room_number': that.data.room_number,
-                      'telephone': that.data.orderJson.phone
-                    },
-                    'master_guest': [{
-                      'id_no': that.data.orderJson.id_no,
-                      'name': that.data.orderJson.name,
-                      'id_code': '01'
-                    }],
-                    'master_rtrate': [{
-                      'room_number': that.data.room_number,
-                      'price': [{
-                        "room_price": that.data.price,
-                        "price_date": that.data.on_date
-                      }]
-                    }],
-                  };
-                  if (that.data.guestList.length) {
-                    for (let i in that.data.guestList) {
-                      params.master_guest.push({ 
-                        'id_no': that.data.guestList[i].id_no,
-                        'name': that.data.guestList[i].name,
-                        'id_code': '01'
-                      })
-                    }
-                    // params.master_guest = that.data.guestList.map((resp, index) => {
-                    //   return {
-                    //     'id_no': resp.id_no,
-                    //     'name': resp.name,
-                    //     'id_code': '01'
-                    //   }
-                    // });
-                  }
-                  // console.log(params.master_guest);
-                  let url = app.globalData.url_online.url_9102 + 'bill/home_stay_check_in/';
-                  console.log(params);
-                  http.postReq(url, params, function (res) {
-                    console.log(res);
-                    wx.hideLoading();
-                    if (res.message == 'success') {
-                      let order_no = res.data.order_no;
-                      wx.showToast({
-                        title: '增加入住单成功,预定信息已发送至手机号，注意查收',
-                        icon: 'none'
-                      })
-
-                      if (that.data.hotelInfo.office_tel && that.data.hotelInfo.office_tel != null) {
-                        //发送消息
-                        that.send_msg({
-                          phone_number: that.data.orderJson.phone,
-                          sign_name: '皇冠晶品酒店服务中心',
-                          template_code: "SMS_173405844",
-                          template_param: {
-                            status: "成功",
-                            order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
-                            name: that.data.orderJson.name,
-                            date: that.data.on_date,
-                            hotel: that.data.hotelInfo.full_name,
-                            roomtype: that.data.room_type,
-                            much: "1",
-                            day: getDaysBetween(that.data.on_date, that.data.off_date),
-                            money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
-                            adress: that.data.hotelInfo.address_1,
-                            tel: that.data.hotelInfo.office_tel
-                          }
-                        });
-                      } else {
-                        wx.showToast({
-                          title: '请稍后设置酒店主机号码，方便客户联系',
-                          icon: 'none',
-                          duration: 3000
-                        })
-                        //发送消息
-                        that.send_msg({
-                          phone_number: that.data.orderJson.phone,
-                          sign_name: '皇冠晶品酒店服务中心',
-                          template_code: "SMS_173405844",
-                          template_param: {
-                            status: "成功",
-                            order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
-                            name: that.data.orderJson.name,
-                            date: that.data.on_date,
-                            hotel: that.data.hotelInfo.full_name,
-                            roomtype: that.data.room_type,
-                            much: "1",
-                            day: getDaysBetween(that.data.on_date, that.data.off_date),
-                            money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
-                            adress: that.data.hotelInfo.address_1,
-                            tel: '4001600703'
-                          }
-                        });
-                      }
-                      setTimeout(function () {
-                        wx.navigateBack({
-                          delta: 1
-                        })
-                      }, 1000)
-
-                    } else {
-                      wx.showToast({
-                        title: '预定失败',
-                        icon: 'none'
-                      })
-                    }
-                  });
+                  
 
                 } else {
                   wx.showToast({
@@ -727,6 +618,117 @@ Page({
                 }
 
 
+              }); */
+              let params = {
+                'master_base': {
+                  "arr_time": that.data.on_date,
+                  "leave_time": that.data.off_date,
+                  "days": getDaysBetween(that.data.on_date, that.data.off_date),
+                  "rate_code": "BAR",
+                  'room_type': that.data.room_type_code,
+                  'room_number': that.data.room_number,
+                  'telephone': that.data.orderJson.phone
+                },
+                'master_guest': [{
+                  'id_no': that.data.orderJson.id_no,
+                  'name': that.data.orderJson.name,
+                  'id_code': '01'
+                }],
+                'master_rtrate': [{
+                  'room_number': that.data.room_number,
+                  'price': [{
+                    "room_price": that.data.price,
+                    "price_date": that.data.on_date
+                  }]
+                }],
+              };
+              if (that.data.guestList.length) {
+                for (let i in that.data.guestList) {
+                  params.master_guest.push({ 
+                    'id_no': that.data.guestList[i].id_no,
+                    'name': that.data.guestList[i].name,
+                    'id_code': '01'
+                  })
+                }
+                // params.master_guest = that.data.guestList.map((resp, index) => {
+                //   return {
+                //     'id_no': resp.id_no,
+                //     'name': resp.name,
+                //     'id_code': '01'
+                //   }
+                // });
+              }
+              // console.log(params.master_guest);
+              let url = app.globalData.url_online.url_9102 + 'home_stay/check_in/';
+              console.log(url,params);
+              http.postReq(url, params, function (res) {
+                console.log(res);
+                wx.hideLoading();
+                if (res.message == 'success') {
+                  let order_no = res.data.order_no;
+                  wx.showToast({
+                    title: '增加入住单成功,预定信息已发送至手机号，注意查收',
+                    icon: 'none'
+                  })
+
+                  if (that.data.hotelInfo.office_tel && that.data.hotelInfo.office_tel != null) {
+                    //发送消息
+                    that.send_msg({
+                      phone_number: that.data.orderJson.phone,
+                      sign_name: '皇冠晶品酒店服务中心',
+                      template_code: "SMS_173405844",
+                      template_param: {
+                        status: "成功",
+                        order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
+                        name: that.data.orderJson.name,
+                        date: that.data.on_date,
+                        hotel: that.data.hotelInfo.full_name,
+                        roomtype: that.data.room_type,
+                        much: "1",
+                        day: getDaysBetween(that.data.on_date, that.data.off_date),
+                        money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
+                        adress: that.data.hotelInfo.address_1,
+                        tel: that.data.hotelInfo.office_tel
+                      }
+                    });
+                  } else {
+                    wx.showToast({
+                      title: '请稍后设置酒店主机号码，方便客户联系',
+                      icon: 'none',
+                      duration: 3000
+                    })
+                    //发送消息
+                    that.send_msg({
+                      phone_number: that.data.orderJson.phone,
+                      sign_name: '皇冠晶品酒店服务中心',
+                      template_code: "SMS_173405844",
+                      template_param: {
+                        status: "成功",
+                        order: order_no.slice(0, 4) + '****' + order_no.substr(order_no.length - 4),
+                        name: that.data.orderJson.name,
+                        date: that.data.on_date,
+                        hotel: that.data.hotelInfo.full_name,
+                        roomtype: that.data.room_type,
+                        much: "1",
+                        day: getDaysBetween(that.data.on_date, that.data.off_date),
+                        money: that.data.price * getDaysBetween(that.data.on_date, that.data.off_date),
+                        adress: that.data.hotelInfo.address_1,
+                        tel: '4001600703'
+                      }
+                    });
+                  }
+                  setTimeout(function () {
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  }, 1000)
+
+                } else {
+                  wx.showToast({
+                    title: '预定失败',
+                    icon: 'none'
+                  })
+                }
               });
             } else if (res.cancel) {
               console.log('用户点击取消');

@@ -20,7 +20,7 @@
       <ul class='row list_style' wx:for='{{ formdetail.master_guest }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li>{{ item.name }}</li>
         <li>{{ item.id_no_show }}</li>
-        <li>{{ item.face_id_show }}</li> 
+        <li><text wx:if='{{ item.face_id_show }}'>{{ item.face_id_show }}</text><text wx:else bindtap="update_face_id" data-id="{{item.id}}" style="color:red;">更新</text></li> 
       </ul>
       <ul class='row list_style'>
         <li style='width: 100%;'>当前条件下无更多客人信息</li>

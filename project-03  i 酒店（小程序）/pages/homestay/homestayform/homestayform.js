@@ -10,16 +10,9 @@ Page({
   data: {
     searchValue: '',
 
-    /* tab栏 */
-    menuList: [{
-      name: "在住订单"
-    }, {
-      name: "预定订单"
-    }],
-    tabScroll: 0,
-    currentTab: 0,
+    
 
-    orderform: []
+    
   },
 
   /**
@@ -140,6 +133,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    that.setData({
+      /* tab栏 */
+      menuList: [{
+        name: "在住订单"
+      }, {
+        name: "预定订单"
+      }],
+      tabScroll: 0,
+      currentTab: 0,
+      orderform: []
+    })
     wx.showLoading({
       title: ''
     });
