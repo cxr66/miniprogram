@@ -182,6 +182,7 @@ App({
       url_9102: 'https://pro.eloadspider.cn/v1/',
       url_9103: 'https://pro.eloadspider.cn/v1/',
       url_machine: 'https://machine.crowncrystalhotel.com/v1/',
+      url_machine_eload: 'https://machine.eloadspider.com/v1/',
       url_9104: 'https://pro.eloadspider.cn/v1/task/',
       url_9202: 'https://bill.eloadspider.com/v1/',
       url_9202_v2: 'https://bill2.crowncrystalhotel.com/v2/',

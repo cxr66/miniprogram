@@ -1,2 +1,19 @@
 <!--pages/opeindex/zjjsetting/zjjsetting.wxml-->
-<text>pages/opeindex/zjjsetting/zjjsetting.wxml</text>
+<view class=' section'>
+  <ul class='row'>  
+      <li>名称</li>
+      <li>UUID</li> 
+      <li>PMS</li>
+      <li>操作</li>  
+  </ul>
+  <ul class='row list_style' wx:for='{{ machineList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+      <li>{{ item.machine_name }}</li> 
+      <li>{{ item.machine_uuid }}</li> 
+      <li>{{ item.pms_type_desc }}</li>
+      <li class='cg_color'>
+      测试
+        <switch bindchange="switchChange" data-id="{{item.id}}" data-desc="{{item.machine_name}}配置环境从{{item.environmental_state_desc}}修改为" checked='{{ item.environmental_state==1 }}' data-uuid="{{item.machine_uuid}}" color='#2080DE' />正式
+      </li> 
+  </ul>
+  <ul class='row list_style'><li style='width: 100%;'>当前无更多数据</li></ul>
+</view>

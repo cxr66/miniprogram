@@ -38,7 +38,8 @@ function getReq(url, cb) {
         case 'access refused 6':
           wx.showToast({
             title: '权限不足,部分展示且不可操作',
-            icon: 'none'
+            icon: 'none',
+            duration: 3000
           })
           break;
 
@@ -92,7 +93,8 @@ function getDataReq(url, params, cb) {
         case 'access refused 6':
           wx.showToast({
             title: '权限不足，部分展示且不可操作',
-            icon: 'none'
+            icon: 'none',
+            duration: 3000
           })
           break;
 
@@ -147,7 +149,8 @@ function postReq(url, data, cb) {
         case 'access refused 6':
           wx.showToast({
             title: '权限不足，部分展示且不可操作',
-            icon: 'none'
+            icon: 'none',
+            duration: 3000
           })
           break;
 

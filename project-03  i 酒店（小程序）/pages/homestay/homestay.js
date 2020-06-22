@@ -80,7 +80,7 @@ Page({
    */
   update_face_id(e){
     let id=e.currentTarget.dataset.id,url = app.globalData.url_online.url_9102 + 'home_stay/update_face_id/'+id+'/';
-    http.postReq(url,{}, function (res) {
+    http.postReq(url,{id_no: e.currentTarget.dataset.id_no   }, function (res) {
       console.log('重新添加face_id', res);
       wx.showToast({
         title: '更新成功',
