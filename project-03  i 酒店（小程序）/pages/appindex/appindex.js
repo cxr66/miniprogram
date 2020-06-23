@@ -14,57 +14,16 @@ Page({
     userInfo: { },
     // 设置
     settingList:[]
-    // settingList: [{
-    //     desc: '酒店管家',
-    //     link: '/pages/showindex/showindex',
-    //     url: '/pages/img/module/icon-hotel.png'
-    //   },
-    //   /* {
-    //     desc: '商城',
-    //     link: '/pages/mallindex/mallindex',
-    //     url: '/pages/img/showindex/showindex-equipment.png'
-    //   },
-    //   {
-    //     desc: '控台',
-    //     link: '/pages/conindex/conindex',
-    //     url: '/pages/img/showindex/showindex-place.png'
-    //   }, */
-    //   {
-    //     desc: '商台',
-    //     link: '/pages/zjjindex/zjjindex',
-    //     url: '/pages/img/module/icon-mall.png'
-    //   },
-    //   {
-    //     desc: '任务体系',
-    //     link: '/pages/mission/mission',
-    //     url:'/pages/img/module/icon-mission.png'
-    //   },
-    //   {
-    //     desc: '运台',
-    //     link: '/pages/opeindex/opeindex',
-    //     url: '/pages/img/module/icon-operate.png'
-    //   },
-    //   {
-    //     desc: '个人中心',
-    //     link: '/pages/my/my',
-    //     url: '/pages/img/module/icon-user.png'
-    //   },
-    //   {
-    //     desc: '民宿管家',
-    //     link: '/pages/showindex/showindex',
-    //     url: '/pages/img/module/icon-homestay.png'
-    //   }
-    // ],
   },
   /** 
    * @get_hotel_audit 获取酒店详情信息
    */
   get_hotel_audit() {
-    let url = app.globalData.url_online.url_login + 'common/hotel/get_info/' + app.globalData.userInfo.hotel_id;
+    let url = app.globalData.url_online.url_9102 + 'report/hotel_info/' ;
     // 获取个人部门信息 app.globalData.url_online.url_login + 'common/employee/view_self'
     http.getReq(url, function (res) {
 
-      console.log(res.data);
+      // console.log(res.data);
       let audit = res.data.audit;// 0 民宿
       if(audit){
         that.setData({

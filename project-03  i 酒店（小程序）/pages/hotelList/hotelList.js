@@ -25,7 +25,7 @@ Page({
         userInfo: app.globalData.userInfo
       })
     } 
-    console.log(wx.getStorageSync('hotelList'));
+    // console.log(wx.getStorageSync('hotelList'));
     that.setData({
       hotelList: wx.getStorageSync('hotelList')
     }) 
@@ -95,7 +95,7 @@ Page({
       desc = e.currentTarget.dataset.desc,index=e.currentTarget.dataset.index;
     AudioContext.AudioContext(desc);
     app.globalData.codeInfo.new_authorization = that.data.hotelList[index].authorization;
-    console.log(that.data.hotelList[index].authorization);
+    // console.log(that.data.hotelList[index].authorization);
       wx.navigateTo({
         url: link+'?audit='+that.data.hotelList[index].audit
       })
