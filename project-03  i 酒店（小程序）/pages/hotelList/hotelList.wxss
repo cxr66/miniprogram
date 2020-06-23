@@ -1,0 +1,68 @@
+/* pages/hotelList/hotelList.wxss */ 
+page{
+  background: #FFFFFF;
+}
+/* section部分 */
+.section{
+  margin: 40rpx auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.section_item{
+  width: 33%;
+  line-height: 50rpx;
+  font-size: 22rpx;
+  color: #222222;
+  align-items: center;
+  margin-top: 60rpx;
+}
+.section_item image{
+  width: 60rpx;
+  height: 60rpx;
+}
+/* formId测试 */
+.sendClick{
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #2080DE;
+  font-size: 24rpx;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+}
+
+
+
+.hotelList{
+  overflow: hidden;
+  padding: 12rpx 12rpx;
+  margin: 0 auto 30rpx auto;
+}
+.hotelListItem{
+  padding: 30rpx 20rpx;
+  margin: 10rpx 0;
+  border: 1px solid #eeeeee;  
+  border-radius: 20rpx;
+}
+.hotelListItem .image{
+  width: 200rpx;
+  height: auto;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1) ;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.hotelListItem image{
+  width: 100%;
+  height: 100%; 
+}
+ 
+.itemRight{
+  line-height: 42rpx;
+  margin-left: 30rpx;
+  font-size: 24rpx;
+}

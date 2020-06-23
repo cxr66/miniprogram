@@ -18,6 +18,7 @@ Page({
   onLoad: function (options) {
     that = this;
     console.log(options.q);
+    
     if (options.q) {
       //获取二维码的携带的链接信息
       let qrUrl = decodeURIComponent(options.q)
@@ -92,6 +93,7 @@ Page({
           that.setData({
             code: code
           })
+          wx.showLoading()
           wx.request({
             url: app.globalData.url_online.url_9103 + 'system/wechat/update_user_weixin_info/',
             header: {
@@ -104,12 +106,19 @@ Page({
             method: 'post',
             success: function (res) {
               console.log('update_user_weixin_info', res.data);
-              wx.reLaunch({
-                url: '/pages/logins/logins',
+              wx.hideLoading({
+                complete: (res) => {},
               })
+              setTimeout(() => {
+                wx.reLaunch({
+                  url: '/pages/logins/logins?loginType="2"',
+                })
+              }, 1000);
             },
             fail: function () {
-
+              wx.showToast({
+                title:  '绑定失败',
+              })
             }
           })
           //授权

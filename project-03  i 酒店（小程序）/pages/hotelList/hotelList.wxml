@@ -1,0 +1,33 @@
+<!--pages/hotelList/hotelList.wxml-->
+<view class='container' hidden="true">
+  <view class='section'>
+    <block wx:for='{{ hotelList }}' wx:key='key'>
+      <view class='section_item column center' data-link='/pages/appindex/appindex' data-desc="{{ item.desc }}" bindtap='navigate'>
+        <image src='{{ item.logo }}'></image>
+        <text>{{ item.full_name }}</text>
+      </view>
+    </block>
+    <view wx:for='3' wx:key='key2' class='section_item'></view>
+  </view>
+</view>
+
+
+<view class='container'>
+  <view class='hotelList column'>
+    <block wx:for='{{ hotelList }}' wx:key='key'>
+      <view class='hotelListItem row' data-link='/pages/appindex/appindex' data-index="{{index}}" data-desc="{{ item.desc }}" bindtap='navigate'>
+      <view class="image"><image src='{{ item.photo }}' lazy-load="true"></image></view>
+        
+        <view class="itemRight column">
+          <text class="full_name fn_28 fn_bolder">{{ item.full_name }}</text>
+          <text>营业日期：{{ item.biz_date }}</text>
+          <text>地址：{{ item.address_1 }}</text>
+        </view>
+      </view>
+    </block> 
+  </view>
+</view>
+
+
+<view class='sendClick' bindtap='redirect' data-link='/pages/logins/logins'>切换</view> 
+ 

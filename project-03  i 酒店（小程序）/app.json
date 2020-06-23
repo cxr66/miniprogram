@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/logins/logins",
+    "pages/hotelList/hotelList",
     "pages/login/login",
     
     "pages/showindex/showindex",

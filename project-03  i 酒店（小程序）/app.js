@@ -195,7 +195,8 @@ App({
       url_monitor: 'https://elevators.eloadspider.com/v1/',
       url_sms:'https://sms.eloadspider.com/v1/',
       url_public: 'https://www.sdlockpf.cn:19943/',
-      url_pro: 'http://pro.eloadspider.cn/v1/'
+      url_pro: 'https://pro.eloadspider.cn/v1/',
+      url_organ: 'https://organ.crowncrystalhotel.com/v1/'
     }
   }
 })

@@ -7,7 +7,7 @@
       <li>操作</li>  
   </ul>
   <ul class='row list_style' wx:for='{{ machineList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
-      <li>{{ item.machine_name }}</li> 
+      <li ><text wx:if='{{item.state}}' style="color:green;">(在线){{ item.machine_name }}</text> <text wx:else style="color:#ff0000;">(离线){{ item.machine_name }}</text></li> 
       <li>{{ item.machine_uuid }}</li> 
       <li>{{ item.pms_type_desc }}</li>
       <li class='cg_color'>

@@ -1,6 +1,8 @@
 /* pages/zjjindex/zjjcode/zjjcode.wxss */
 
 page{
+  width: 95%;
+  margin: auto;
   height: 100%;
   background-color: #fff;
 }
@@ -25,10 +27,11 @@ page{
   font-size: 24rpx;
 }
  input{
-   height: 120rpx;
-   border: 1rpx solid #eee;
+  height: 120rpx;
+  border: 1rpx solid #eee;
   line-height: 120rpx;
   font-size: 30rpx;
+  padding-left: 30rpx;
 }
 
 /* 按钮 */

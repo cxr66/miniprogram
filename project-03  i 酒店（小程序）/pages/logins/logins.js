@@ -10,11 +10,11 @@ Page({
    */
   data: {
     /* 
-      * 0: 用户名密码登录 
-      * 1: 手机验证码登录
-      * 2: 微信授权登录
-      * 3: 多酒店登录
-    */
+     * 0: 用户名密码登录 
+     * 1: 手机验证码登录
+     * 2: 微信授权登录
+     * 3: 多酒店登录
+     */
 
     visiable: "0",
 
@@ -60,7 +60,7 @@ Page({
   },
 
 
-   /* 点击下拉显示框 */
+  /* 点击下拉显示框 */
   selectTap(e) {
     if (e.currentTarget.dataset.flag === '0') {
       this.setData({
@@ -187,7 +187,7 @@ Page({
       }
     }
   },
-   /* 点击下拉列表 */
+  /* 点击下拉列表 */
   optionTap(e) {
     let Index = e.currentTarget.dataset.index; //获取点击的下拉列表的下标
     if (e.currentTarget.dataset.flag === '0') {
@@ -203,7 +203,7 @@ Page({
     }
 
   },
-   /* 输入 */
+  /* 输入 */
   blur_set(e) {
     if (e.currentTarget.dataset.blur === '0') {
       that.setData({
@@ -228,20 +228,20 @@ Page({
     }
 
   },
-   /* 是否记住账号密码 */
+  /* 是否记住账号密码 */
 
   switchChange: function (e) {
     that.setData({
       ['form.isChecked']: e.detail.value
     })
   },
-   /* 登录函数 */
+  /* 登录函数 */
   login(e) {
     console.log('login function');
     if (that.data.form.hotel_code.length) {
       if (that.data.form.user_name.length) {
         if (that.data.form.password.length) {
-          
+
           /* 记住密码 */
           if (that.data.form.isChecked) {
             wx.setStorageSync('form', that.data.form);
@@ -257,7 +257,7 @@ Page({
           wx.showLoading({
             title: '',
             mask: true
-          }) 
+          })
           console.log(that.data.banData[that.data.ban_index].id);
           /* 发送请求 */
           wx.request({
@@ -271,7 +271,7 @@ Page({
             },
             success: function (res) {
               // console.log(res.data);
-              
+
               if (res.data.message === 'success') {
 
                 AudioContext.AudioContext('登录成功');
@@ -303,7 +303,7 @@ Page({
                 }
                 wx.navigateTo({
                   url: '/pages/appindex/appindex',
-                  success:function(){
+                  success: function () {
                     wx.hideLoading();
                   }
                 })
@@ -317,7 +317,7 @@ Page({
                 wx.hideLoading();
               }
 
-              
+
             },
             fail: function (res) {
               wx.showToast({
@@ -349,9 +349,9 @@ Page({
     }
   },
 
-   /* 用户手机号码验证登录 */
+  /* 用户手机号码验证登录 */
   check_phone(e) {
-    if (that.checkPhone(that.data.form_phone.phonenum)) { 
+    if (that.checkPhone(that.data.form_phone.phonenum)) {
       wx.request({
         url: app.globalData.url_online.url_login + 'common/sms/employee/login', //服务接口地址
         method: 'post',
@@ -404,7 +404,7 @@ Page({
       })
     }
   },
-   /* 用户手机号码验证登录 */
+  /* 用户手机号码验证登录 */
   check_phone_login(e) {
     if (that.data.form_phone.phonenum && that.data.form_phone.code) {
 
@@ -484,12 +484,21 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+
     if (wx.getStorageSync('form')) {
       that.setData({
         form: wx.getStorageSync('form')
       })
     }
- 
+
+    if (options.loginType) {
+      console.log(options.loginType);
+      that.setData({
+        visiable: options.loginType
+      })
+    }
+
+
   },
 
   /**
@@ -550,24 +559,63 @@ Page({
       return true;
     }
   },
-
+  /** *
+   * @loginByAuth 微信授权登录
+   */
+  loginByAuth(code) {
+    wx.showLoading({
+      title: '',
+    })
+    wx.request({
+      url: app.globalData.url_online.url_9103 + 'system/wechat/get_mini_user_authorization/',
+      data: {
+        "code": code
+      },
+      method: 'post',
+      success: function (res) {
+        
+        console.log('get_mini_user_authorization', res.data);
+        if (res.data.message == 'success') {
+          wx.setStorageSync('hotelList', res.data.data)
+          wx.navigateTo({
+            url: '/pages/hotelList/hotelList',
+          })
+        } else {
+          wx.showToast({
+            title: '登录失败' + res.data.message,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none'
+        })
+      },complete:function(){
+        wx.hideLoading({
+          complete: (res) => {},
+        })
+      }
+    })
+  },
   getUserInfo: function (e) {
     wx.login({
       success: function (res) {
         var code = res.code; //登录凭证
-        // console.log("登录凭证" + code);
+        console.log("登录凭证" + code);
         /* 
-          * 0: 用户名密码登录 
-          * 1: 手机验证码登录
-          * 2: 微信授权登录
-          * 3: 多酒店登录
-        */
+         * 0: 用户名密码登录 
+         * 1: 手机验证码登录
+         * 2: 微信授权登录
+         * 3: 多酒店登录
+         */
         if (that.data.visiable == '1') {
           that.check_phone_login();
-        } else if (that.data.visiable == '0'){
+        } else if (that.data.visiable == '0') {
           that.login();
         } else if (that.data.visiable == '2') {
-          that.login();
+          that.loginByAuth(code);
         } else if (that.data.visiable == '3') {
           that.login();
         }
@@ -576,7 +624,7 @@ Page({
           that.setData({
             code: code
           })
-          
+
           /* wx.request({
             url: app.globalData.url_online.url_9103 + 'system/wechat/update_user_weixin_info/',
             header: {

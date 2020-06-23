@@ -63,8 +63,8 @@
     </view>
     <view class='check_others'>
       <view class='left' bindtap='bind_check' data-visiable="2">微信授权登录</view>
-      <view class='right' bindtap='bind_check' data-visiable="1">手机验证码登录</view>
-      <view class='left' style="margin-left: 108rpx;" bindtap='bind_check' data-visiable="3">多酒店登录</view>
+      <view class='right' bindtap='bind_check' data-visiable="1" >手机验证码登录</view>
+      <view class='left' style="margin-left: 108rpx;" bindtap='bind_check' data-visiable="3" hidden="true">多酒店登录</view>
       <!-- <view class='right' bindtap='bind_phone'>用户名密码登录</view> -->
     </view>
   </form>
@@ -103,7 +103,7 @@
     <!-- 其他登录方式 -->
     <view class='check_others'>
       <view class='left' bindtap='bind_check' data-visiable="2">微信授权登录</view>
-      <view class='left' style="margin-left: 108rpx;" bindtap='bind_check' data-visiable="3">多酒店登录</view>
+      <view class='left' style="margin-left: 108rpx;" bindtap='bind_check' data-visiable="3"  hidden="true">多酒店登录</view>
       <view class='right' bindtap='bind_check' data-visiable="0">用户名密码登录</view>
     </view>
   </form>
@@ -112,9 +112,9 @@
 <!-- 微信授权登录 -->
 <view class='form' style=" {{ visiable == '2' ?'display:block':'display:none' }} ">
   <form bindsubmit="sendmes" report-submit="true">
-    <view class='login_in row'>
+    <!-- <view class='login_in row'>
       <input bindblur='blur_set' data-blur='5' class='user_name' type='text' placeholder='请输入集团代码' value='{{ form_phone.hotel_code }}'></input>
-    </view>
+    </view> -->
 
     <view>
       <button class='login_in login_btn bg_green' style='background-color: #1aaf72;' form-type="submit" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权登录 </button>
@@ -122,10 +122,10 @@
   </form>
 
   <!-- 其他登录方式 -->
-  <view class='check_others row'>
-    <view bindtap='bind_check' data-visiable="1">手机验证码登录</view>
-    <view style="margin: 0 80rpx;" bindtap='bind_check' data-visiable="3">多酒店登录</view>
-    <view bindtap='bind_check' data-visiable="0">用户名密码登录</view>
+  <view class='check_others '>
+    <view class="left" bindtap='bind_check' data-visiable="1">手机验证码登录</view>
+    <view style="margin: 0 80rpx;" bindtap='bind_check' data-visiable="3" hidden="true">多酒店登录</view>
+    <view class="right" bindtap='bind_check' data-visiable="0">用户名密码登录</view>
   </view>
 </view>
 
