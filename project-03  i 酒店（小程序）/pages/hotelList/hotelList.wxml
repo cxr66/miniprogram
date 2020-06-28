@@ -11,7 +11,6 @@
   </view>
 </view>
 
-
 <view class='container'>
   <view class='hotelList column'>
     <block wx:for='{{ hotelList }}' wx:key='key'>

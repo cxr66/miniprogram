@@ -99,8 +99,5 @@ Page({
       wx.navigateTo({
         url: link+'?audit='+that.data.hotelList[index].audit
       })
- 
-
   },
-
 })
