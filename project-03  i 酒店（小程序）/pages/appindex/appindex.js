@@ -22,7 +22,7 @@ Page({
     let url = app.globalData.url_online.url_9102 + 'report/hotel_info/' ;
     // 获取个人部门信息 app.globalData.url_online.url_login + 'common/employee/view_self'
     http.getReq(url, function (res) {
-
+        console.log(res.data);
       // console.log(res.data);
       let audit = res.data.audit;// 0 民宿
       if(audit){
