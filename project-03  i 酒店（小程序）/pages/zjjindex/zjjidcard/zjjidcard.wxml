@@ -1,0 +1,58 @@
+<!--pages/zjjindex/zjjidcard/zjjidcard.wxml-->
+<!--pages/zjjindex/zjjcard/zjjcard.wxml-->
+<!-- 导航栏 -->
+<scroll-view class="tab bg_fff" scroll-x scroll-left="{{tabScroll}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item  {{currentTab == index ? 'active' : ''}}" style="width:{{ 100/menuList.length < 20?'150rpx': 100/menuList.length + '%'  }}" data-current="{{ index }}" bindtap='clickMenu'>{{item.name}}</view>
+  </block>
+</scroll-view>
+
+<!-- 页面 -->
+<swiper class="content" style='height: {{windowHeight}}px' duration="1000" current="{{currentTab}}" bindchange="changeContent">
+  <swiper-item class="content-item">
+  <view class="sign_btn" bindtap="hide">新增</view>
+    <view class=' table'>
+      <ul class='row'>
+        <li>序号</li>
+        <li>身份证厂商</li>
+        <li>描述</li> 
+        <li>创建时间</li> 
+      </ul>
+      <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+        <li>{{ item.id }}</li>
+        <li>{{ item.idc_factory }}</li>
+        <li>{{ item.desc }}</li> 
+        <li class='date_color' style="width: 22%;">{{ item.create_datetime }}</li>  
+ 
+      </ul>
+    </view>
+
+    <view class="orderform bg_fff more center">当前条件下无更多信息</view>
+  </swiper-item> 
+
+</swiper>
+
+
+
+<!-- 设置 -->
+
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{ modal }}'></view>
+<view class="modalDlg column" catchtouchmove="preventTouchMove" hidden='{{ modal }}'>
+  <view class='choose_title'> 
+    <view>
+      <view class='fn_24 line_height_60 '>厂家名称：</view> 
+		  <input class="fn_26" bindinput='bindinput' placeholder="请输入厂家名称" data-value="params.idc_factory" value='{{  params.idc_factory }}' /> 
+    </view>
+ 
+    <view>
+      <view class='fn_24 line_height_60 '>描述：</view> 
+		  <input class="fn_26" bindinput='bindinput' data-value="params.desc" placeholder="请输入描述" value='{{ params.desc }}' /> 
+    </view>
+ 
+  </view>
+
+  <view class='row'>
+    <view class='row_item' bindtap='hide'>取消</view>
+    <view class='row_item' style='color: #ffffff;background-color: #2080DE;' bindtap='add_id_factory'>确认</view>
+  </view>
+</view>

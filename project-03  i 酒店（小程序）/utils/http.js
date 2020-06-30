@@ -30,9 +30,16 @@ function getReq(url, cb) {
         case 'authorization invalid':
           app.globalData.userInfo = {};
           app.globalData.codeInfo = {};
-          wx.reLaunch({
-            url: '/pages/logins/logins',
+          wx.showToast({
+            title: '认证失效',
+            icon:'none',
+            duration: 1500
           })
+          setTimeout(function(){
+            wx.reLaunch({
+              url: '/pages/logins/logins',
+            })
+          },1500)
           break;
 
         case 'access refused 6':
@@ -51,9 +58,16 @@ function getReq(url, cb) {
       }
     },
     fail: function () {
-      wx.reLaunch({
-        url: '/pages/logins/logins',
+      wx.showToast({
+        title: '后台出错',
+        icon:'none',
+        duration: 1500
       })
+      setTimeout(function(){
+        wx.reLaunch({
+          url: '/pages/logins/logins',
+        })
+      },1500)
       return typeof cb == "function" && cb(false);
     },
     complete: function () {
@@ -85,9 +99,16 @@ function getDataReq(url, params, cb) {
         case 'authorization invalid':
           app.globalData.userInfo = {};
           app.globalData.codeInfo = {};
-          wx.reLaunch({
-            url: '/pages/logins/logins',
+          wx.showToast({
+            title: '认证失败',
+            icon:'none',
+            duration: 1500
           })
+          setTimeout(function(){
+            wx.reLaunch({
+              url: '/pages/logins/logins',
+            })
+          },1500)
           break;
 
         case 'access refused 6':
@@ -106,9 +127,16 @@ function getDataReq(url, params, cb) {
       }
     },
     fail: function () {
-      wx.reLaunch({
-        url: '/pages/logins/logins',
+      wx.showToast({
+        title: '后台出错',
+        icon:'none',
+        duration: 1500
       })
+      setTimeout(function(){
+        wx.reLaunch({
+          url: '/pages/logins/logins',
+        })
+      },1500)
       return typeof cb == "function" && cb(false);
     },
     complete: function () {
@@ -141,9 +169,16 @@ function postReq(url, data, cb) {
         case 'authorization invalid':
           app.globalData.userInfo = {};
           app.globalData.codeInfo = {};
-          wx.reLaunch({
-            url: '/pages/logins/logins',
+          wx.showToast({
+            title: '认证失效',
+            icon:'none',
+            duration: 1500
           })
+          setTimeout(function(){
+            wx.reLaunch({
+              url: '/pages/logins/logins',
+            })
+          },1500)
           break;
 
         case 'access refused 6':
@@ -162,9 +197,16 @@ function postReq(url, data, cb) {
       }
     },
     fail: function () {
-      wx.reLaunch({
-        url: '/pages/logins/logins',
+      wx.showToast({
+        title: '后台出错',
+        icon:'none',
+        duration: 1500
       })
+      setTimeout(function(){
+        wx.reLaunch({
+          url: '/pages/logins/logins',
+        })
+      },1500)
       return typeof cb == "function" && cb(false)
     },
     complete: function () {

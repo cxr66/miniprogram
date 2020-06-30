@@ -57,6 +57,11 @@ Page({
         link: '/pages/zjjindex/zjjsetting/zjjsetting',
         url: '/pages/img/zjjindex/icon-setting.png'
       },  
+      {
+        desc: '身份证读卡器厂商',
+        link: '/pages/zjjindex/zjjidcard/zjjidcard',
+        url: '/pages/img/zjjindex/icon-zjjidcard.png'
+      },  
     ],
   },
   /**
