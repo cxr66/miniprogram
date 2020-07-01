@@ -12,7 +12,7 @@ Page({
 
     /* tab栏 */
     menuList: [{
-      name: "入店列表"
+      name: "上传失败列表"
     },
    /*  {
       name: "离开店列表"

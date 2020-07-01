@@ -114,8 +114,8 @@ Page({
           icon: 'none',
           duration: 2000,
           success:function(){
-            that.hide();
             that.get_id_factory_base_list();
+            that.hide();
           }
         })
    
@@ -126,6 +126,28 @@ Page({
         icon: 'none',
       })
     }
+  },
+  remove_idc_factory(e){
+    wx.showModal({
+      title: '提示',
+      content: '是否确认删除该厂商？',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+          http.postReq(app.globalData.url_online.url_9102 + 'room/room_lock/remove_id_factory_base/'+e.currentTarget.dataset.id+'/', function (res) {
+            console.log('删除身份证读卡器厂商成功', res);
+            wx.showToast({
+              title: '删除成功',
+              icon: 'none',
+              duration: 2000,
+            })
+            that.get_id_factory_base_list();
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

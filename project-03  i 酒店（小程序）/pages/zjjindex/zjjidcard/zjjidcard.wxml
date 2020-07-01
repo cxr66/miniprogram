@@ -17,13 +17,14 @@
         <li>身份证厂商</li>
         <li>描述</li> 
         <li>创建时间</li> 
+        <li>操作</li> 
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li>{{ item.id }}</li>
         <li>{{ item.idc_factory }}</li>
         <li>{{ item.desc }}</li> 
         <li class='date_color' style="width: 22%;">{{ item.create_datetime }}</li>  
- 
+        <li> <text class="color_f00 fn_28" data-id="{{item.id}}" bindtap="remove_idc_factory">删除</text> </li> 
       </ul>
     </view>
 

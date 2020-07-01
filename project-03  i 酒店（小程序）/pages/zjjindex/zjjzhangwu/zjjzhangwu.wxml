@@ -19,7 +19,7 @@
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li>{{ item.room_num }}</li>
-        <li>{{ item.create_time }}</li>
+        <li>{{ item.create_datetime }}</li>
         <li>{{ item.pay_status_desc }}</li>
         <li>{{ item.incoming_account_reason_desc }}</li>
         <li>{{ item.charge_amount }}</li>
@@ -40,7 +40,7 @@
       </ul>
       <ul class='row list_style' wx:for='{{ orderform }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
         <li>{{ item.room_num }}</li>
-        <li>{{ item.modify_time  }}</li>
+        <li>{{ item.create_datetime  }}</li>
         <li>{{ item.pay_status_desc }}</li>
         <li>{{ item.incoming_account_reason_desc }}</li>
         <li>{{ item.charge_amount }}</li>
