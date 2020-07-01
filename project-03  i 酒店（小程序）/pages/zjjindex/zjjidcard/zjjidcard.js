@@ -43,13 +43,7 @@ Page({
     wx.showLoading({
       title: ''
     });
-    http.getReq(app.globalData.url_online.url_9102 + 'room/room_lock/get_id_factory_base_list/', function (res) {
-      console.log('身份证读卡器管理', res.data);
-      wx.hideLoading();
-      that.setData({
-        orderform: res.data.results
-      })
-    });
+    that.get_id_factory_base_list();
   },
   /* 查询 */
   get_id_factory_base_list(){
@@ -81,13 +75,7 @@ Page({
     });
     console.log(that.data.menuList[this.data.currentTab])
     if (that.data.menuList[this.data.currentTab].name == '身份证读卡器厂商') {
-      http.getReq(app.globalData.url_online.url_9102 + 'room/room_lock/get_id_factory_base_list/', function (res) {
-        console.log('身份证读卡器厂商', res.data);
-        wx.hideLoading();
-        that.setData({
-          orderform: res.data.results
-        })
-      });
+      that.get_id_factory_base_list();
     } 
   },
 
@@ -128,13 +116,14 @@ Page({
     }
   },
   remove_idc_factory(e){
+    let id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '提示',
       content: '是否确认删除该厂商？',
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定');
-          http.postReq(app.globalData.url_online.url_9102 + 'room/room_lock/remove_id_factory_base/'+e.currentTarget.dataset.id+'/', function (res) {
+          http.postReq(app.globalData.url_online.url_9102 + 'room/room_lock/remove_id_factory_base/'+id+'/',{}, function (res) {
             console.log('删除身份证读卡器厂商成功', res);
             wx.showToast({
               title: '删除成功',
@@ -144,7 +133,7 @@ Page({
             that.get_id_factory_base_list();
           });
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          console.log('用户点击取消');
         }
       }
     })
