@@ -76,7 +76,7 @@
   margin: auto;
   z-index: 99;
   width:400rpx; 
-  height: 500rpx;
+  height: 400rpx;
   background:rgba(255,255,255,1);
   border-radius:10rpx;
   

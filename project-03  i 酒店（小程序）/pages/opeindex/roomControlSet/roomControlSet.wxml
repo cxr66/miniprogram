@@ -51,7 +51,7 @@
 
 
 <view class="mask" catchtouchmove="preventTouchMove" hidden='{{ setmodal }}'></view>
-<scroll-view class="modalDlg column" catchtouchmove="preventTouchMove" scroll-y style=" -webkit-overflow-scrolling: touch;overflow-y: scroll;" hidden='{{ setmodal }}'>
+<scroll-view class="modalDlg column" catchtouchmove="preventTouchMove" scroll-y style=" -webkit-overflow-scrolling: touch;overflow-y: scroll; " hidden='{{ setmodal }}'>
   <view class='choose_title'  wx:for='{{ switch_codes }}' wx:key='key'>
     <view class='fn_24 line_height_60 '>开关显示 {{index+1}}：</view>
     <picker bindchange="bindPickerChange" value="{{ switchCodeIndex }}" range="{{ lightShowList }}" range-key='switch_code_detail' data-flag="3" data-index="{{index}}">

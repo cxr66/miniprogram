@@ -58,7 +58,6 @@ Page({
         lightShowList: res.data.manufacture
       })
       wx.hideLoading(); 
-
     });
 
     http.getReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_man_const/', function (res) {
@@ -67,7 +66,6 @@ Page({
         manConstList: res.data.manufacture
       })
       wx.hideLoading(); 
-
     });
   },
   /** 
@@ -119,7 +117,6 @@ Page({
             "switch_code": ""  //#  开关键值
         })
         switch_code_detail_list.push({switch_code_detail:that.data.lightShowList[0].switch_code_detail})
-      
     }
     that.setData({
       setmodal: !that.data.setmodal,

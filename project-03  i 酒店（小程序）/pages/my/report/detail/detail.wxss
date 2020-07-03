@@ -1,0 +1,4 @@
+/* pages/my/report/detail/detail.wxss */
+.reportDetail{
+  width: 100%;
+}

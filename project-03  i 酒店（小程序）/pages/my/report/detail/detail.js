@@ -1,25 +1,17 @@
-// pages/my/report/report.js
-var app = getApp();
-var that = undefined;
-const http = require('../../../utils/http.js'); 
+// pages/my/report/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    setList: [
-      {
-        desc: '报表 1',
-        link: '/pages/report/detail/detail',
-      },
-    ],
+
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;
 
   },
 
@@ -70,13 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  // 跳转
-  navigate: function (e) {
-    let link = e.currentTarget.dataset.link;
-    wx.navigateTo({
-      url: link
-    })
-  },
-
+  }
 })

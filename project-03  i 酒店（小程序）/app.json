@@ -94,6 +94,7 @@
     "pages/my/attend/attend",
     "pages/my/sign/sign",
     "pages/my/report/report",
+    "pages/my/report/detail/detail",
     "pages/my/audit/audit",
     "pages/my/shiftsChange/shiftsChange",
 
