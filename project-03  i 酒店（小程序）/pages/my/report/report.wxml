@@ -5,7 +5,7 @@
 <view class='container'>
   <view class='section'>
     <block wx:for='{{ setList }}' wx:key='key'>
-      <view class='autoView section_item' data-link='{{ item.link }}' bindtap='navigate'>
+      <view class='autoView section_item' data-link='/pages/my/report/detail/detail?api={{ item.api }}'  bindtap='navigate'>
         {{ item.desc}}
         <image src='/pages/img/icon-right.png'></image>
       </view>

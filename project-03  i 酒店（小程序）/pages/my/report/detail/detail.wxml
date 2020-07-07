@@ -1,5 +1,21 @@
 <!--pages/my/report/detail/detail.wxml-->
-<view class="reportDetail">
-
-
+<!-- 冲调账列表展示 -->
+<view class='autoView section'>
+  <ul class='row'>
+    <li>房间号</li>
+    <li>调账金额</li> 
+    <li>剩余金额</li> 
+    <li>财务日期</li>
+     <li>调账日期</li>
+  </ul>
+  <ul class='row list_style' wx:for='{{ reportList }}' wx:key='key' style='{{ index%2==0?"background-color: #F8F8F8;":""}}'>
+    <li class='date_color' ><text wx:if='{{item.shift_id}}'>{{ item.date }}</text></li>
+    <li>{{ item.shift_id.start_time }}</li> 
+    <li>{{ item.shift_id.end_time }}</li> 
+    <li>{{ item.shift_id.desc_cn }}</li>
+    <li>{{ item.shift_id.desc_cn }}</li>
+  </ul>
+  <ul class='row list_style'>
+    <li style='width: 100%;'>当前条件下无更多记录</li>
+  </ul>
 </view>

@@ -1,4 +1,10 @@
 // pages/my/report/detail/detail.js
+
+var app = getApp();
+var that = undefined;
+const http = require('../../../../utils/http.js');
+const reportApi = require('../../../../utils/reportApi.js');
+
 Page({
 
   /**
@@ -12,7 +18,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
+    let api = options.api;
+    console.log(options)
+    http.postReq(app.globalData.url_online.url_9102 + api, {'end_biz_date': "2020-07-07",'start_biz_date': "2020-07-07"},function (res) {
+      console.log('报表',res.data);
+      that.setData({
+        reportList: res.data.results
+      })
+    });
   },
 
   /**

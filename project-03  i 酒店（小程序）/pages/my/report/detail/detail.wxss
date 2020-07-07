@@ -1,4 +1,26 @@
 /* pages/my/report/detail/detail.wxss */
-.reportDetail{
+ 
+/* 表格展示数据 */
+.section{
+  overflow: hidden;
+  margin: 20rpx auto 0 auto;
+  box-shadow:0 2rpx 6rpx 0rpx rgba(204,204,204,1);
+  border-radius:10rpx;
+}
+.section ul{
   width: 100%;
+  font-size: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.section ul li{
+  width: 25%;
+  line-height: 80rpx;
+  text-align: center;
+} 
+.section .list_style{
+  color: #777777;
+}
+.section .date_color{
+  color: #2080DE;
 }

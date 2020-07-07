@@ -2,6 +2,8 @@
 var app = getApp();
 var that = undefined;
 const http = require('../../../utils/http.js'); 
+
+const reportApi = require('../../../utils/reportApi.js').reportApi; 
 Page({
 
   /**
@@ -10,8 +12,8 @@ Page({
   data: {
     setList: [
       {
-        desc: '报表 1',
-        link: '/pages/report/detail/detail',
+        desc: '报表', 
+        api: reportApi.report_arrange_detail_list
       },
     ],
   },
@@ -19,8 +21,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;
-
+    that = this; 
+    
   },
 
   /**
@@ -74,6 +76,7 @@ Page({
   // 跳转
   navigate: function (e) {
     let link = e.currentTarget.dataset.link;
+    console.log(link)
     wx.navigateTo({
       url: link
     })
