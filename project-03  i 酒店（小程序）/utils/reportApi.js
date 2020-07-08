@@ -20,4 +20,3 @@ const reportApi = {
 module.exports = {
   reportApi
 }
- 

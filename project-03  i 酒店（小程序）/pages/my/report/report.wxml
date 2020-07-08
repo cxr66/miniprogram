@@ -1,17 +1,11 @@
-<!--pages/my/report/report.wxml-->
-<!--pages/my/my.wxml-->
-<!-- <import src="../tabbar/tabbar.wxml" />
-<template is="tabbar" data="{{ tabbar }}"/> -->
+<!--pages/my/report/report.wxml--> 
 <view class='container'>
   <view class='section'>
     <block wx:for='{{ setList }}' wx:key='key'>
-      <view class='autoView section_item' data-link='/pages/my/report/detail/detail?api={{ item.api }}'  bindtap='navigate'>
+      <view class='autoView section_item' data-link='/pages/my/report/detail/detail?api={{ item.api }}&desc={{item.desc}}' bindtap='navigate'>
         {{ item.desc}}
         <image src='/pages/img/icon-right.png'></image>
       </view>
     </block>
   </view>
-
- 
 </view>
-

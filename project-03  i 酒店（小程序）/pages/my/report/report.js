@@ -12,8 +12,48 @@ Page({
   data: {
     setList: [
       {
-        desc: '报表', 
+        desc: '冲调账报表', 
         api: reportApi.report_arrange_detail_list
+      },
+      {
+        desc: 'AR入账简表', 
+        api: reportApi.report_ar_charge_summary_by_date
+      },
+      {
+        desc: 'AR账户实时余额表', 
+        api: reportApi.report_ar_account_real_time
+      },
+      {
+        desc: 'AR付款明细', 
+        api: reportApi.report_ar_account_pay_details
+      },
+      {
+        desc: 'AR收款简表', 
+        api: reportApi.report_ar_pay_summary_by_date
+      },
+      {
+        desc: 'AR入账明细报表', 
+        api: reportApi.report_ar_account_charge_details
+      },
+      {
+        desc: '前台转账记录', 
+        api: reportApi.report_transfer_details_by_date
+      },
+      {
+        desc: '营业日报（区间）表', 
+        api: reportApi.biz_date_daily_interval_report
+      },
+      {
+        desc: '营业日报表', 
+        api: reportApi.biz_date_daily_report
+      },
+      {
+        desc: '当前在住', 
+        api: reportApi.report_current_in_live_master_guest_list
+      },
+      {
+        desc: '本日将到', 
+        api: reportApi.report_today_arrival_reserve_base_list
       },
     ],
   },
