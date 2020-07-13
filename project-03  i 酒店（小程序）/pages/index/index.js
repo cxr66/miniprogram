@@ -167,8 +167,7 @@ Page({
     formIdArray: [] //formId
 
   },
-
-  /**********************************房态图的函数******************************************************/
+  /**********************************房态相关函数******************************************************/
   get_room_status() {
     wx.showLoading({
       title: '',
@@ -190,11 +189,12 @@ Page({
       })
       // 获取的当前房态信息
       that.get_room_map_list();
-      that.get_select();
+      
     });
   },
   get_room_map_list() {
     AudioContext.AudioContext('刷新房态中');
+    wx.showLoading();
     // 获取的当前房态信息
     http.getReq(app.globalData.url_online.url_9101 + 'room_status/get_room_map_list/?page_size=300', function (res) {
       console.log('房态', res.data);
@@ -551,7 +551,6 @@ Page({
       that.update_status();
     });
   },
-
   // 点击筛选
   click_check(e) {
     var index = e.currentTarget.dataset.index;
@@ -637,7 +636,6 @@ Page({
       ],
     })
   },
-
   //点击选中放入筛选数组
   choose_check(e) {
     var chooseList = that.data.chooseList,
@@ -903,14 +901,11 @@ Page({
       results[i].color = color_base[results[i].room_state];
     }
 
-
     that.setData({
       color_base: color_base
     })
     return results;
   },
-
-
   onShow: function (options) {
     wx.showLoading({
       title: '',
@@ -942,7 +937,6 @@ Page({
 
   },
   /********************************************设备图函数****************************************************************/
-
   /* 设备态的请求接口 */
   get_eq_check() {
     // 设备态图筛选条件查询
@@ -966,7 +960,6 @@ Page({
       // console.log(that.data.eqCheckList);
     });
   },
-
   // 设备态图查询
   get_eq() {
     http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status/', {
@@ -982,10 +975,8 @@ Page({
       })
     });
   },
-
   // 更改筛选条件
   change_eq_check() {
-
     http.postReq(app.globalData.url_online.url_eq + 'equipment/ht/room/get_room_status/?floor=' + that.data.eq_check_form.floor + '&room_type_name=' + that.data.eq_check_form.type + '&room_status=' + that.data.eq_check_form.status, {
       'hid': app.globalData.userInfo.hotel_id
     }, function (res) {
@@ -1031,7 +1022,6 @@ Page({
     that.setData({
       eq_or_status: !that.data.eq_or_status
     })
-
     // 更改抬头title
     if (!that.data.eq_or_status) {
       wx.setNavigationBarTitle({
@@ -1048,8 +1038,6 @@ Page({
       url: '/pages/detail/detail',
     })
   },
-
-
   /**********************************************公共函数************************************************************************/
   onPullDownRefresh: function () {
     wx.showLoading({
@@ -1076,8 +1064,6 @@ Page({
       url: link,
     })
   },
-
-
   /* formId: 拼接传给后台 */
   sendmes(e) {
     var that = this,

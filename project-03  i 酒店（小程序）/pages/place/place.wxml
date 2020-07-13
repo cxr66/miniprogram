@@ -31,6 +31,10 @@
 
 </view>
 
+<view class='change bg_grey' style='overflow:hidden;' bindtap="onShow">
+    全部
+  </view>
+
 <!-- 列表展示 -->
 <view wx:for='{{ show_today_list }}' wx:key='key' class='autoView section'>
   <view class='change bg_grey' style='overflow:hidden;'>

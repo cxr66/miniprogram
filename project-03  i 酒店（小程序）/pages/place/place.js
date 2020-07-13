@@ -9,11 +9,9 @@ Page({
    */
   data: {
     
-  },
-
+  }, 
   /* 获取所有的会议厅列表 */
   get_place_list() {
-    
     let url = app.globalData.url_online.url_9503 + 'meeting/hall/list';
     http.postReq(url,{}, function(res) {
       console.log(res);
