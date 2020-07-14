@@ -38,7 +38,7 @@
 <!-- 列表展示 -->
 <view wx:for='{{ show_today_list }}' wx:key='key' class='autoView section'>
   <view class='change bg_grey' style='overflow:hidden;'>
-    <text class='color_1 left cg_color' style='font-weight: bolder;'>{{ item.hall_name }}</text>
+    <text class='color_1 left cg_color' style='font-weight: bolder;'>{{ item.hall.hall_name }}</text>
   </view>
   <ul class='row'>
     <li>日期</li>
@@ -57,8 +57,8 @@
       <text wx:else>无</text>
     </li>
     <li class='cg_color fn_bolder'>
-      <text wx:if='{{ listItem.occupier[0]&&listItem.occupier[0]&&listItem.occupier[0] }}'>详情</text>
-      <text wx:else>预定</text>
+      <text wx:if='{{ listItem.occupier[0]&&listItem.occupier[0]&&listItem.occupier[0] }}'>详情{{ listItem.occupier[0]&&listItem.occupier[0]&&listItem.occupier[0] }}</text>
+      <text wx:else bindtap="navigate" data-link='/pages/place/placeinfo/placeinfo?hallId={{item.hall.id}}&&hallCode={{item.hall.code}}&&hallName={{item.hall.hall_name}}'>预定</text>
     </li>
   </ul>
 </view>

@@ -51,6 +51,7 @@ Page({
         title: '刷新成功',
         icon: 'none'
       })
+
       that.setData({
         placeList: res.data
       })

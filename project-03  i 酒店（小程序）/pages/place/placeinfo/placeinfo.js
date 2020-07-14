@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('options.hallName',options.hallName,'options.hallId',options.hallId,'options.hallCode',options.hallCode);
   },
 
   /**
